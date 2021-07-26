@@ -63,7 +63,7 @@ const InputInfo = styled.input.attrs((props) => ({
     width: 100%;
     height: 35px;
     color: rgb(96, 96, 96);
-    font-weight: bold;
+    // font-weight: bold;
     font-size: 15px;
     border: solid gray 0.5px;
     outline: none;
@@ -80,18 +80,27 @@ class Main extends PureComponent {
             pages: {
                 page: "/",
             },
+            input: "",
         };
     }
 
+    handleChange = (e) => {
+        this.setState({
+            input: e.target.value,
+        });
+        console.log("this.state.input :>> ", this.state.input);
+    };
+
     render() {
         const { pages } = this.state;
+        const handleChange = this;
         return (
             <Whole>
                 <IDPWBox>
                     <Name>{"모두의 관리"}</Name>
                     <IDPW>
                         <Info>ID</Info>
-                        <InputInfo></InputInfo>
+                        <InputInfo onChange={handleChange}></InputInfo>
                         <Info>Password</Info>
                         <InputInfo type="password"></InputInfo>
                         <BrowserRouter>

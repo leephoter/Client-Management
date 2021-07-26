@@ -82,6 +82,7 @@ class LoginButtons extends PureComponent {
                 main: "/",
                 join: "/join",
                 home: "/home",
+                // page:
             },
         };
     }
@@ -90,12 +91,31 @@ class LoginButtons extends PureComponent {
         const { history } = this.props;
         const { pages } = this.state;
         history.push(pages.home);
+        console.log("this.state :>> ", this.state);
     };
 
-    EventClick = () => {
+    EventClick = (e) => {
         const { history } = this.props;
+        console.log(this.state);
+        // console.log("e.target :>> ", e.target);
         const { pages } = this.state;
+        this.setState({
+            pages: {
+                main: "/",
+                join: "/join",
+                home: "/home",
+                page: "2",
+            },
+        });
         history.push(pages.join);
+        console.log("pages.join :>> ", this.state.pages.join);
+    };
+
+    ClickMain = () => {
+        const { history } = this.props;
+        console.log(this.state);
+        const { pages } = this.state;
+        history.push(pages);
     };
 
     render() {

@@ -58,24 +58,26 @@ const HeaderMenu = styled.button`
     }
     &:active {
         // background: ${darken(0.1, "#85a9ff")};
-        // border: none;
+        border: #aac4ff solid 0.1px;
+        box-shadow: none;
+        transition: none;
         // color: white;
     }
-    &::after {
-        content: "";
-        position: absolute;
-        width: 0;
-        height: 2px;
-        // background-color: rgb(31, 72, 255);
-        bottom: 0;
-        left: 0;
-        transition: all 150ms ease-out;
-    }
-    &:hover::after {
-        /* 요소:hover::after ->> 마우스를 요소에 올렷을 때 */
-        width: 100%;
-        background-color: yellowgreen;
-    }
+    // &::after {
+    //     content: "";
+    //     position: absolute;
+    //     width: 0;
+    //     height: 2px;
+    //     // background-color: rgb(31, 72, 255);
+    //     bottom: 0;
+    //     left: 0;
+    //     transition: all 150ms ease-out;
+    // }
+    // &:hover::after {
+    //     /* 요소:hover::after ->> 마우스를 요소에 올렷을 때 */
+    //     width: 100%;
+    //     background-color: yellowgreen;
+    // }
 `;
 
 class Header extends PureComponent {

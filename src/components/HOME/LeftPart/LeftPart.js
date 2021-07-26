@@ -5,6 +5,7 @@ import { darken, lighten } from "polished";
 const LeftBarBox = styled.div`
     box-sizing: border-box;
     display: inline-block;
+    float: inherit;
     width: 280px;
     height: 100vh;
     // background-color: beige;
@@ -15,6 +16,7 @@ const LeftBarBox = styled.div`
 
 const LeftBar = styled.div`
     box-sizing: border-box;
+    float: inherit;
     width: 100%;
 
     display: flex;
