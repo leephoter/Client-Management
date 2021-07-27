@@ -1,7 +1,6 @@
 import React, { PureComponent } from "react";
 import styled, { css, ThemeProvider } from "styled-components";
 import { BrowserRouter, Route, Link } from "react-router-dom";
-// import Palette from "../Palette/Palette";
 import { darken, lighten } from "polished";
 
 const colorStyles = css`
@@ -49,6 +48,7 @@ const sizeStyles = css`
         `}
 `;
 
+// const StyledButton = styled(Link)`
 const StyledButton = styled.button`
     /* 공통 스타일 */
     display: inline-flex;
@@ -88,37 +88,31 @@ class LoginButtons extends PureComponent {
     }
 
     LoginClick = () => {
-        const { history } = this.props;
+        const { pageLink } = this.props;
         const { pages } = this.state;
-        history.push(pages.home);
-        console.log("this.state :>> ", this.state);
+        console.log('"login" :>> ', "login");
+        pageLink.push("/home");
     };
 
     EventClick = (e) => {
-        const { history } = this.props;
-        console.log(this.state);
-        // console.log("e.target :>> ", e.target);
+        const { pageLink } = this.props;
+        // console.log(this.state);
         const { pages } = this.state;
-        this.setState({
-            pages: {
-                main: "/",
-                join: "/join",
-                home: "/home",
-                page: "2",
-            },
-        });
-        history.push(pages.join);
-        console.log("pages.join :>> ", this.state.pages.join);
+        // console.log("pages :>> ", pages);
+        // history.push(pages["join"]);
+        console.log('"Join" :>> ', "Join");
+        pageLink.push("/join");
     };
 
-    ClickMain = () => {
-        const { history } = this.props;
-        console.log(this.state);
-        const { pages } = this.state;
-        history.push(pages);
-    };
+    // ClickMain = () => {
+    //     const { history } = this.props;
+    //     console.log(this.state);
+    //     const { pages } = this.state;
+    //     history.push(pages);
+    // };
 
     render() {
+        const { pageLink } = this.props;
         const { pages } = this.state;
         return (
             <BrowserRouter>
@@ -130,20 +124,24 @@ class LoginButtons extends PureComponent {
                         },
                     }}
                 >
-                    <StyledButton
-                        onClick={this.LoginClick}
-                        color="white"
-                        backgroundColor="whiteblue"
-                    >
-                        {"로그인"}
-                    </StyledButton>
-                    <StyledButton
-                        onClick={this.EventClick}
-                        color="whiteblue"
-                        backgroundColor="white"
-                    >
-                        {"회원가입"}
-                    </StyledButton>
+                    <Link to="/home/">
+                        <StyledButton
+                            // onClick={this.LoginClick}
+                            color="white"
+                            backgroundColor="whiteblue"
+                        >
+                            {"로그인"}
+                        </StyledButton>
+                    </Link>
+                    <Link to="/join/">
+                        <StyledButton
+                            // onClick={this.EventClick}
+                            color="whiteblue"
+                            backgroundColor="white"
+                        >
+                            {"회원가입"}
+                        </StyledButton>
+                    </Link>
                 </ThemeProvider>
             </BrowserRouter>
         );

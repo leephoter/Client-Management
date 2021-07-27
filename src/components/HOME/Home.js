@@ -9,7 +9,7 @@ const Whole = styled.div`
     display: flex;
     width: 100%;
     height: 100%;
-    // background-color: rgb(255, 227, 232);
+    background-color: rgb(255, 227, 232);
     padding: 0 50px;
 `;
 

@@ -2,8 +2,8 @@
     display: inline-block;
     width: 200px;
     height: 100vh;
-    background-color: beige;
-
+    background-color: rgb(193, 193, 193);
+    display: inline-block;
     z-index: 3;
     max-height: 20vh;
     display: flex;
@@ -13,8 +13,8 @@
 
     border: solid balck 1px;
     border-radius: 7px;
-
-    justify-content: center;
+    transition: all 200ms;
+    color: #aac4ff;
 
     color: rgb(222, 222, 222);
 }

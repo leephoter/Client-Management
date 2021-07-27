@@ -71,7 +71,7 @@ class JoinButtons extends PureComponent {
     EventClick = () => {
         const { history } = this.props;
         const { pages } = this.state;
-        history.push(pages.main);
+        // history.push(pages.main);
     };
 
     JoinClick = () => {
@@ -91,13 +91,15 @@ class JoinButtons extends PureComponent {
                             },
                         }}
                     >
-                        <JoinButton
-                            onClick={this.EventClick}
-                            backgroundcolor="white"
-                            fontColor="whiteblue"
-                        >
-                            {"뒤로가기"}
-                        </JoinButton>
+                        <Link to="/">
+                            <JoinButton
+                                // onClick={this.EventClick}
+                                backgroundcolor="white"
+                                fontColor="whiteblue"
+                            >
+                                {"뒤로가기"}
+                            </JoinButton>
+                        </Link>
                         <JoinButton
                             onClick={this.JoinClick}
                             backgroundcolor="whiteblue"

@@ -5,10 +5,9 @@ import { darken, lighten } from "polished";
 const LeftBarBox = styled.div`
     box-sizing: border-box;
     display: inline-block;
-    float: inherit;
     width: 280px;
     height: 100vh;
-    // background-color: beige;
+    background-color: beige;
     padding: 30px 20px;
     border-right: solid gray 1px;
     margin-right: 10px;
@@ -17,8 +16,7 @@ const LeftBarBox = styled.div`
 const LeftBar = styled.div`
     box-sizing: border-box;
     float: inherit;
-    width: 100%;
-
+    width: 200px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -37,15 +35,15 @@ const CalendarBox = styled.div`
 `;
 
 const ClassBox = styled.div`
-// display: flex;
-float: inherit;
-flex-direction: column;
-box-sizing: border-box;
-width: 100%
-height: 50px;
-// background-color: blue;
-max-height: 230px;
-overflow: scroll;
+    // display: flex;
+    float: inherit;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 100%;
+    height: 200px;
+    /* background-color: blue; */
+    max-height: 230px;
+    overflow: scroll;
 `;
 
 const Classes = styled.button`

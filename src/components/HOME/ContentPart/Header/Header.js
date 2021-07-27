@@ -19,7 +19,7 @@ const HeaderBarBox = styled.div`
 const TransButton = css`
     ${(props) =>
         css`
-            &::after {
+            ${props}::after {
                 content: "abc";
                 position: absolute;
                 width: 0;
@@ -63,17 +63,17 @@ const HeaderMenu = styled.button`
         transition: none;
         // color: white;
     }
-    // &::after {
+    // &:after {
     //     content: "";
     //     position: absolute;
     //     width: 0;
     //     height: 2px;
-    //     // background-color: rgb(31, 72, 255);
+    //     background-color: rgb(31, 72, 255);
     //     bottom: 0;
     //     left: 0;
     //     transition: all 150ms ease-out;
     // }
-    // &:hover::after {
+    // &:hover:after {
     //     /* 요소:hover::after ->> 마우스를 요소에 올렷을 때 */
     //     width: 100%;
     //     background-color: yellowgreen;
