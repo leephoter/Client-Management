@@ -1,8 +1,5 @@
 import React, { PureComponent } from "react";
 import styled, { css, ThemeProvider } from "styled-components";
-import LoginButtons from "./Buttons/LoginButton";
-import JoinButtons from "./Buttons/Join";
-import { BrowserRouter, Switch, Router, Route, Link } from "react-router-dom";
 
 const Whole = styled.div`
     width: 100%;
@@ -51,28 +48,6 @@ const IDPW = styled.div`
     align-items: flex-start;
 `;
 
-const Info = styled.div`
-    color: gray;
-    font-size: 14px;
-`;
-
-const InputInfo = styled.input.attrs((props) => ({
-    type: props.type === "password" ? "password" : "text",
-}))`
-    box-sizing: border-box;
-    width: 100%;
-    height: 35px;
-    color: rgb(96, 96, 96);
-    // font-weight: bold;
-    font-size: 15px;
-    border: solid gray 0.5px;
-    outline: none;
-    padding-left: 6px;
-    margin-top: 5px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-`;
-
 class Main extends PureComponent {
     constructor(props) {
         super(props);
@@ -90,40 +65,26 @@ class Main extends PureComponent {
             input: value,
         });
 
-        console.log("this.state.input1 :>> ", this.state.input);
+        // console.log("this.state.input1 :>> ", this.state.input);
     };
 
     render() {
         const { pages } = this.state;
         const handleChange = this;
-        console.log("this.state.input2 :>> ", this.state.input);
         return (
-            <BrowserRouter>
-                <Whole>
-                    <IDPWBox>
-                        <Name>{"모두의 관리"}</Name>
-                        <IDPW>
-                            <Info>ID</Info>
-                            <InputInfo></InputInfo>
-                            <Info>Password</Info>
-                            <InputInfo type="password"></InputInfo>
-                            {/* <Router> */}
-                            <Switch>
-                                <Route
-                                    exact
-                                    path="/"
-                                    component={LoginButtons}
-                                />
-                                <Route
-                                    exact
-                                    path="/join/"
-                                    component={JoinButtons}
-                                />
-                            </Switch>
-                        </IDPW>
-                    </IDPWBox>
-                </Whole>
-            </BrowserRouter>
+            <Whole>
+                <IDPWBox>
+                    <Name>{"모두의 관리"}</Name>
+                    <IDPW>
+                        {/* <Info>ID</Info>
+                        <InputInfo></InputInfo>
+                        <Info>Password</Info>
+                        <InputInfo type="password"></InputInfo>
+                        <LoginButtons></LoginButtons>
+                        <JoinButtons></JoinButtons> */}
+                    </IDPW>
+                </IDPWBox>
+            </Whole>
         );
     }
 }

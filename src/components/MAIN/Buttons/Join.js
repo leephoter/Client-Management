@@ -2,6 +2,8 @@ import React, { PureComponent } from "react";
 import styled, { css, ThemeProvider } from "styled-components";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import { darken, lighten } from "polished";
+import Main from "../Main";
+import InputData from "../InputData/InputData";
 
 const JoinIDPW = styled.div`
     box-sizing: border-box;
@@ -37,8 +39,10 @@ const JoincolorStyles = css`
     }}
 `;
 
-const JoinButton = styled.button`
+const JoinButton = styled(Link)`
     /* 공통 스타일 */
+    box-sizing: border-box;
+    text-decoration: none;
     display: inline-flex;
     outline: none;
     border-radius: 4px;
@@ -71,7 +75,6 @@ class JoinButtons extends PureComponent {
     EventClick = () => {
         const { history } = this.props;
         const { pages } = this.state;
-        // history.push(pages.main);
     };
 
     JoinClick = () => {
@@ -81,7 +84,8 @@ class JoinButtons extends PureComponent {
     render() {
         const { pages } = this.state;
         return (
-            <BrowserRouter>
+            <Main>
+                <InputData></InputData>
                 <JoinIDPW>
                     <ThemeProvider
                         theme={{
@@ -91,15 +95,13 @@ class JoinButtons extends PureComponent {
                             },
                         }}
                     >
-                        <Link to="/">
-                            <JoinButton
-                                // onClick={this.EventClick}
-                                backgroundcolor="white"
-                                fontColor="whiteblue"
-                            >
-                                {"뒤로가기"}
-                            </JoinButton>
-                        </Link>
+                        <JoinButton
+                            to="/"
+                            backgroundcolor="white"
+                            fontColor="whiteblue"
+                        >
+                            {"뒤로가기"}
+                        </JoinButton>
                         <JoinButton
                             onClick={this.JoinClick}
                             backgroundcolor="whiteblue"
@@ -109,7 +111,7 @@ class JoinButtons extends PureComponent {
                         </JoinButton>
                     </ThemeProvider>
                 </JoinIDPW>
-            </BrowserRouter>
+            </Main>
         );
     }
 }
