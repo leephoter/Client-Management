@@ -1,8 +1,8 @@
 import React, { PureComponent } from "react";
 import styled, { css, ThemeProvider } from "styled-components";
 import { darken, lighten } from "polished";
-import Header from "./Header/Header";
-import MainContentPart from "./MainContentPart/MainContentPart";
+import Header from "../Header/Header";
+import MainContentPart from "../MainContentPart/MainContentPart";
 
 const ContentBox = styled.div`
     box-sizing: border-box;

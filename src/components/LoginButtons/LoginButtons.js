@@ -2,10 +2,8 @@ import React, { PureComponent } from "react";
 import styled, { css, ThemeProvider } from "styled-components";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import { darken, lighten } from "polished";
-import Main from "../Main";
-import InputData from "../InputData/InputData";
 
-const colorStyles = css`
+const LogincolorStyles = css`
     ${({ theme, color, backgroundColor }) => {
         const FontColor = theme.palette[color];
         const Backselected = theme.palette[backgroundColor];
@@ -27,15 +25,15 @@ const colorStyles = css`
     }}
 `;
 
-const sizeStyles = css`
+const LoginsizeStyles = css`
     ${(props) =>
         css`
             font-size: 15px;
         `}
 `;
 
-// const StyledButton = styled(Link)`
-const StyledButton = styled(Link)`
+// const LoginButton = styled(Link)`
+const LoginButton = styled(Link)`
     /* 공통 스타일 */
     box-sizing: border-box;
     display: inline-flex;
@@ -55,9 +53,9 @@ const StyledButton = styled(Link)`
     align-items: center;
 
     /* 크기 */
-    ${sizeStyles}
+    ${LoginsizeStyles}
     /* 색상 */ 
-    ${colorStyles}
+    ${LogincolorStyles}
     /* 기타 */ 
     & + & {
     }
@@ -80,32 +78,29 @@ class LoginButtons extends PureComponent {
         const { pageLink } = this.props;
         const { pages } = this.state;
         return (
-            <Main>
-                {/* <InputData></InputData> */}
-                <ThemeProvider
-                    theme={{
-                        palette: {
-                            whiteblue: "#77b4ff",
-                            white: "#ffffff",
-                        },
-                    }}
+            <ThemeProvider
+                theme={{
+                    palette: {
+                        whiteblue: "#77b4ff",
+                        white: "#ffffff",
+                    },
+                }}
+            >
+                <LoginButton
+                    to={pages.home}
+                    color="white"
+                    backgroundColor="whiteblue"
                 >
-                    <StyledButton
-                        to="/home/"
-                        color="white"
-                        backgroundColor="whiteblue"
-                    >
-                        {"로그인"}
-                    </StyledButton>
-                    <StyledButton
-                        to="/join/"
-                        color="whiteblue"
-                        backgroundColor="white"
-                    >
-                        {"회원가입"}
-                    </StyledButton>
-                </ThemeProvider>
-            </Main>
+                    {"로그인"}
+                </LoginButton>
+                <LoginButton
+                    to={pages.join}
+                    color="whiteblue"
+                    backgroundColor="white"
+                >
+                    {"회원가입"}
+                </LoginButton>
+            </ThemeProvider>
         );
     }
 }

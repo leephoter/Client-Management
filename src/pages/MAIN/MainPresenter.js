@@ -1,5 +1,6 @@
-import React, { PureComponent } from "react";
-import styled, { css, ThemeProvider } from "styled-components";
+import React, { Component } from "react";
+import styled from "styled-components";
+import InputUserData from "../../components/InputUserData/InputUserData";
 
 const Whole = styled.div`
     width: 100%;
@@ -48,45 +49,19 @@ const IDPW = styled.div`
     align-items: flex-start;
 `;
 
-class Main extends PureComponent {
-    constructor(props) {
-        super(props);
-        this.state = {
-            pages: {
-                page: "/",
-            },
-            input: "",
-        };
-    }
-
-    handleChange = (e) => {
-        const { value } = e.target;
-        this.setState({
-            input: value,
-        });
-
-        // console.log("this.state.input1 :>> ", this.state.input);
-    };
-
+export default class MainPresenter extends Component {
     render() {
-        const { pages } = this.state;
-        const handleChange = this;
+        const { children } = this.props;
         return (
             <Whole>
                 <IDPWBox>
                     <Name>{"모두의 관리"}</Name>
                     <IDPW>
-                        {/* <Info>ID</Info>
-                        <InputInfo></InputInfo>
-                        <Info>Password</Info>
-                        <InputInfo type="password"></InputInfo>
-                        <LoginButtons></LoginButtons>
-                        <JoinButtons></JoinButtons> */}
+                        <InputUserData />
+                        {children}
                     </IDPW>
                 </IDPWBox>
             </Whole>
         );
     }
 }
-
-export default Main;

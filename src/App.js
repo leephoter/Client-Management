@@ -1,7 +1,7 @@
 import React, { useState, PureComponent } from "react";
-import Home from "./components/HOME/Home";
-import JoinButtons from "./components/MAIN/Buttons/Join";
-import LoginButtons from "./components/MAIN/Buttons/LoginButton";
+import Main from "./pages/MAIN";
+import Home from "./pages/HOME/Home";
+import Join from "./pages/Join";
 import { BrowserRouter, Router, Route, Switch } from "react-router-dom";
 
 class App extends PureComponent {
@@ -10,9 +10,9 @@ class App extends PureComponent {
         return (
             <BrowserRouter>
                 <Switch>
-                    <Route exact path="/" component={LoginButtons} />
-                    <Route path="/join/" component={JoinButtons} />
-                    <Route path="/home/" component={Home} />
+                    <Route exact path="/" component={Main} />
+                    <Route path="/join" component={Join} />
+                    <Route path="/home" component={Home} />
                 </Switch>
             </BrowserRouter>
         );

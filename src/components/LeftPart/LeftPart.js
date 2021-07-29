@@ -7,7 +7,7 @@ const LeftBarBox = styled.div`
     display: inline-block;
     width: 280px;
     height: 100vh;
-    background-color: beige;
+    /* background-color: beige; */
     padding: 30px 20px;
     border-right: solid gray 1px;
     margin-right: 10px;
@@ -63,16 +63,18 @@ const Classes = styled.button`
     justify-content: center;
     align-items: center;
     color: gray;
-    // background: #85a9ff;
+    background: #85a9ff;
+    font-weight: bold;
+    color: white;
 
     &:hover {
-        // background: ${lighten(0.1, "#85a9ff")};
+        background: ${lighten(0.1, "#85a9ff")};
         border: none;
-        color: white;
+        color: rgb(150, 150, 150);
         width: 100%;
     }
     &:active {
-        // background: ${darken(0.1, "#85a9ff")};
+        background: ${darken(0.1, "#85a9ff")};
         border: none;
         color: white;
     }

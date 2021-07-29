@@ -2,20 +2,6 @@ import React, { PureComponent } from "react";
 import styled, { css, ThemeProvider } from "styled-components";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import { darken, lighten } from "polished";
-import Main from "../Main";
-import InputData from "../InputData/InputData";
-
-const JoinIDPW = styled.div`
-    box-sizing: border-box;
-    float: inherit;
-    width: 100%;
-    margin: 0 auto;
-    border: none;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-`;
 
 const JoincolorStyles = css`
     ${({ theme, backgroundcolor, fontColor }) => {
@@ -49,7 +35,7 @@ const JoinButton = styled(Link)`
     font-weight: bold;
     cursor: pointer;
     margin-top: 10px;
-    width: 180px;
+    width: 100%;
     height: 35px;
 
     justify-content: center;
@@ -84,34 +70,29 @@ class JoinButtons extends PureComponent {
     render() {
         const { pages } = this.state;
         return (
-            <Main>
-                <InputData></InputData>
-                <JoinIDPW>
-                    <ThemeProvider
-                        theme={{
-                            palette: {
-                                whiteblue: "#77b4ff",
-                                white: "#ffffff",
-                            },
-                        }}
-                    >
-                        <JoinButton
-                            to="/"
-                            backgroundcolor="white"
-                            fontColor="whiteblue"
-                        >
-                            {"뒤로가기"}
-                        </JoinButton>
-                        <JoinButton
-                            onClick={this.JoinClick}
-                            backgroundcolor="whiteblue"
-                            fontColor="white"
-                        >
-                            {"가입하기"}
-                        </JoinButton>
-                    </ThemeProvider>
-                </JoinIDPW>
-            </Main>
+            <ThemeProvider
+                theme={{
+                    palette: {
+                        whiteblue: "#77b4ff",
+                        white: "#ffffff",
+                    },
+                }}
+            >
+                <JoinButton
+                    to={pages.main}
+                    backgroundcolor="white"
+                    fontColor="whiteblue"
+                >
+                    {"뒤로가기"}
+                </JoinButton>
+                <JoinButton
+                    onClick={this.JoinClick}
+                    backgroundcolor="whiteblue"
+                    fontColor="white"
+                >
+                    {"가입하기"}
+                </JoinButton>
+            </ThemeProvider>
         );
     }
 }

@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
 import styled, { css, ThemeProvider } from "styled-components";
 import { darken, lighten } from "polished";
+import { AppBar, Tabs, Tab } from "@material-ui/core";
 
 const HeaderBarBox = styled.div`
     box-sizing: border-box;
@@ -12,7 +13,7 @@ const HeaderBarBox = styled.div`
     padding: 10px 0;
     width: 100%;
     height: 100px;
-    // background-color: rgb(193, 193, 193);
+    /* background-color: rgb(193, 193, 193); */
     overflow: scroll;
 `;
 
@@ -79,6 +80,43 @@ const HeaderMenu = styled.button`
     //     background-color: yellowgreen;
     // }
 `;
+const newAppBar = styled(AppBar)`
+    background-color: blue;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`;
+
+const newTabs = styled(Tabs)`
+    background-color: blue;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`;
+const TopHeader = () => {
+    const [value, setValue] = React.useState(0);
+
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
+
+    return (
+        <>
+            <newAppBar position="static">
+                <newTabs
+                    value={value}
+                    onChange={handleChange}
+                    // aria-label="Main Tabs"
+                >
+                    <Tab label="Sen" />
+                    <Tab label="Home" />
+                    <Tab label="Send" />
+                    <Tab label="Profile" />
+                </newTabs>
+            </newAppBar>
+        </>
+    );
+};
 
 class Header extends PureComponent {
     constructor(props) {
@@ -88,12 +126,15 @@ class Header extends PureComponent {
     render() {
         return (
             <HeaderBarBox>
-                <HeaderMenu>Home</HeaderMenu>
+                <TopHeader></TopHeader>
+                {/* <HeaderMenu>Home</HeaderMenu>
                 <HeaderMenu>Member</HeaderMenu>
-                <HeaderMenu>Class</HeaderMenu>
+                <HeaderMenu>Class</HeaderMenu> */}
             </HeaderBarBox>
         );
     }
 }
 
 export default Header;
+
+// export default TopHeader;
