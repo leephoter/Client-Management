@@ -1,8 +1,8 @@
 import React, { PureComponent } from "react";
-import MainPresenter from "./MainPresenter";
+import MainPagePresenter from "./MainPagePresenter";
 import LoginButtons from "../../components/LoginButtons/LoginButtons";
 
-class MainContainer extends PureComponent {
+class MainPageContainer extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {};
@@ -19,11 +19,11 @@ class MainContainer extends PureComponent {
         const { pages } = this.state;
         const handleChange = this;
         return (
-            <MainPresenter>
+            <MainPagePresenter>
                 <LoginButtons />
-            </MainPresenter>
+            </MainPagePresenter>
         );
     }
 }
 
-export default MainContainer;
+export default MainPageContainer;
