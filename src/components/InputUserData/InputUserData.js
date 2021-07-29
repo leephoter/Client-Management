@@ -5,7 +5,6 @@ const Info = styled.div`
     color: gray;
     font-size: 14px;
 `;
-
 const InputInfo = styled.input.attrs((props) => ({
     type: props.type === "password" ? "password" : "text",
     placeholder: "",

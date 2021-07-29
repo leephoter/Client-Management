@@ -71,10 +71,18 @@ class LoginButtons extends PureComponent {
                 home: "/home",
                 // page:
             },
+            // PlaceHolder : {
+            //     ID: "ID를 입력하세요",
+            //     Password: "Password를 입력하세요",
+            // }
         };
     }
 
+    // setPlaceHolder = () => {
+    //     const { PlaceHolder }
+    // };
     render() {
+        const { setPlaceHolder } = this;
         const { pageLink } = this.props;
         const { pages } = this.state;
         return (
@@ -94,6 +102,7 @@ class LoginButtons extends PureComponent {
                     {"로그인"}
                 </LoginButton>
                 <LoginButton
+                    // onClick={setPlaceHolder}
                     to={pages.join}
                     color="whiteblue"
                     backgroundColor="white"
