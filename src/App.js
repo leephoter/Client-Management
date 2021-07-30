@@ -1,7 +1,7 @@
 import React, { useState, PureComponent } from "react";
 import MainPage from "./pages/MAINPAGE";
-import Home from "./pages/HOME/Home";
-import Join from "./pages/Join";
+import Join from "./pages/JOIN";
+import Home from "./pages/HOME";
 import { BrowserRouter, Router, Route, Switch } from "react-router-dom";
 
 class App extends PureComponent {

@@ -1,18 +1,17 @@
 import React, { PureComponent } from "react";
 import styled from "styled-components";
-import LeftPart from "../../components/LeftPart/LeftPart";
-import ContentPart from "../../components/ContentPart/ContentPart";
+import ContentPart from "../../Layout/ContentPart";
+import LeftBarBox from "../../Layout/LEFTBAR";
 
 const Whole = styled.div`
     box-sizing: border-box;
     display: flex;
-    width: 100%;
-    height: 100%;
-    /* background-color: rgb(255, 227, 232); */
+    width: 1380px;
+    height: 800px;
     padding: 0 50px;
 `;
 
-class Home extends PureComponent {
+class HomePresenter extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {};
@@ -20,11 +19,11 @@ class Home extends PureComponent {
     render() {
         return (
             <Whole>
-                <LeftPart></LeftPart>
+                <LeftBarBox></LeftBarBox>
                 <ContentPart></ContentPart>
             </Whole>
         );
     }
 }
 
-export default Home;
+export default HomePresenter;

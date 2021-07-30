@@ -1,17 +1,7 @@
 import React, { PureComponent } from "react";
 import styled, { css, ThemeProvider } from "styled-components";
 import { darken, lighten } from "polished";
-
-const LeftBarBox = styled.div`
-    box-sizing: border-box;
-    display: inline-block;
-    width: 280px;
-    height: 100vh;
-    /* background-color: beige; */
-    padding: 30px 20px;
-    border-right: solid gray 1px;
-    margin-right: 10px;
-`;
+import Calendar from "../Calendar";
 
 const LeftBar = styled.div`
     box-sizing: border-box;
@@ -21,28 +11,23 @@ const LeftBar = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    // background-color: rgb(222, 222, 222);
 `;
 
 const CalendarBox = styled.div`
     box-sizing: border-box;
     width: 100%;
     height: 230px;
-    // background-color: blue;
-    margin-bottom: 5vh;
+    margin-bottom: 30px;
     border: solid black 1px;
     border-radius: 7px;
 `;
 
 const ClassBox = styled.div`
-    // display: flex;
     float: inherit;
     flex-direction: column;
     box-sizing: border-box;
     width: 100%;
-    height: 200px;
-    /* background-color: blue; */
-    max-height: 230px;
+    max-height: 190px;
     overflow: scroll;
 `;
 
@@ -63,7 +48,7 @@ const Classes = styled.button`
     justify-content: center;
     align-items: center;
     color: gray;
-    background: #85a9ff;
+    background: #8cc0ff;
     font-weight: bold;
     color: white;
 
@@ -87,19 +72,19 @@ class LeftPart extends PureComponent {
     }
     render() {
         return (
-            <LeftBarBox>
-                <LeftBar>
-                    <CalendarBox></CalendarBox>
-                    <ClassBox>
-                        <Classes>Class 1</Classes>
-                        <Classes>Class 2</Classes>
-                        <Classes>Class 1</Classes>
-                        <Classes>Class 1</Classes>
-                        <Classes>Class 1</Classes>
-                        <Classes>Class 1</Classes>
-                    </ClassBox>
-                </LeftBar>
-            </LeftBarBox>
+            <LeftBar>
+                <CalendarBox>
+                    <Calendar />
+                </CalendarBox>
+                <ClassBox>
+                    <Classes>Class 1</Classes>
+                    <Classes>Class 2</Classes>
+                    <Classes>Class 1</Classes>
+                    <Classes>Class 1</Classes>
+                    <Classes>Class 1</Classes>
+                    <Classes>Class 1</Classes>
+                </ClassBox>
+            </LeftBar>
         );
     }
 }
