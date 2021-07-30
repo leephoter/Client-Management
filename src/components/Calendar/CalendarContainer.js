@@ -56,18 +56,24 @@ import Button from "@material-ui/core/Button";
 const minDate = new Date("2019-01-01T00:00:00.000");
 const maxDate = new Date("2024-01-01T00:00:00.000");
 
-const newLocalizationProvider = styled(LocalizationProvider)``;
-const newCalendarPicker = styled(CalendarPicker)``;
+const newLocalizationProvider = styled(LocalizationProvider)`
+    width: 300px;
+    height: 300px;
+`;
+const newCalendarPicker = styled(CalendarPicker)`
+    width: 300px;
+    height: 300px;
+`;
 
 export default function CalendarContainer() {
     const [date, setDate] = React.useState(new Date());
 
     return (
-        <newLocalizationProvider dateAdapter={AdapterDateFns}>
-            <newCalendarPicker
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <CalendarPicker
                 date={date}
                 onChange={(newDate) => setDate(newDate)}
             />
-        </newLocalizationProvider>
+        </LocalizationProvider>
     );
 }

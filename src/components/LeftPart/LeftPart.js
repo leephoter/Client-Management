@@ -20,6 +20,7 @@ const CalendarBox = styled.div`
     margin-bottom: 30px;
     border: solid black 1px;
     border-radius: 7px;
+    background-color: #dddddd;
 `;
 
 const ClassBox = styled.div`

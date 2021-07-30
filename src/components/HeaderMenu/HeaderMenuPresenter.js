@@ -34,14 +34,14 @@ const HeaderMenu = styled(Tab)`
     float: inherit;
     outline: none;
     padding: 0 20px;
-    border: none;
-    /* border-radius: 40px; */
-    transition: all 200ms ease-out;
-    color: rgb(82, 82, 82);
+    border: 1px solid gray;
+    color: #ffffff;
+    background-color: gray;
     transition: all 150ms ease-out;
     &:hover {
         background: ${lighten(0.1, "#85a9ff")};
         box-shadow: 0 7px 15px -5px #85a9ff;
+        border-radius: 10px;
     }
     &:active {
         background: ${darken(0.1, "#85a9ff")};
@@ -63,6 +63,7 @@ const newTabs = styled(Tabs)`
     display: flex;
     justify-content: right;
     align-items: center;
+    background-color: black;
 `;
 
 const TopHeader = () => {
@@ -72,8 +73,8 @@ const TopHeader = () => {
         setValue(newValue);
     };
 
-    const handleClick = () => {
-        console.log("123");
+    const handleClick = (e) => {
+        console.log("e :>> ", e.target);
     };
 
     return (
@@ -84,8 +85,13 @@ const TopHeader = () => {
                     onChange={handleChange}
                     aria-label="Main Tabs"
                 >
-                    <HeaderMenu label="Home" />
-                    <HeaderMenu onClick={handleClick} label="Member" />
+                    <HeaderMenu label="home" />
+                    <HeaderMenu
+                        onClick={handleClick}
+                        label="Member"
+                        component={Link}
+                        to="join"
+                    />
                     <HeaderMenu label="Lesson" />
                 </newTabs>
             </newAppBar>
