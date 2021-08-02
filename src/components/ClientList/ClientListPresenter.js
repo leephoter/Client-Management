@@ -13,48 +13,27 @@ const ListBox = styled(ListItemAvatar)`
 class ClientListPresenter extends PureComponent {
     constructor(props) {
         super(props);
-        this.state = {
-            name: ["Min", "Gyeol", "Ik", "Jin"],
-            age: [1991, 1997, 1991, 1991],
-            now: new Date().getFullYear() + 1,
-        };
+        this.state = {};
     }
-    shouldComponentUpdate(newProps) {
-        this.addInfo();
-        return this.state.opacity !== +newProps.isVisible;
+    shouldComponentUpdate(nextProps) {
+        return this.props.clientContents !== nextProps.clientContents;
     }
 
-    reduceInfor = (e) => {
-        const { name, age, now } = this.state;
+    reduceInfo = (e) => {
+        const { name, age, now } = this.props.clientContents;
         let _name = name;
         let _age = age;
-        // console.log("_name, _age :>> ", _name, _age);
+        // console.log("_name :>> ", _name);
         _name.splice(e.target.dataset.value, 1);
         _age.splice(e.target.dataset.value, 1);
-        console.log("e :>> ", _name, _age);
-        this.setState({
-            ...now,
-            name: _name,
-            age: _age,
-        });
-    };
-
-    addInfo = () => {
-        const { contents } = this.props;
-        const { name, age } = this.state;
-        let _name = contents.name;
-        let _age = contents.age;
-        console.log("contents :>> ", contents);
-        this.setState({
-            name: _name,
-            age: _age,
-        });
+        this.props.deleteInfo(_name, _age);
     };
 
     render() {
-        const { name, age, now } = this.state;
-        const { reduceInfor, addInfo } = this;
-        const { clientInfo, push } = this.props;
+        const { reduceInfo } = this;
+        const { clientContents } = this.props;
+        const { name, age, now } = clientContents;
+        // console.log("clientContents :>> ", clientContents);
         return (
             <ListBox>
                 {name.map((item, index) => (
@@ -63,7 +42,7 @@ class ClientListPresenter extends PureComponent {
                             primary={item}
                             secondary={now - age[index] + "살"}
                         ></ListItemText>
-                        <button data-value={index} onClick={reduceInfor}>
+                        <button data-value={index} onClick={reduceInfo}>
                             {"X"}
                         </button>
                     </ListItem>

@@ -28,7 +28,7 @@ const InputBox = styled.div`
     background-color: #ffffff;
 `;
 const InputModal = styled.input.attrs((props) => ({
-    placeholder: props.title === "name" ? "name" : "age",
+    placeholder: props.title === "newName" ? "name" : "age",
 }))`
     outline: none;
     box-sizing: border-box;
@@ -42,29 +42,27 @@ class ModalContentPresenter extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            contents: {
-                name: "a",
-                age: 21,
+            newContents: {
+                newName: "",
+                newAge: "",
             },
         };
     }
+
     handleChange = (e) => {
         const { title, value } = e.target;
-        const { contents } = this.state;
+        const { newContents } = this.state;
         this.setState({
-            contents: {
-                ...contents,
+            newContents: {
+                ...newContents,
                 [title]: value,
             },
         });
-        this.props.onSearchSubmit(contents);
-        this.props.getInfo(contents);
+        // this.props.addInfo(newContents);
     };
-    // onFormSubmit = (item) => {};
     render() {
-        const { handleChange, onFormSubmit } = this;
-        const { contents } = this.state;
-
+        const { handleChange } = this;
+        const { newContents } = this.state;
         return (
             <MainModal>
                 <HeadModal>
@@ -72,14 +70,12 @@ class ModalContentPresenter extends PureComponent {
                     <TitleModal>{"나이"}</TitleModal>
                 </HeadModal>
                 <InputBox>
-                    {/* <form onSubmit={onFormSubmit}> */}
                     <InputModal
-                        title="name"
+                        title="newName"
                         onChange={handleChange}
                     ></InputModal>
-                    {/* </form> */}
                     <InputModal
-                        title="age"
+                        title="newAge"
                         onChange={handleChange}
                     ></InputModal>
                 </InputBox>

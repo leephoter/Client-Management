@@ -73,10 +73,16 @@ class MainContentPart extends PureComponent {
         this.state = {
             modalOpen: false,
             contents: {
-                name: "",
-                age: "",
+                name: ["Min", "Gyeol", "Ik", "Jin"],
+                age: [1991, 1997, 1991, 1991],
+                now: new Date().getFullYear() + 1,
             },
         };
+    }
+
+    shouldComponentUpdate(nextProps) {
+        console.log("this.state, nextProps :>> ", this.state, nextProps);
+        return this.state.contents !== nextProps.contents;
     }
     openModal = () => {
         this.setState({ modalOpen: true });
@@ -84,10 +90,8 @@ class MainContentPart extends PureComponent {
     closeModal = () => {
         this.setState({ modalOpen: false });
     };
-    onSearchSubmit = (e) => {
+    deleteInfo = (_name, _age) => {
         const { contents } = this.state;
-        const _name = e.name;
-        const _age = e.age;
         this.setState({
             contents: {
                 ...contents,
@@ -95,36 +99,23 @@ class MainContentPart extends PureComponent {
                 age: _age,
             },
         });
-        // console.log("_e.name :>> ", contents);
     };
-    pushInfo = (push) => {
+    addInfo = (newContents) => {
         const { contents } = this.state;
-        // console.log("this.state :>> ", this.state.contents);
-        const _push = push;
-        // _push === true
-        //     ? console.log("_push :>> ", _push)
-        //     : console.log("_push :>> ", _push);
-
-        // return _push;
-    };
-    getInfo = (item) => {
-        const { contents } = this.state;
-        const _name = item.name;
-        const _age = item.age;
+        console.log("newContents :>> ", newContents);
         this.setState({
             contents: {
                 ...contents,
-                name: _name,
-                age: _age,
+                name: newContents.newName,
+                age: newContents.newAge,
             },
         });
     };
     render() {
-        const { pushInfo, getInfo } = this;
         const { contents } = this.state;
+        const { deleteInfo, addInfo } = this;
         return (
             <MainContentBox>
-                {/* <Grid item xs={12} md={11}> */}
                 <Members>
                     <HeadBox>
                         <Client>{"회원 리스트"}</Client>
@@ -134,14 +125,13 @@ class MainContentPart extends PureComponent {
                         open={this.state.modalOpen}
                         close={this.closeModal}
                         title="Create a chat room"
-                        pushInfo={pushInfo}
                     >
-                        <ModalContent
-                            onSearchSubmit={this.onSearchSubmit}
-                            getInfo={getInfo}
-                        ></ModalContent>
+                        <ModalContent></ModalContent>
                     </ModalBox>
-                    <ClientList clientInfo={contents} />
+                    <ClientList
+                        clientContents={contents}
+                        deleteInfo={deleteInfo}
+                    />
                 </Members>
                 {/* </Grid> */}
             </MainContentBox>
