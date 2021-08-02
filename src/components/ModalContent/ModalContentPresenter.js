@@ -48,15 +48,6 @@ class ModalContentPresenter extends PureComponent {
             },
         };
     }
-    componentDidMount = (props) => {
-        const { contents } = this.state;
-        this.setState({
-            contents: {
-                ...contents,
-            },
-            text: "",
-        });
-    };
     handleChange = (e) => {
         const { title, value } = e.target;
         const { contents } = this.state;
@@ -66,18 +57,14 @@ class ModalContentPresenter extends PureComponent {
                 [title]: value,
             },
         });
-        this.onFormSubmit();
+        this.props.onSearchSubmit(contents);
+        this.props.getInfo(contents);
     };
-    onFormSubmit = (e) => {
-        e.preventDefault();
-        const { contents } = this.state;
-        const { information } = this.props;
-        this.props.onSubmit(contents);
-    };
+    // onFormSubmit = (item) => {};
     render() {
         const { handleChange, onFormSubmit } = this;
         const { contents } = this.state;
-        console.log("contents", contents);
+
         return (
             <MainModal>
                 <HeadModal>
@@ -85,12 +72,12 @@ class ModalContentPresenter extends PureComponent {
                     <TitleModal>{"나이"}</TitleModal>
                 </HeadModal>
                 <InputBox>
-                    <form onSubmit={onFormSubmit}>
-                        <InputModal
-                            title="name"
-                            onChange={handleChange}
-                        ></InputModal>
-                    </form>
+                    {/* <form onSubmit={onFormSubmit}> */}
+                    <InputModal
+                        title="name"
+                        onChange={handleChange}
+                    ></InputModal>
+                    {/* </form> */}
                     <InputModal
                         title="age"
                         onChange={handleChange}

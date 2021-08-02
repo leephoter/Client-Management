@@ -19,7 +19,8 @@ class ClientListPresenter extends PureComponent {
             now: new Date().getFullYear() + 1,
         };
     }
-    shouldComponentUpdate(newProps, newState) {
+    shouldComponentUpdate(newProps) {
+        this.addInfo();
         return this.state.opacity !== +newProps.isVisible;
     }
 
@@ -37,9 +38,23 @@ class ClientListPresenter extends PureComponent {
             age: _age,
         });
     };
+
+    addInfo = () => {
+        const { contents } = this.props;
+        const { name, age } = this.state;
+        let _name = contents.name;
+        let _age = contents.age;
+        console.log("contents :>> ", contents);
+        this.setState({
+            name: _name,
+            age: _age,
+        });
+    };
+
     render() {
         const { name, age, now } = this.state;
-        const { reduceInfor } = this;
+        const { reduceInfor, addInfo } = this;
+        const { clientInfo, push } = this.props;
         return (
             <ListBox>
                 {name.map((item, index) => (

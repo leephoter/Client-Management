@@ -84,35 +84,64 @@ class MainContentPart extends PureComponent {
     closeModal = () => {
         this.setState({ modalOpen: false });
     };
-    onSearchSubmit = (each) => {
-        const { contents, name, age } = this.state;
-        console.log("each =>", each);
+    onSearchSubmit = (e) => {
+        const { contents } = this.state;
+        const _name = e.name;
+        const _age = e.age;
+        this.setState({
+            contents: {
+                ...contents,
+                name: _name,
+                age: _age,
+            },
+        });
+        // console.log("_e.name :>> ", contents);
+    };
+    pushInfo = (push) => {
+        const { contents } = this.state;
+        // console.log("this.state :>> ", this.state.contents);
+        const _push = push;
+        // _push === true
+        //     ? console.log("_push :>> ", _push)
+        //     : console.log("_push :>> ", _push);
+
+        // return _push;
+    };
+    getInfo = (item) => {
+        const { contents } = this.state;
+        const _name = item.name;
+        const _age = item.age;
+        this.setState({
+            contents: {
+                ...contents,
+                name: _name,
+                age: _age,
+            },
+        });
     };
     render() {
-        const { getInformation } = this;
+        const { pushInfo, getInfo } = this;
         const { contents } = this.state;
-        const { onSearchSubmit } = this;
-        onSearchSubmit();
         return (
             <MainContentBox>
                 {/* <Grid item xs={12} md={11}> */}
                 <Members>
                     <HeadBox>
-                        <Client onClick={onSearchSubmit}>
-                            {"회원 리스트"}
-                        </Client>
+                        <Client>{"회원 리스트"}</Client>
                     </HeadBox>
-                    {/* <React.Fragment> */}
                     <button onClick={this.openModal}> 회원 등록</button>
                     <ModalBox
                         open={this.state.modalOpen}
                         close={this.closeModal}
                         title="Create a chat room"
+                        pushInfo={pushInfo}
                     >
-                        <ModalContent onSubmit={onSearchSubmit}></ModalContent>
+                        <ModalContent
+                            onSearchSubmit={this.onSearchSubmit}
+                            getInfo={getInfo}
+                        ></ModalContent>
                     </ModalBox>
-                    {/* </React.Fragment> */}
-                    <ClientList />
+                    <ClientList clientInfo={contents} />
                 </Members>
                 {/* </Grid> */}
             </MainContentBox>

@@ -95,22 +95,52 @@ const ModalSectionFooterButton = styled.button`
 // }
 
 class ModalBox extends PureComponent {
+    constructor(props) {
+        super(props);
+        this.state = {
+            push: false,
+        };
+    }
+    clickPush = (push) => {
+        this.props.pushInfo(push);
+    };
+    onSearchSubmit = (e) => {
+        const { contents } = this.state;
+        const _name = e.name;
+        const _age = e.age;
+    };
     render() {
         const { open, close, header } = this.props;
-
+        const { push } = this.state;
+        const { clickPush } = this;
         return (
             <div className={open ? "openModal modal" : "modal"}>
                 {open ? (
                     <section>
                         <header>
                             {/* {header} */}
-                            <button className="close" onClick={close}>
+                            <button
+                                className="close"
+                                onClick={
+                                    (close,
+                                    clickPush(push),
+                                    this.setState({ push: false }))
+                                }
+                            >
                                 &times;
                             </button>
                         </header>
                         <main>{this.props.children}</main>
                         <footer>
-                            <button className="close">{"push"}</button>
+                            <button
+                                className="close"
+                                onClick={
+                                    (this.setState({ push: true }),
+                                    clickPush(push))
+                                }
+                            >
+                                {"push"}
+                            </button>
                         </footer>
                     </section>
                 ) : null}
