@@ -27,10 +27,9 @@ const Members = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: flex-end;
     width: 500px;
     height: 500px;
-    /* background-color: rgb(220, 250, 240); */
 `;
 const HeadBox = styled.div`
     box-sizing: border-box;
@@ -47,8 +46,7 @@ const Client = styled.span`
     box-sizing: border-box;
     font-size: 25px;
     font-weight: bold;
-    color: gray;
-    background-color: #eee;
+    color: #80a9ff;
 `;
 
 const RegisterClient = styled.button`
@@ -58,13 +56,14 @@ const RegisterClient = styled.button`
     text-decoration: none;
     cursor: pointer;
     font-size: 15px;
+    font-weight: lighter;
     width: 80px;
-    border: solid #cccccc 0.1px;
+    border: none;
     border-radius: 5px;
-    color: #aaaaaa;
+    color: #ffffff;
     font-weight: bold;
     margin: 0 10px 10px;
-    /* background-color: rgb(200, 250, 200); */
+    background-color: #80bfff;
 `;
 
 class MainContentPart extends PureComponent {
@@ -120,7 +119,10 @@ class MainContentPart extends PureComponent {
                     <HeadBox>
                         <Client>{"회원 리스트"}</Client>
                     </HeadBox>
-                    <button onClick={this.openModal}> 회원 등록</button>
+                    <RegisterClient onClick={this.openModal}>
+                        {" "}
+                        회원 등록
+                    </RegisterClient>
                     <ModalBox
                         open={this.state.modalOpen}
                         close={this.closeModal}
