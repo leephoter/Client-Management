@@ -58,7 +58,7 @@ class ModalContentPresenter extends PureComponent {
                 [title]: value,
             },
         });
-        // this.props.addInfo(newContents);
+        this.props.getInfo(newContents);
     };
     render() {
         const { handleChange } = this;

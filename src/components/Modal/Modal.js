@@ -101,8 +101,12 @@ class ModalBox extends PureComponent {
             push: false,
         };
     }
+    addContents = () => {
+        this.props.pushInfo();
+    };
     render() {
         const { open, close, header } = this.props;
+        const { addContents } = this;
         return (
             <div className={open ? "openModal modal" : "modal"}>
                 {open ? (
@@ -115,10 +119,7 @@ class ModalBox extends PureComponent {
                         </header>
                         <main>{this.props.children}</main>
                         <footer>
-                            <button
-                                className="close"
-                                onClick={this.setState({ push: true })}
-                            >
+                            <button className="close" onClick={addContents}>
                                 {"push"}
                             </button>
                         </footer>

@@ -11,11 +11,12 @@ const ListBox = styled(ListItemAvatar)`
 `;
 
 class ClientListPresenter extends PureComponent {
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
     shouldComponentUpdate(nextProps) {
+        // console.log(
+        //     "this.props.clientContents :>> ",
+        //     this.props.clientContents
+        // );
+        // console.log("nextProps :>> ", nextProps.clientContents);
         return this.props.clientContents !== nextProps.clientContents;
     }
 
@@ -29,11 +30,29 @@ class ClientListPresenter extends PureComponent {
         this.props.deleteInfo(_name, _age);
     };
 
+    // drawList = () => {
+    //     const { clientContents } = this.props;
+    //     const { name, age, now } = clientContents;
+    //     const { reduceInfo } = this;
+    //     {
+    //         name.map((item, index) => (
+    //             <ListItem>
+    //                 <ListItemText
+    //                     primary={item}
+    //                     secondary={now - age[index] + "살"}
+    //                 ></ListItemText>
+    //                 <button data-value={index} onClick={reduceInfo}>
+    //                     {"X"}
+    //                 </button>
+    //             </ListItem>
+    //         ));
+    //     }
+    // };
+
     render() {
-        const { reduceInfo } = this;
+        const { drawList, reduceInfo } = this;
         const { clientContents } = this.props;
         const { name, age, now } = clientContents;
-        // console.log("clientContents :>> ", clientContents);
         return (
             <ListBox>
                 {name.map((item, index) => (

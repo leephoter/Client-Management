@@ -76,13 +76,17 @@ class MainContentPart extends PureComponent {
                 age: [1991, 1997, 1991, 1991],
                 now: new Date().getFullYear() + 1,
             },
+            getContents: {
+                name: "",
+                age: "",
+            },
         };
     }
 
-    shouldComponentUpdate(nextProps) {
-        console.log("this.state, nextProps :>> ", this.state, nextProps);
-        return this.state.contents !== nextProps.contents;
-    }
+    // shouldComponentUpdate(nextProps) {
+    //     console.log("this.state, nextProps :>> ", this.state, nextProps);
+    //     return this.state.contents !== nextProps.contents;
+    // }
     openModal = () => {
         this.setState({ modalOpen: true });
     };
@@ -99,20 +103,32 @@ class MainContentPart extends PureComponent {
             },
         });
     };
-    addInfo = (newContents) => {
-        const { contents } = this.state;
-        console.log("newContents :>> ", newContents);
+    getInfo = (newContents) => {
+        const { getContents } = this.state;
         this.setState({
-            contents: {
-                ...contents,
+            getContents: {
+                ...getContents,
                 name: newContents.newName,
                 age: newContents.newAge,
             },
         });
     };
+    pushInfo = () => {
+        const { contents, getContents } = this.state;
+        const _name = contents.name.push(getContents.name);
+        const _age = contents.age.push(getContents.age);
+        // console.log("contents :>> ", contents);
+        this.setState({
+            contents: {
+                ...contents,
+                name: _name,
+                age: _age,
+            },
+        });
+    };
     render() {
-        const { contents } = this.state;
-        const { deleteInfo, addInfo } = this;
+        const { contents, getContents } = this.state;
+        const { deleteInfo, getInfo, pushInfo } = this;
         return (
             <MainContentBox>
                 <Members>
@@ -127,11 +143,13 @@ class MainContentPart extends PureComponent {
                         open={this.state.modalOpen}
                         close={this.closeModal}
                         title="Create a chat room"
+                        pushInfo={pushInfo}
                     >
-                        <ModalContent></ModalContent>
+                        <ModalContent getInfo={getInfo}></ModalContent>
                     </ModalBox>
                     <ClientList
                         clientContents={contents}
+                        dummy={getContents}
                         deleteInfo={deleteInfo}
                     />
                 </Members>
