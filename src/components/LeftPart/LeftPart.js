@@ -74,9 +74,7 @@ class LeftPart extends PureComponent {
     render() {
         return (
             <LeftBar>
-                <CalendarBox>
-                    <Calendar />
-                </CalendarBox>
+                <CalendarBox>{/* <Calendar /> */}</CalendarBox>
                 <ClassBox>
                     <Classes>Class 1</Classes>
                     <Classes>Class 2</Classes>

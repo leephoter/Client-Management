@@ -37,12 +37,12 @@ class InputUserData extends PureComponent {
     handleChange = (e) => {
         const { type, value } = e.target;
         const { information, ID } = this.state;
-        let keyword = "";
-        type === "password" ? (keyword = "password") : (keyword = "ID");
+        let _type = "type";
+        type === "password" ? (_type = "password") : (_type = "ID");
         this.setState({
             information: {
                 ...information,
-                [keyword]: value,
+                [_type]: value,
             },
         });
     };

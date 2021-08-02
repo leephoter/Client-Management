@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import styled from "styled-components";
 import ContentPart from "../../Layout/ContentPart";
-import LeftBarBox from "../../Layout/LEFTBAR";
+import LeftBarBox from "../../Layout/LeftBar";
 
 const Whole = styled.div`
     box-sizing: border-box;

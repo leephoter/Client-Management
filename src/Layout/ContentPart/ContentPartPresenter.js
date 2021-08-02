@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import styled, { css, ThemeProvider } from "styled-components";
 import { darken, lighten } from "polished";
-import Header from "../HEADER";
+import Header from "../Header";
 import MainContentPart from "../MainContentPart";
 
 const ContentBox = styled.div`
