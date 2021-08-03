@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import InputUserData from "../../components/InputUserData/InputUserData";
+import InputUserData from "../../components/InputUserData";
 
 const Whole = styled.div`
     width: 100%;
@@ -52,7 +52,7 @@ const IDPW = styled.div`
 export default class JoinPresenter extends Component {
     render() {
         const { children } = this.props;
-        console.log("children :>> ", children);
+        // console.log("children :>> ", children);
         return (
             <Whole>
                 <IDPWBox>

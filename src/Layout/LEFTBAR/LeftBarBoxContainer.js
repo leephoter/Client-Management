@@ -1,12 +1,8 @@
 import React, { PureComponent } from "react";
 import LeftBarBoxPresenter from "./LeftBarBoxPresenter";
-import LeftPart from "../../components/LeftPart/LeftPart";
+import LeftPart from "../../components/LeftPart";
 
-class LeftBarBoxContainer extends PureComponent {
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
+export default class extends PureComponent {
     render() {
         return (
             <LeftBarBoxPresenter>
@@ -15,5 +11,3 @@ class LeftBarBoxContainer extends PureComponent {
         );
     }
 }
-
-export default LeftBarBoxContainer;

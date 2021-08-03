@@ -11,13 +11,12 @@ const Whole = styled.div`
     padding: 0 50px;
 `;
 
-export default class HomePresenter extends PureComponent {
+export default class MemberPresenter extends PureComponent {
     render() {
-        const { pathname } = this.props;
         return (
             <Whole>
                 <LeftBarBox></LeftBarBox>
-                <ContentPart pathname={pathname}></ContentPart>
+                <ContentPart></ContentPart>
             </Whole>
         );
     }

@@ -1,14 +1,13 @@
 import React, { PureComponent } from "react";
 import ContentPartPresenter from "./ContentPartPresenter";
 
-class ContentPartContainer extends PureComponent {
+export default class extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {};
     }
     render() {
-        return <ContentPartPresenter />;
+        const { pathname } = this.props;
+        return <ContentPartPresenter pathname={pathname} />;
     }
 }
-
-export default ContentPartContainer;

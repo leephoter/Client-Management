@@ -1,2 +1,2 @@
-import ClientList from "./ClientListPresenter";
+import ClientList from "./ClientListContainer";
 export default ClientList;

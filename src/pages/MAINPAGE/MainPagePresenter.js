@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import InputUserData from "../../components/InputUserData/InputUserData";
+import InputUserData from "../../components/InputUserData";
 
 const Whole = styled.div`
     width: 100%;

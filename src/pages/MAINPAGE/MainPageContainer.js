@@ -1,8 +1,8 @@
 import React, { PureComponent } from "react";
 import MainPagePresenter from "./MainPagePresenter";
-import LoginButtons from "../../components/LoginButtons/LoginButtons";
+import LoginButtons from "../../components/LoginButtons";
 
-class MainPageContainer extends PureComponent {
+export default class extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {};
@@ -25,5 +25,3 @@ class MainPageContainer extends PureComponent {
         );
     }
 }
-
-export default MainPageContainer;

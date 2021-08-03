@@ -1,2 +1,2 @@
-import ModalContent from "./ModalContentPresenter";
+import ModalContent from "./ModalContentContainer";
 export default ModalContent;

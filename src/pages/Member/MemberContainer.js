@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import HomePresenter from "./HomePresenter";
+import MemberPresenter from "./MemberPresenter";
 import styled from "styled-components";
 
 export default class extends PureComponent {
@@ -8,7 +8,7 @@ export default class extends PureComponent {
         this.state = {};
     }
     render() {
-        const { pathname } = this.props.history.location;
-        return <HomePresenter pathname={pathname} />;
+        // console.log("this.props :>> ", this.props.history.location.pathname);
+        return <MemberPresenter />;
     }
 }

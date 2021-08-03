@@ -29,19 +29,14 @@ const MainContent = styled.div`
     height: 20px;
 `;
 
-class ContentPartPresenter extends PureComponent {
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
+export default class ContentPartPresenter extends PureComponent {
     render() {
+        const { pathname } = this.props;
         return (
             <ContentBox>
                 <Header />
-                <MainContentPart />
+                <MainContentPart pathname={pathname} />
             </ContentBox>
         );
     }
 }
-
-export default ContentPartPresenter;

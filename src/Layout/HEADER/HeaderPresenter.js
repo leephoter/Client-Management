@@ -14,11 +14,7 @@ const HeaderBarBox = styled.div`
     overflow: scroll;
 `;
 
-class HeaderPresenter extends PureComponent {
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
+export default class HeaderPresenter extends PureComponent {
     render() {
         return (
             <HeaderBarBox>
@@ -27,5 +23,3 @@ class HeaderPresenter extends PureComponent {
         );
     }
 }
-
-export default HeaderPresenter;

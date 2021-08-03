@@ -66,11 +66,7 @@ const Classes = styled.button`
     }
 `;
 
-class LeftPart extends PureComponent {
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
+export default class LeftPartPresenter extends PureComponent {
     render() {
         return (
             <LeftBar>
@@ -87,5 +83,3 @@ class LeftPart extends PureComponent {
         );
     }
 }
-
-export default LeftPart;

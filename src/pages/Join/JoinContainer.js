@@ -1,13 +1,8 @@
 import React, { PureComponent } from "react";
 import JoinPresenter from "./JoinPresenter";
-import JoinButtons from "../../components/JoinButtons/JoinButtons";
+import JoinButtons from "../../components/JoinButtons";
 
-class JoinContainer extends PureComponent {
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
-
+export default class extends PureComponent {
     handleChange = (e) => {
         const { value } = e.target;
         this.setState({
@@ -16,7 +11,6 @@ class JoinContainer extends PureComponent {
     };
 
     render() {
-        const { pages } = this.state;
         const handleChange = this;
         return (
             <JoinPresenter>
@@ -25,5 +19,3 @@ class JoinContainer extends PureComponent {
         );
     }
 }
-
-export default JoinContainer;

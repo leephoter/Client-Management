@@ -13,10 +13,6 @@ const LeftBarBox = styled.div`
 `;
 
 class LeftBarBoxPresenter extends PureComponent {
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
     render() {
         const { children } = this.props;
         return <LeftBarBox>{children}</LeftBarBox>;

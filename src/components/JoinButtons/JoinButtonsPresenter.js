@@ -47,28 +47,10 @@ const JoinButton = styled(Link)`
     ${JoincolorStyles}
 `;
 
-class JoinButtons extends PureComponent {
-    constructor(props) {
-        super(props);
-        this.state = {
-            pages: {
-                main: "/",
-                join: "/join",
-            },
-        };
-    }
-
-    EventClick = () => {
-        const { history } = this.props;
-        const { pages } = this.state;
-    };
-
-    JoinClick = () => {
-        console.log("Join");
-    };
-
+class JoinButtonsPresenter extends PureComponent {
     render() {
-        const { pages } = this.state;
+        const { pages } = this.props;
+        const { JoinClick } = this.props;
         return (
             <ThemeProvider
                 theme={{
@@ -97,8 +79,8 @@ class JoinButtons extends PureComponent {
     }
 }
 
-JoinButtons.defaultProps = {
+JoinButtonsPresenter.defaultProps = {
     color: "blue",
 };
 
-export default JoinButtons;
+export default JoinButtonsPresenter;

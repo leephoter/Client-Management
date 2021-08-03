@@ -66,53 +66,32 @@ const newTabs = styled(Tabs)`
     background-color: black;
 `;
 
-const TopHeader = () => {
-    const [value, setValue] = React.useState(0);
-
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
-
-    const handleClick = (e) => {
-        console.log("e :>> ", e.target);
-    };
-
-    return (
-        <>
+class HeaderMenuPresenter extends PureComponent {
+    render() {
+        const { pages, value, handleChange } = this.props;
+        return (
             <newAppBar position="static">
                 <newTabs
                     value={value}
                     onChange={handleChange}
                     aria-label="Main Tabs"
                 >
-                    <HeaderMenu label="home" />
+                    <HeaderMenu label="home" component={Link} to={pages.home} />
                     <HeaderMenu
-                        onClick={handleClick}
+                        // onClick={handleClick}
                         label="Member"
                         component={Link}
-                        to="join"
+                        to={pages.member}
                     />
-                    <HeaderMenu label="Lesson" />
+                    <HeaderMenu
+                        label="Lesson"
+                        component={Link}
+                        to={pages.lesson}
+                    />
                 </newTabs>
             </newAppBar>
-        </>
-    );
-};
-
-class HeaderMenuPresenter extends PureComponent {
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
-    render() {
-        return (
-            <>
-                <TopHeader></TopHeader>
-            </>
         );
     }
 }
 
 export default HeaderMenuPresenter;
-
-// export default TopHeader;
