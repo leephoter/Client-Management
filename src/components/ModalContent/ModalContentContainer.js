@@ -21,13 +21,16 @@ export default class extends PureComponent {
                 [title]: value,
             },
         });
+        console.log("newContents :>> ", newContents);
         this.props.getInfo(newContents);
     };
     render() {
         const { newContents } = this.state;
         const { handleChange } = this;
+        const { getInfo } = this.props;
         return (
             <ModalContentPresenter
+                getInfo={getInfo}
                 newContents={newContents}
                 handleChange={handleChange}
             />

@@ -34,7 +34,7 @@ export default class MainContentPartPresenter extends PureComponent {
         return (
             <MainContentBox>
                 {pathname === "/home" ? (
-                    <div>{"ㅁ"}</div>
+                    <div>{"HOME"}</div>
                 ) : (
                     <Members
                         modalOpen={modalOpen}

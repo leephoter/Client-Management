@@ -58,6 +58,7 @@ class ModalContentPresenter extends PureComponent {
                 [title]: value,
             },
         });
+        console.log("newContents :>> ", newContents);
         this.props.getInfo(newContents);
     };
     render() {
@@ -70,14 +71,8 @@ class ModalContentPresenter extends PureComponent {
                     <TitleModal>{"나이"}</TitleModal>
                 </HeadModal>
                 <InputBox>
-                    <InputModal
-                        title="newName"
-                        onChange={handleChange}
-                    ></InputModal>
-                    <InputModal
-                        title="newAge"
-                        onChange={handleChange}
-                    ></InputModal>
+                    <InputModal title="newName" onChange={handleChange} />
+                    <InputModal title="newAge" onChange={handleChange} />
                 </InputBox>
             </MainModal>
         );

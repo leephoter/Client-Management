@@ -25,7 +25,7 @@ class App extends PureComponent {
                     <Route exact path={pages.main} component={MainPage} />
                     <Route path={pages.join} component={Join} />
                     <Route path={pages.home} component={Home} />
-                    <Route path={pages.member} component={Member} />
+                    <Route path={pages.member} component={Home} />
                 </Switch>
             </BrowserRouter>
         );

@@ -44,11 +44,13 @@ export default class extends PureComponent {
                 age: newContents.newAge,
             },
         });
+        console.log("getContents :>> ", getContents);
     };
     pushInfo = () => {
         const { contents, getContents } = this.state;
         const _name = contents.name.push(getContents.name);
         const _age = contents.age.push(getContents.age);
+        //깊은복사 얕은
         this.setState({
             contents: {
                 ...contents,
@@ -61,7 +63,7 @@ export default class extends PureComponent {
         const { modalOpen, contents, getContents } = this.state;
         const { pathname } = this.props;
         const { openModal, closeModal, deleteInfo, getInfo, pushInfo } = this;
-        console.log("pathname :>> ", pathname);
+
         return (
             <MainContentPartPresenter
                 pathname={pathname}

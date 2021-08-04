@@ -65,7 +65,7 @@ export default class MembersPresenter extends PureComponent {
                     <Client>{"회원 리스트"}</Client>
                 </HeadBox>
                 <RegisterClient onClick={openModal}> 회원 등록</RegisterClient>
-                <ModalBox
+                <ModalBox //Modal
                     open={modalOpen}
                     close={closeModal}
                     title="Create a chat room"
