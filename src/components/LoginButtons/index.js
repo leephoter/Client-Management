@@ -1,2 +1,2 @@
-import LoginButtons from "./LoginButtonsContainer";
+import LoginButtons from "./LoginButtons";
 export default LoginButtons;

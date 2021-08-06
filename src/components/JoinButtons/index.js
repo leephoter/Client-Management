@@ -1,2 +1,2 @@
-import JoinButtons from "./JoinButtonsContainer";
+import JoinButtons from "./JoinButtons";
 export default JoinButtons;

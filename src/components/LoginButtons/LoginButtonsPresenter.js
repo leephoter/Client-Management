@@ -61,19 +61,9 @@ const LoginButton = styled(Link)`
     }
 `;
 
-class LoginButtons extends PureComponent {
-    constructor(props) {
-        super(props);
-        this.state = {
-            pages: {
-                main: "/",
-                join: "/join",
-                home: "/home",
-            },
-        };
-    }
+class LoginButtonsPresenter extends PureComponent {
     render() {
-        const { pages } = this.state;
+        const { pages, checkAdmit } = this.props;
         return (
             <ThemeProvider
                 theme={{
@@ -87,6 +77,7 @@ class LoginButtons extends PureComponent {
                     to={pages.home}
                     color="white"
                     backgroundColor="whiteblue"
+                    onClick={checkAdmit}
                 >
                     {"로그인"}
                 </LoginButton>
@@ -102,8 +93,8 @@ class LoginButtons extends PureComponent {
     }
 }
 
-LoginButtons.defaultProps = {
+LoginButtonsPresenter.defaultProps = {
     color: "blue",
 };
 
-export default LoginButtons;
+export default LoginButtonsPresenter;

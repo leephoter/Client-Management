@@ -49,8 +49,7 @@ const JoinButton = styled(Link)`
 
 class JoinButtonsPresenter extends PureComponent {
     render() {
-        const { pages } = this.props;
-        const { JoinClick } = this.props;
+        const { pages, JoinClick, addAdmit } = this.props;
         return (
             <ThemeProvider
                 theme={{
@@ -68,7 +67,7 @@ class JoinButtonsPresenter extends PureComponent {
                     {"뒤로가기"}
                 </JoinButton>
                 <JoinButton
-                    onClick={this.JoinClick}
+                    onClick={(JoinClick, addAdmit)}
                     backgroundcolor="whiteblue"
                     fontColor="white"
                 >
