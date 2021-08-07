@@ -16,7 +16,7 @@ export const Header_Content = styled.div`
     display: flex;
     float: inherit;
     flex-direction: column;
-    border-left: solid gray 1px;
+    border-left: solid rgb(174, 174, 174) 1px;
 `;
 export const LeftWrapper = styled.div`
     box-sizing: border-box;
@@ -26,9 +26,8 @@ export const LeftWrapper = styled.div`
     width: 250px;
     height: 800px;
     padding: 0 20px;
-    border-right: solid gray 1px;
+    border-right: solid rgb(174, 174, 174) 1px;
     margin-right: 10px;
-    /* background: rgb(220, 220, 220); */
 `;
 
 export const LeftBarBox = styled.div`
@@ -38,7 +37,6 @@ export const LeftBarBox = styled.div`
     width: 250px;
     height: 800px;
     padding: 30px 20px;
-    border-right: solid gray 1px;
     margin-right: 10px;
 `;
 export const LeftBar = styled.div`
@@ -56,7 +54,7 @@ export const CalendarWrapper = styled.div`
     width: 100%;
     height: 230px;
     margin-bottom: 30px;
-    border: solid black 1px;
+    border: solid rgb(174, 174, 174) 1px;
     border-radius: 7px;
     /* background-color: #dddddd; */
 `;
@@ -75,7 +73,7 @@ export const HeaderWrapper = styled.div`
 
     /* display: flex; */
     align-items: center;
-    border-bottom: solid gray 1px;
+    border-bottom: solid rgb(174, 174, 174) 1px;
     padding-left: 20px;
     width: 100%;
     height: 100px;
@@ -147,24 +145,16 @@ export const newTabs = styled(Tabs)`
 export const ContentWrapper = styled.div`
     box-sizing: border-box;
     display: inline-flex;
-    background-color: greenyellow;
+    /* background-color: greenyellow; */
     width: 100%;
     height: 700px;
-    padding: 50px 30px 0 30px;
+    padding: 50px 30px 30px 30px;
     flex-direction: column;
     align-items: center;
 `;
 
 export const MainContentWrapper = styled.div`
     box-sizing: border-box;
-    display: inline-flex;
-    /* background-color: greenyellow; */
-    float: inherit;
     width: 100%;
-    height: 100vh;
-    padding: 50px 30px 0 30px;
-    color: green;
-    /* flex-direction: column; */
-    justify-content: center;
-    /* align-items: center; */
+    height: 100%;
 `;

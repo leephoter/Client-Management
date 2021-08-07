@@ -9,7 +9,7 @@ const LeftBarBox = styled.div`
     width: 250px;
     height: 800px;
     padding: 30px 20px;
-    border-right: solid gray 1px;
+    /* border-right: solid gray 1px; */
     margin-right: 10px;
 `;
 const LeftBar = styled.div`

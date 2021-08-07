@@ -42,8 +42,7 @@ export default class extends PureComponent {
     };
     addAdmit = () => {
         const { AdmissionList, id, password } = this.state;
-        if (id !== "" && password !== "") return;
-        console.log("id, password :>> ", id, password);
+        if (id === "" || password === "") return;
         setNextId();
         this.setState({
             AdmissionList: {
@@ -59,11 +58,10 @@ export default class extends PureComponent {
     };
 
     render() {
-        const { handleChange, pageSwitch } = this;
+        const { handleChange, pageSwitch, addAdmit } = this;
         const { pathname } = this.props.history.location;
-        console.log("this.state.AdmissionList :>> ", this.state.AdmissionList);
         return (
-            <LoginPresenter handleChange={handleChange}>
+            <LoginPresenter handleChange={handleChange} addAdmit={addAdmit}>
                 {pageSwitch()}
             </LoginPresenter>
         );

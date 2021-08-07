@@ -18,7 +18,8 @@ export default class extends PureComponent {
 
     render() {
         const { pages } = this.state;
-        const { JoinClick, addAdmit } = this;
+        const { JoinClick } = this;
+        const { addAdmit } = this.props;
         return (
             <JoinButtonsPresenter
                 pages={pages}

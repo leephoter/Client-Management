@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import HomePresenter from "./HomePresernter";
+import Members from "../../components/Members";
 
 export default class extends PureComponent {
     state = {
@@ -9,12 +10,14 @@ export default class extends PureComponent {
             lesson: "/lesson",
         },
     };
+
     pageSelect = () => {
         const { pathname } = this.props.history.location;
+        const { openModal, closeModal } = this;
         if (pathname === "/home") {
             return <div>1</div>;
         } else if (pathname === "/member") {
-            return <div>2</div>;
+            return <Members />;
         } else if (pathname === "/lesson") {
             return <div>3</div>;
         }

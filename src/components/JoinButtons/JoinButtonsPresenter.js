@@ -67,7 +67,7 @@ class JoinButtonsPresenter extends PureComponent {
                     {"뒤로가기"}
                 </JoinButton>
                 <JoinButton
-                    onClick={(JoinClick, addAdmit)}
+                    onClick={addAdmit}
                     backgroundcolor="whiteblue"
                     fontColor="white"
                 >
