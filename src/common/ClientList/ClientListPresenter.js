@@ -9,23 +9,20 @@ const ListBox = styled(ListItemAvatar)`
     box-sizing: border-box;
     width: 500px;
     color: gray;
-    /* background: rgb(240, 200, 230); */
 `;
 
 class ClientListPresenter extends PureComponent {
     render() {
-        const { reduceInfo, ListNames, ListAges } = this.props;
-        // const { clientContents } = this.props;
-        // const { name, age, now } = clientContents;
+        const { deleteInfo, List } = this.props;
         return (
             <ListBox>
-                {ListNames.map((item, index) => (
+                {List.map((item, index) => (
                     <ListItem>
                         <ListItemText
-                            primary={item}
-                            secondary={ListAges[index] + "살"}
+                            primary={item.name}
+                            secondary={item.age + "살"}
                         ></ListItemText>
-                        <button data-value={index} onClick={reduceInfo}>
+                        <button data-index={index} onClick={deleteInfo}>
                             {"X"}
                         </button>
                     </ListItem>

@@ -1,32 +1,30 @@
-export const List = {
-    0: {
+export const List = [
+    {
         name: "Lee",
         age: "21",
     },
-    1: {
+    {
         name: "Han",
         age: "22",
     },
-    2: {
-        name: "Han",
+    {
+        name: "Gyeol",
         age: "23",
     },
-    3: {
-        name: "Han",
+    {
+        name: "new",
         age: "24",
     },
-};
+];
 
-export let ListNames = Object.keys(List).map((item, index) => {
-    return List[item].name;
+export let ListNames = List.map((item, index) => {
+    return item.name;
 });
 
-export let ListAges = Object.keys(List).map((item, index) => {
-    return List[item].age;
+export let ListAges = List.map((item, index) => {
+    return item.age;
 });
 
-export var nextList = Object.keys(List).length;
-
-export const setNextList = () => {
-    nextList++;
+export let DeleteList = (index) => {
+    List.splice(index, 0);
 };

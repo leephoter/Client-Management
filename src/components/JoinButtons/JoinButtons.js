@@ -12,9 +12,7 @@ export default class extends PureComponent {
         };
     }
 
-    JoinClick = () => {
-        // console.log("Join");
-    };
+    JoinClick = () => {};
 
     render() {
         const { pages } = this.state;
