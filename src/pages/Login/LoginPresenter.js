@@ -69,7 +69,7 @@ const InputInfo = styled.input.attrs((props) => ({
     border-radius: 5px;
 `;
 
-export default class MainPresenter extends Component {
+export default class LoginPresenter extends Component {
     render() {
         const { children, handleChange } = this.props;
         return (

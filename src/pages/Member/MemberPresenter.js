@@ -1,12 +1,9 @@
-import React, { PureComponent, useState } from "react";
+import React, { PureComponent } from "react";
 import styled, { css, ThemeProvider } from "styled-components";
-import { Link } from "react-router-dom";
+
 import ClientList from "../../common/ClientList";
 import Modal from "@material-ui/core/Modal";
 import Fade from "@material-ui/core/Fade";
-import { List } from "../../common/ClientList/ClientListDummy";
-// import ModalBox from "../../components/Modal/Modal";
-// import ModalContent from "../../components/ModalContent";
 
 const Members = styled.div`
     box-sizing: border-box;
@@ -59,39 +56,16 @@ const newModal = styled(Modal)`
     /* display: none; */
 `;
 
-export default class extends PureComponent {
-    state = {
-        open: false,
-        List,
-        // name: "",
-        // age: "",
-        now: new Date().getFullYear() + 1,
-    };
-    // const [open, setOpen] = useState(false);
-
-    deleteInfo = (e) => {
-        const { index } = e.target.dataset;
-        const { List } = this.state;
-        List.splice(index, 1);
-        const _List = List;
-        console.log("_List :>> ", _List);
-        this.setState({
-            List: {
-                _List,
-            },
-        });
-    };
-
-    openModal = () => {
-        this.setState({ open: true });
-    };
-
-    closeModal = () => {
-        this.setState({ open: false });
-    };
+export default class MemberPresenter extends PureComponent {
     render() {
-        const { deleteInfo, openModal, closeModal } = this;
-        const { open, List } = this.state;
+        const {
+            deleteInfo,
+            openModal,
+            closeModal,
+            pages,
+            open,
+            list,
+        } = this.props;
         return (
             <Members>
                 <HeadBox>
@@ -115,7 +89,7 @@ export default class extends PureComponent {
                         </div>
                     </Fade>
                 </Modal>
-                <ClientList List={List} deleteInfo={deleteInfo} />
+                <ClientList list={list} deleteInfo={deleteInfo} />
             </Members>
         );
     }

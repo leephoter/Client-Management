@@ -1,4 +1,4 @@
-export const List = [
+export const list = [
     {
         name: "Lee",
         age: "21",
@@ -17,14 +17,14 @@ export const List = [
     },
 ];
 
-export let ListNames = List.map((item, index) => {
+export let ListNames = list.map((item, index) => {
     return item.name;
 });
 
-export let ListAges = List.map((item, index) => {
+export let ListAges = list.map((item, index) => {
     return item.age;
 });
 
-export let DeleteList = (index) => {
-    List.splice(index, 0);
-};
+// export let DeleteList = (index) => {
+//     list.splice(index, 0);
+// };

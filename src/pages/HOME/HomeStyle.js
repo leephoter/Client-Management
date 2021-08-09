@@ -1,6 +1,7 @@
 import styled, { css, ThemeProvider } from "styled-components";
 import { darken, lighten } from "polished";
 import { AppBar, Tabs, Tab } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 export const Whole = styled.div`
     box-sizing: border-box;
@@ -60,9 +61,8 @@ export const CalendarWrapper = styled.div`
 `;
 
 export const LessonsBox = styled.div`
-    float: inherit;
-    flex-direction: column;
     box-sizing: border-box;
+    flex-direction: column;
     width: 100%;
     max-height: 190px;
     overflow: scroll;
@@ -70,13 +70,15 @@ export const LessonsBox = styled.div`
 
 export const HeaderWrapper = styled.div`
     box-sizing: border-box;
-
-    /* display: flex; */
-    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
     border-bottom: solid rgb(174, 174, 174) 1px;
+    padding-top: 20px;
     padding-left: 20px;
     width: 100%;
-    height: 100px;
+    height: 90px;
     /* background: rgb(200, 200, 200); */
 `;
 
@@ -101,28 +103,34 @@ export const TransButton = css`
         `}
 `;
 
-export const HeaderMenu = styled(Tab)`
+export const HeaderMenu = styled(Link)`
     box-sizing: border-box;
-    width: 120px;
-    height: 100%;
-    font-size: 40px;
+    /* width: 200px;
+    height: 90px; */
+    font-size: 25px;
     cursor: pointer;
     float: inherit;
     outline: none;
-    padding: 0 20px;
-    border: 1px solid gray;
-    color: #ffffff;
-    background-color: gray;
+    margin: 0 10px 5px;
+    padding: 7px 20px;
+    border-radius: 10px;
+    border: none;
+    background-color: white;
+    color: #85a9ff;
+    text-decoration: none;
+    /* background-color: gray; */
     transition: all 150ms ease-out;
     &:hover {
-        background: ${lighten(0.1, "#85a9ff")};
-        box-shadow: 0 7px 15px -5px #85a9ff;
+        /* background: ${lighten(0.1, "#85a9ff")}; */
+        box-shadow: 0 1px 15px -5px #85a9ff;
         border-radius: 10px;
+        color: #85a9ff;
     }
     &:active {
-        background: ${darken(0.1, "#85a9ff")};
-        border: #aac4ff solid 0.1px;
+        background: ${darken(0.01, "#85a9ff")};
+        border: none;
         box-shadow: none;
+        color: white;
         transition: none;
     }
 `;
@@ -148,7 +156,7 @@ export const ContentWrapper = styled.div`
     /* background-color: greenyellow; */
     width: 100%;
     height: 700px;
-    padding: 50px 30px 30px 30px;
+    padding: 20px 30px 30px 30px;
     flex-direction: column;
     align-items: center;
 `;

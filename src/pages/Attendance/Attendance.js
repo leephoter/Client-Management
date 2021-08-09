@@ -1,11 +1,10 @@
 import React, { PureComponent } from "react";
-import HomePresenter, { Months } from "./HomePresenter";
+import AttendancePresenter, { Months } from "./AttendancePresenter";
 import MainPage from "../../common/MainPage/MainPage";
 import { list } from "../../common/ClientList/ClientListDummy";
 
-export default class Home extends PureComponent {
+export default class Attendance extends PureComponent {
     state = {
-        opensub: false,
         pages: {
             homePayment: "/homePayment",
             homeAttendance: "/homeAttendance",
@@ -14,27 +13,31 @@ export default class Home extends PureComponent {
             payment: "/payment",
         },
         list,
-        pay: {
-            cash: "현금",
-            card: "카드",
-            yet: "미납",
+        attendance: {
+            attend: "출석",
+            absence: "결석",
+            refund: "환불",
         },
         checkAll: {},
     };
     months = (e) =>
-        [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((item, index) => {
+        [7, 14, 21, 28].map((item, index) => {
             if (e === null) {
-                return <Months>{item + "월"}</Months>;
+                return <Months>{item + "일"}</Months>;
             } else {
-                return <Months>{this.state.pay.yet}</Months>;
+                return <Months>{this.state.attendance.absence}</Months>;
             }
         });
     render() {
-        const { pages, list, pay } = this.state;
+        const { pages, list, attendance } = this.state;
         const { months } = this;
         return (
             <MainPage>
-                <HomePresenter list={list} months={months} pay={pay} />
+                <AttendancePresenter
+                    list={list}
+                    months={months}
+                    attendance={attendance}
+                />
             </MainPage>
         );
     }

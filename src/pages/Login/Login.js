@@ -17,7 +17,7 @@ export default class extends PureComponent {
         password: "",
     };
     handleChange = (e) => {
-        const { AdmissionList, id, password } = this.state;
+        const { AdmissionList } = this.state;
         this.setState({
             ...AdmissionList,
             [e.target.name]: e.target.value,
