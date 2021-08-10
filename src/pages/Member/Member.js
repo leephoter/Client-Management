@@ -1,25 +1,23 @@
 import React, { PureComponent } from "react";
 import MemberPresenter from "./MemberPresenter";
 import MainPage from "../../common/MainPage/MainPage";
-import { list } from "../../common/ClientList/ClientListDummy";
+import { list, NewList } from "../../common/ClientList/ClientListDummy";
+
 export default class extends PureComponent {
     state = {
         list,
-        pages: {
-            homePayment: "/homePayment",
-            homeAttendance: "/homeattendance",
-            member: "/member",
-            lesson: "/lesson",
-            payment: "/payment",
-        },
         open: false,
         now: new Date().getFullYear() + 1,
+        newClient: {
+            name: "",
+            age: "",
+        },
     };
     deleteInfo = (e) => {
         const { index } = e.target.dataset;
         const { list } = this.state;
         const _list = list.filter((item, index2) => index2 !== Number(index));
-
+        NewList(_list);
         this.setState({
             list: _list,
         });
@@ -32,18 +30,53 @@ export default class extends PureComponent {
     closeModal = () => {
         this.setState({ open: false });
     };
+    getNewClient = (e) => {
+        const { newClient } = this.state;
+        this.setState({
+            newClient: {
+                ...newClient,
+                [e.target.name]: e.target.value,
+            },
+        });
+    };
+    addList = () => {
+        const { list, newClient, open } = this.state;
+        const _list = list.concat(newClient);
+        NewList(_list);
+        if (newClient.name === "" || newClient.age === "") {
+            return;
+        } else {
+            this.setState({
+                list: _list,
+                newClient: {
+                    name: "",
+                    age: "",
+                },
+                open: false,
+            });
+        }
+    };
     render() {
-        const { pages, open, list, now } = this.state;
-        const { deleteInfo, openModal, closeModal } = this;
+        const { open, now, newClient } = this.state;
+        const {
+            deleteInfo,
+            openModal,
+            closeModal,
+            getNewClient,
+            addList,
+        } = this;
+        console.log("list :>> ", list);
         return (
             <MainPage>
                 <MemberPresenter
                     deleteInfo={deleteInfo}
                     openModal={openModal}
-                    closeModa={closeModal}
+                    closeModal={closeModal}
+                    getNewClient={getNewClient}
+                    addList={addList}
                     open={open}
-                    list={list}
-                    pages={pages}
+                    list={this.state.list}
+                    newClient={newClient}
                 />
             </MainPage>
         );

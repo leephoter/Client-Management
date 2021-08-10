@@ -11,9 +11,18 @@ const PaymentWrapper = styled.div`
     align-items: flex-start;
     width: 700px;
     height: 100%;
-    padding: 30 30px;
+    padding: 0 30px;
     /* background-color: rgb(235, 235, 235); */
     overflow: scroll;
+`;
+
+const Titles = styled.span`
+    box-sizing: border-box;
+    padding-left: 10px;
+    margin-bottom: 20px;
+    font-size: 25px;
+    font-weight: bold;
+    color: #80a9ff;
 `;
 
 const ButtonsWrapper = styled.div`
@@ -22,7 +31,7 @@ const ButtonsWrapper = styled.div`
     background-color: none;
     display: flex;
     justify-content: flex-start;
-    padding: 5px 10px;
+    padding: 5px 0;
 `;
 
 const PayButtons = styled.button`
@@ -30,12 +39,12 @@ const PayButtons = styled.button`
     vertical-align: middle;
     text-align: center;
     color: ${darken(0.01, "#85a9ff")};
-    margin: 0 5px;
+    margin-right: 10px;
     border: solid white 1px;
     border-radius: 7px;
     background-color: white;
     font-weight: bold;
-    font-size: 13px;
+    font-size: 15px;
     width: auto;
     height: 30px;
     &:hover {
@@ -57,7 +66,7 @@ const ListLine = styled.div`
     align-items: center;
     width: 840px;
     height: 30px;
-    padding: 0 0 0 10px;
+    padding: 0 0 0 0;
     border: none;
     /* background-color: rgb(220, 220, 220); */
     /* overflow: scroll; */
@@ -102,6 +111,7 @@ export default class HomePresenter extends PureComponent {
         const { list, months } = this.props;
         return (
             <PaymentWrapper>
+                <Titles>{"출석부"}</Titles>
                 <ButtonsWrapper>
                     <PayButtons>{"출석"}</PayButtons>
                     <PayButtons>{"결석"}</PayButtons>

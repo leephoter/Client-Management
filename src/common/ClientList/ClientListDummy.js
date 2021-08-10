@@ -1,4 +1,4 @@
-export const list = [
+export let list = [
     {
         name: "Lee",
         age: "21",
@@ -25,6 +25,7 @@ export let ListAges = list.map((item, index) => {
     return item.age;
 });
 
-// export let DeleteList = (index) => {
-//     list.splice(index, 0);
-// };
+export const NewList = (item) => {
+    const newList = item;
+    list = newList;
+};

@@ -10,7 +10,7 @@ import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 const ListBox = styled(ListItemAvatar)`
     box-sizing: border-box;
     width: 500px;
-    color: gray;
+    color: green;
 `;
 
 export default class extends PureComponent {

@@ -69,9 +69,27 @@ export default class MainPage extends PureComponent {
         },
     };
 
+    subMenuBox = () => {
+        const { pathname } = this.props;
+        const { pages } = this.state;
+        if (pathname === "/homePayment" || pathname === "/homeAttendance") {
+            return (
+                <SubMenuWrapper>
+                    <SubMenus to={pages.homePayment}>{"Payment"}</SubMenus>
+                    <SubMenus to={pages.homeAttendance}>
+                        {"Attendance"}
+                    </SubMenus>
+                </SubMenuWrapper>
+            );
+        } else {
+            return;
+        }
+    };
+
     render() {
         const { children } = this.props;
-        const { pages, pathname } = this.state;
+        const { pages } = this.state;
+        const { subMenuBox } = this;
         return (
             <Whole>
                 <LeftWrapper>
@@ -99,14 +117,7 @@ export default class MainPage extends PureComponent {
                                 {"Lesson"}
                             </HeaderMenu>
                         </MenuWrapper>
-                        <SubMenuWrapper>
-                            <SubMenus to={pages.homePayment}>
-                                {"Payment"}
-                            </SubMenus>
-                            <SubMenus to={pages.homeAttendance}>
-                                {"Attendance"}
-                            </SubMenus>
-                        </SubMenuWrapper>
+                        {subMenuBox()}
                     </HeaderWrapper>
                     <ContentWrapper>
                         <MainContentWrapper>{children}</MainContentWrapper>

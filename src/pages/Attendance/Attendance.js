@@ -31,8 +31,9 @@ export default class Attendance extends PureComponent {
     render() {
         const { pages, list, attendance } = this.state;
         const { months } = this;
+        const { pathname } = this.props.history.location;
         return (
-            <MainPage>
+            <MainPage pathname={pathname}>
                 <AttendancePresenter
                     list={list}
                     months={months}

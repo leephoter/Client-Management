@@ -32,8 +32,9 @@ export default class Home extends PureComponent {
     render() {
         const { pages, list, pay } = this.state;
         const { months } = this;
+        const { pathname } = this.props.history.location;
         return (
-            <MainPage>
+            <MainPage pathname={pathname}>
                 <HomePresenter list={list} months={months} pay={pay} />
             </MainPage>
         );

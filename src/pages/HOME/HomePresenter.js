@@ -11,9 +11,16 @@ const PaymentWrapper = styled.div`
     align-items: flex-start;
     width: 700px;
     height: 100%;
-    padding: 30 30px;
-    /* background-color: rgb(235, 235, 235); */
+    padding: 0 30px;
     overflow: scroll;
+`;
+const Titles = styled.span`
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    padding-left: 10px;
+    font-size: 25px;
+    font-weight: bold;
+    color: #80a9ff;
 `;
 
 const ButtonsWrapper = styled.div`
@@ -22,7 +29,7 @@ const ButtonsWrapper = styled.div`
     background-color: none;
     display: flex;
     justify-content: flex-start;
-    padding: 5px 10px;
+    padding: 5px 0;
 `;
 
 const PayButtons = styled.button`
@@ -30,12 +37,12 @@ const PayButtons = styled.button`
     vertical-align: middle;
     text-align: center;
     color: ${darken(0.01, "#85a9ff")};
-    margin: 0 5px;
+    margin-right: 10px;
     border: solid white 1px;
     border-radius: 7px;
     background-color: white;
     font-weight: bold;
-    font-size: 13px;
+    font-size: 15px;
     width: auto;
     height: 30px;
     &:hover {
@@ -47,7 +54,6 @@ const ListWrapper = styled.div`
     box-sizing: border-box;
     width: 100%;
     height: 100%;
-    /* background-color: #fff; */
     overflow: scroll;
 `;
 
@@ -57,10 +63,8 @@ const ListLine = styled.div`
     align-items: center;
     width: 840px;
     height: 30px;
-    padding: 0 0 0 10px;
     border: none;
-    /* background-color: rgb(220, 220, 220); */
-    /* overflow: scroll; */
+    margin: 5px 0;
 `;
 const CheckAll = styled.button`
     box-sizing: border-box;
@@ -86,7 +90,7 @@ const ListNames = styled.div`
     text-align: center;
     width: 60px;
     font-size: 15px;
-    color: ${darken(0.1, "#85a9ff")};
+    color: ${darken(0.1, "#04d900")};
 `;
 export const Months = styled.div`
     box-sizing: border-box;
@@ -100,8 +104,10 @@ export const Months = styled.div`
 export default class HomePresenter extends PureComponent {
     render() {
         const { list, months } = this.props;
+
         return (
             <PaymentWrapper>
+                <Titles>{"회비"}</Titles>
                 <ButtonsWrapper>
                     <PayButtons>{"카드"}</PayButtons>
                     <PayButtons>{"현급"}</PayButtons>
