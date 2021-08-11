@@ -3,7 +3,7 @@ import styled, { css, ThemeProvider } from "styled-components";
 import { darken, lighten } from "polished";
 import { AppBar, Tabs, Tab } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import Lessons from "../../common/Lessons";
+import Lessons from "../LeftLessons";
 
 import {
     Whole,

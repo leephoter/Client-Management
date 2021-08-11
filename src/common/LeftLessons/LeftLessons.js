@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
 import styled, { css, ThemeProvider } from "styled-components";
 import { darken, lighten } from "polished";
+import { lessons } from "../LessonGroup/LessonGroup";
 
 const Lesson = styled.button`
     box-sizing: border-box;
@@ -38,7 +39,7 @@ const Lesson = styled.button`
 
 export default class extends PureComponent {
     state = {
-        lessons: [{ name: "Class 1" }, { name: "Class 2" }],
+        lessons,
     };
 
     render() {

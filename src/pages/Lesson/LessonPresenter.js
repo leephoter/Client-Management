@@ -16,19 +16,19 @@ import Modal from "@material-ui/core/Modal";
 import Fade from "@material-ui/core/Fade";
 import Icon from "@material-ui/core/Icon";
 
-import Text from "./Text";
+import TestComponent from "../../components/TestComponent/TestComponent";
+import AddLesson from "../../components/AddLesson";
 
 const Lessons = styled(Members)``;
 const RegisterClass = styled(RegisterClient)`
     width: auto;
     padding: 5px;
 `;
-
 const InputInfo = styled.input.attrs((props) => ({
     placeholder: props.value === "" ? props.name : "",
 }))`
     box-sizing: border-box;
-    width: 200px;
+    width: 30%;
     height: 25px;
     font-size: 17px;
     outline: none;
@@ -64,25 +64,37 @@ const NewIcon = styled(Icon)`
 `;
 const ClassWrapper = styled.div`
     box-sizing: border-box;
-    background-color: #caffff;
     width: 100%;
     height: 400px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    /* align-items: flex-end; */
+    padding-top: 10px;
+    /* background-color: #caffff; */
 `;
+// const NewTestComponent = styled(TestComponent)`
+//     color: gray;
+// `;
 
 export default class LessonPresenter extends PureComponent {
     render() {
-        const { list, open, openModal, closeModal } = this.props;
+        const {
+            open,
+            openModal,
+            closeModal,
+            lessons,
+            deleteInfo,
+            newLesson,
+            getNewLesson,
+            addLesson,
+        } = this.props;
         return (
             <Lessons>
-                <Titles>{"클래스 리스트"}</Titles>
+                <Titles>{"레슨 리스트"}</Titles>
 
-                <RegisterClass onClick={openModal}>
-                    {"클래스 등록"}
-                </RegisterClass>
-                {/* <NewModal open={open}>
+                <RegisterClass onClick={openModal}>{"레슨 등록"}</RegisterClass>
+                <NewModal open={open}>
                     <Fade in={open}>
                         <ModalWrapper>
                             <ModalTitle id="Name">
@@ -91,29 +103,44 @@ export default class LessonPresenter extends PureComponent {
                             </ModalTitle>
 
                             <InputWrapper>
-                                <InputInfo
-                                // name={"name"}
-                                // onChange={getNewClient}
-                                // value={newClient.name}
+                                {/* <InputInfo
+                                    name={"name"}
+                                    onChange={getNewLesson}
+                                    // value={newLesson.name}
                                 />
                                 <InputInfo
-                                // name={"age"}
-                                // onChange={getNewClient}
-                                // value={newClient.age}
+                                    name={"day"}
+                                    onChange={getNewLesson}
+                                    // value={newLesson.day}
                                 />
+                                <InputInfo
+                                    name={"time"}
+                                    onChange={getNewLesson}
+                                    // value={newLesson.time}
+                                /> */}
+                                <AddLesson
+                                    getNewLesson={getNewLesson}
+                                ></AddLesson>
                                 <AddButton>
-                                    <NewIcon
-                                    // onClick={addList}
-                                    >
-                                        +
-                                    </NewIcon>
+                                    <NewIcon onClick={addLesson}>+</NewIcon>
                                 </AddButton>
                             </InputWrapper>
                         </ModalWrapper>
                     </Fade>
-                </NewModal> */}
+                </NewModal>
                 <ClassWrapper>
-                    <Text />
+                    <TestComponent name={"레슨명"} day={"요일"} time={"시간"} />
+                    {lessons.map((item, index) => {
+                        return (
+                            <TestComponent
+                                name={lessons[index].name}
+                                day={lessons[index].day}
+                                time={lessons[index].time}
+                                deleteInfo={deleteInfo}
+                                dataIndex={index}
+                            />
+                        );
+                    })}
                 </ClassWrapper>
             </Lessons>
         );

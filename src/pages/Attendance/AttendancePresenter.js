@@ -66,7 +66,7 @@ const ListLine = styled.div`
     align-items: center;
     width: 840px;
     height: 30px;
-    padding: 0 0 0 0;
+    margin: 5px 0;
     border: none;
     /* background-color: rgb(220, 220, 220); */
     /* overflow: scroll; */
@@ -95,7 +95,7 @@ const ListNames = styled.div`
     text-align: center;
     width: 60px;
     font-size: 15px;
-    color: ${darken(0.1, "#85a9ff")};
+    color: ${darken(0.1, "#04d900")};
 `;
 export const Months = styled.div`
     box-sizing: border-box;

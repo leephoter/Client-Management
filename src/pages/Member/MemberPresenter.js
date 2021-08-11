@@ -57,6 +57,7 @@ export const NewModal = styled(Modal)`
     background: rgba(122, 122, 122, 0.3);
     display: flex;
     justify-content: center;
+
     padding-top: 200px;
 `;
 
@@ -71,6 +72,7 @@ export const ModalWrapper = styled.div`
     padding: 0 20px 20px;
     flex-direction: column;
     background: #eeeeee;
+    border-radius: 10px;
 `;
 export const ModalTitle = styled.h1`
     color: rgb(40, 150, 230);
