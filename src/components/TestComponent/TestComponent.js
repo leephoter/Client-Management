@@ -6,7 +6,7 @@ import ButtonGroup from "@material-ui/core/ButtonGroup";
 const NewButtonGroup = styled(ButtonGroup)`
     display: flex;
     justify-content: flex-start;
-    /* background: gray; */
+    margin-bottom: -1px;
 `;
 
 const NewButton = styled(Button)`

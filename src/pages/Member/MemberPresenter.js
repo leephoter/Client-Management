@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import styled, { css, ThemeProvider } from "styled-components";
-
+import { darken, lighten } from "polished";
 import ClientList from "../../common/ClientList";
 import Modal from "@material-ui/core/Modal";
 import Fade from "@material-ui/core/Fade";
@@ -25,7 +25,6 @@ export const HeadBox = styled.div`
     width: 500px;
     height: 70px;
     overflow: scroll;
-    background-color: rgb(250, 240, 250);
 `;
 export const Titles = styled.span`
     box-sizing: border-box;
@@ -54,10 +53,8 @@ export const RegisterClient = styled.button`
 `;
 
 export const NewModal = styled(Modal)`
-    background: rgba(122, 122, 122, 0.3);
     display: flex;
     justify-content: center;
-
     padding-top: 200px;
 `;
 
@@ -66,23 +63,23 @@ export const ModalWrapper = styled.div`
     top: 100px;
     left: 280px;
     width: 600px;
-    height: 150px;
+    height: 200px;
     overflow: scroll;
     display: flex;
     padding: 0 20px 20px;
     flex-direction: column;
-    background: #eeeeee;
+    justify-content: flex-start;
+    background: #fff;
     border-radius: 10px;
 `;
 export const ModalTitle = styled.h1`
-    color: rgb(40, 150, 230);
+    color: ${lighten(0.05, "#85a9ff")};
 `;
 export const InputWrapper = styled.div`
     box-sizing: border-box;
     width: 100%;
     height: 100%;
     display: flex;
-    align-items: center;
 `;
 const InputInfo = styled.input.attrs((props) => ({
     placeholder: props.value === "" ? props.name : "",
@@ -97,33 +94,72 @@ const InputInfo = styled.input.attrs((props) => ({
 `;
 const AddButton = styled.button`
     box-sizing: border-box;
-    width: 25px;
+    width: 20px;
     height: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* border: soild white 0.5px; */
     border: none;
     border-radius: 16px;
     cursor: pointer;
+    background-color: white;
 `;
 
-const NewIcon = styled(Icon)`
+export const NewIcon = styled(Icon)`
+    box-sizing: border-box;
+    margin-left: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* border: solid 2px gray; */
-    border-radius: 15px;
-    color: rgb(50, 200, 140);
+    border-radius: 3px;
+    background-color: white;
+    color: #85a9ff;
     &:hover {
-        background-color: #fff;
-        /* box-shadow: 0 1px 15px -5px #eeeeee; */
+        border: solid 1px white;
+        color: ${darken(0.1, "#85a9ff")};
+        box-shadow: 0 1px 10px -5px #85a9ff;
     }
     &:active {
-        color: #fff;
-        background-color: #cccccc;
-        box-shadow: 0 8px 15px -5px #eeeeee;
+        border: ${lighten(0.05, "#85a9ff")};
+        color: ${lighten(0.05, "#85a9ff")};
+        box-shadow: 0 1px 15px -5px #85a9ff;
     }
+`;
+export const CloseButton = styled.button`
+    box-sizing: border-box;
+    width: 25px;
+    height: 20px;
+    border-radius: 5px;
+    float: right;
+    cursor: pointer;
+    border: solid 1px #aaaaaa;
+    color: #aaaaaa;
+    &:hover {
+        border: solid 1px white;
+        color: ${darken(0.1, "#aaaaaa")};
+    }
+    &:active {
+        border: ${lighten(0.05, "#aaaaaa")};
+        color: ${lighten(0.05, "#aaaaaa")};
+        box-shadow: 0 1px 10px -5px gray;
+    }
+`;
+
+export const TitleLineWrapper = styled.div`
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+`;
+
+export const SubTitle = styled.div`
+    box-sizing: border-box;
+    font-size: 20px;
+    color: ${darken(0.1, "#85a9ff")};
+    padding: 2px;
+    margin-right: 171px;
 `;
 
 export default class MemberPresenter extends PureComponent {
@@ -150,9 +186,15 @@ export default class MemberPresenter extends PureComponent {
                         <ModalWrapper>
                             <ModalTitle id="Name">
                                 {"회원 등록"}
-                                <button onClick={closeModal}>X</button>
+                                <CloseButton onClick={closeModal}>
+                                    X
+                                </CloseButton>
                             </ModalTitle>
 
+                            <TitleLineWrapper>
+                                <SubTitle>이름</SubTitle>
+                                <SubTitle>나이</SubTitle>
+                            </TitleLineWrapper>
                             <InputWrapper>
                                 <InputInfo
                                     name={"name"}

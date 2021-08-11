@@ -11,6 +11,8 @@ import {
     ModalWrapper,
     ModalTitle,
     InputWrapper,
+    NewIcon,
+    CloseButton,
 } from "../Member/MemberPresenter";
 import Modal from "@material-ui/core/Modal";
 import Fade from "@material-ui/core/Fade";
@@ -46,22 +48,6 @@ const AddButton = styled.button`
     border-radius: 16px;
     cursor: pointer;
 `;
-
-const NewIcon = styled(Icon)`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 15px;
-    color: rgb(50, 200, 140);
-    &:hover {
-        background-color: #fff;
-    }
-    &:active {
-        color: #fff;
-        background-color: #cccccc;
-        box-shadow: 0 8px 15px -5px #eeeeee;
-    }
-`;
 const ClassWrapper = styled.div`
     box-sizing: border-box;
     width: 100%;
@@ -69,13 +55,12 @@ const ClassWrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    /* align-items: flex-end; */
     padding-top: 10px;
-    /* background-color: #caffff; */
 `;
-// const NewTestComponent = styled(TestComponent)`
-//     color: gray;
-// `;
+
+const TitleLine = styled(TestComponent)`
+    color: gray;
+`;
 
 export default class LessonPresenter extends PureComponent {
     render() {
@@ -99,7 +84,9 @@ export default class LessonPresenter extends PureComponent {
                         <ModalWrapper>
                             <ModalTitle id="Name">
                                 {"회원 등록"}
-                                <button onClick={closeModal}>X</button>
+                                <CloseButton onClick={closeModal}>
+                                    X
+                                </CloseButton>
                             </ModalTitle>
 
                             <InputWrapper>
@@ -129,7 +116,7 @@ export default class LessonPresenter extends PureComponent {
                     </Fade>
                 </NewModal>
                 <ClassWrapper>
-                    <TestComponent name={"레슨명"} day={"요일"} time={"시간"} />
+                    <TitleLine name={"레슨명"} day={"요일"} time={"시간"} />
                     {lessons.map((item, index) => {
                         return (
                             <TestComponent
