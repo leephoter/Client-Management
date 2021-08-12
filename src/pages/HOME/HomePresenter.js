@@ -3,7 +3,7 @@ import styled, { css, ThemeProvider } from "styled-components";
 import { darken, lighten } from "polished";
 import { Link } from "react-router-dom";
 
-const PaymentWrapper = styled.div`
+export const PaymentWrapper = styled.div`
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -14,7 +14,7 @@ const PaymentWrapper = styled.div`
     padding: 0 30px;
     overflow: scroll;
 `;
-const Titles = styled.span`
+export const Titles = styled.span`
     box-sizing: border-box;
     margin-bottom: 20px;
     padding-left: 10px;
@@ -23,7 +23,7 @@ const Titles = styled.span`
     color: #80a9ff;
 `;
 
-const ButtonsWrapper = styled.div`
+export const ButtonsWrapper = styled.div`
     box-sizing: border-box;
     width: 100%;
     background-color: none;
@@ -32,7 +32,7 @@ const ButtonsWrapper = styled.div`
     padding: 5px 0;
 `;
 
-const PayButtons = styled.button`
+export const PayButtons = styled.button`
     box-sizing: border-box;
     vertical-align: middle;
     text-align: center;
@@ -45,78 +45,130 @@ const PayButtons = styled.button`
     font-size: 15px;
     width: auto;
     height: 30px;
+    cursor: pointer;
     &:hover {
-        cursor: pointer;
     }
 `;
 
-const ListWrapper = styled.div`
+export const ListWrapper = styled.div`
     box-sizing: border-box;
     width: 100%;
     height: 100%;
     overflow: scroll;
 `;
 
-const ListLine = styled.div`
+export const ListLine = styled.div`
     box-sizing: border-box;
     display: flex;
     align-items: center;
     width: 840px;
     height: 30px;
     border: none;
-    margin: 5px 0;
+    margin: 10px 0;
 `;
 const CheckAll = styled.button`
     box-sizing: border-box;
     vertical-align: middle;
     text-align: center;
-    color: gray;
+    color: ${(props) => {
+        if (props.title === "title") {
+            return "#808080";
+        } else {
+            return "#85a9ff";
+        }
+    }};
     margin: 0 5px;
     border: solid white 1px;
     border-radius: 7px;
     font-size: 13px;
+    font-weight: bold;
     width: 35px;
     height: 25px;
+    cursor: pointer;
+    background-color: white;
+    border: solid
+        ${(props) => {
+            if (props.title === "title") {
+                return "white";
+            } else {
+                return "#dddddd";
+            }
+        }}
+        1px;
     &:hover {
-        cursor: pointer;
+        border-color: ${lighten(0.05, "#dddddd")};
     }
     &:active {
-        background: ${darken(0.01, "#dddddd")};
+        border-color: ${darken(0.05, "#dddddd")};
     }
 `;
-const ListNames = styled.div`
+export const ListNames = styled.div`
     box-sizing: border-box;
     vertical-align: middle;
     text-align: center;
     width: 60px;
     font-size: 15px;
+    font-weight: bold;
+    /* border: solid #cccccc 1px;
+    border-radius: 5px; */
     color: ${darken(0.1, "#04d900")};
 `;
-export const Months = styled.div`
+export const Months = styled.button`
     box-sizing: border-box;
     vertical-align: middle;
     text-align: center;
-    width: 60px;
+    margin: 0 2px;
+    padding: 2px 5px;
+    width: 50px;
     font-size: 15px;
-    color: gray;
+    color: ${(props) => {
+        if (props.color === "gray") {
+            return "#808080";
+        } else {
+            return "#cccccc";
+        }
+    }};
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    &:hover {
+        border-color: ${lighten(0.5, "#dddddd")};
+        /* border-color: black; */
+    }
+    &:active {
+        border-color: ${darken(0.5, "#dddddd")};
+    }
+    /* background-color: ${(props) => lighten(0.05, props.color)}; */
+`;
+
+export const ThisYear = styled.span`
+    box-sizing: border-box;
+    margin-left: 20px;
+    font-size: 20px;
+    font-weight: normal;
+    color: ${lighten(0.05, "#80a9ff")};
 `;
 
 export default class HomePresenter extends PureComponent {
     render() {
-        const { list, months } = this.props;
+        const { list, months, now, pay } = this.props;
 
         return (
             <PaymentWrapper>
-                <Titles>{"회비"}</Titles>
+                <Titles>
+                    {"회비 "}
+                    <ThisYear>{now}</ThisYear>
+                </Titles>
+
                 <ButtonsWrapper>
-                    <PayButtons>{"카드"}</PayButtons>
-                    <PayButtons>{"현급"}</PayButtons>
-                    <PayButtons>{"미납"}</PayButtons>
+                    {pay.map((item, index) => {
+                        return <PayButtons>{pay[index]}</PayButtons>;
+                    })}
                 </ButtonsWrapper>
 
                 <ListWrapper>
                     <ListLine>
-                        <CheckAll>All</CheckAll>
+                        <CheckAll title="title">All</CheckAll>
                         <ListNames>{"Name"}</ListNames>
                         {months(null)}
                     </ListLine>

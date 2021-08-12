@@ -2,6 +2,7 @@ import React, { PureComponent } from "react";
 import HomePresenter, { Months } from "./HomePresenter";
 import MainPage from "../../common/MainPage/MainPage";
 import { list } from "../../common/ClientList/ClientListDummy";
+import { payments } from "../..//common/Payment/Payment";
 
 export default class Home extends PureComponent {
     state = {
@@ -11,31 +12,64 @@ export default class Home extends PureComponent {
             homeAttendance: "/homeAttendance",
             member: "/member",
             lesson: "/lesson",
-            payment: "/payment",
         },
+        month: Array(12)
+            .fill()
+            .map(function (item, index) {
+                return index + 1;
+            }),
+        // testMonth: list.map((item, index) => {
+        //     return Array(12)
+        //         .fill()
+        //         .map(function (item, index) {
+        //             return index + 1;
+        //         });
+        // }),
         list,
-        pay: {
-            cash: "현금",
-            card: "카드",
-            yet: "미납",
+        pay: ["카드", "현금", "미납"],
+        now: new Date().getFullYear(),
+        checkAll: {
+            nonCheck: "",
+            check: "V",
         },
-        checkAll: {},
+        // payments,
+        payNum: 0,
     };
     months = (e) =>
-        [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((item, index) => {
+        this.state.month.map((item, index) => {
             if (e === null) {
-                return <Months>{item + "월"}</Months>;
+                return <Months color="gray">{item + "월"}</Months>;
             } else {
-                return <Months>{this.state.pay.yet}</Months>;
+                const newPayNum = this.state.payNum + 2;
+                return (
+                    <Months
+                        value={index}
+                        color="#cccccc"
+                        onClick={this.selectMonth}
+                    >
+                        {this.state.pay[newPayNum]}
+                    </Months>
+                );
             }
         });
+    selectMonth = (e) => {
+        // console.log("e.target.value :>> ", e.target);
+    };
     render() {
-        const { pages, list, pay } = this.state;
+        const { pages, list, pay, now, checkAll } = this.state;
         const { months } = this;
         const { pathname } = this.props.history.location;
+        // // console.log("this.state.payments :>> ", this.state.payments);
         return (
             <MainPage pathname={pathname}>
-                <HomePresenter list={list} months={months} pay={pay} />
+                <HomePresenter
+                    list={list}
+                    months={months}
+                    // selectMonth={selectMonth}
+                    pay={pay}
+                    now={now}
+                    checkAll={checkAll}
+                />
             </MainPage>
         );
     }

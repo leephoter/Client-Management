@@ -18,6 +18,7 @@ export default class Attendance extends PureComponent {
             absence: "결석",
             refund: "환불",
         },
+        now: new Date().getFullYear(),
         checkAll: {},
     };
     months = (e) =>
@@ -29,7 +30,7 @@ export default class Attendance extends PureComponent {
             }
         });
     render() {
-        const { pages, list, attendance } = this.state;
+        const { pages, list, attendance, now } = this.state;
         const { months } = this;
         const { pathname } = this.props.history.location;
         return (
@@ -38,6 +39,7 @@ export default class Attendance extends PureComponent {
                     list={list}
                     months={months}
                     attendance={attendance}
+                    now={now}
                 />
             </MainPage>
         );

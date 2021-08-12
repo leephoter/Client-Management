@@ -20,6 +20,7 @@ import Icon from "@material-ui/core/Icon";
 
 import TestComponent from "../../components/TestComponent/TestComponent";
 import AddLesson from "../../components/AddLesson";
+import LessonTransfer from "../../components/LessonTransfer/LessonTransfer";
 
 const Lessons = styled(Members)``;
 const RegisterClass = styled(RegisterClient)`
@@ -62,12 +63,24 @@ const TitleLine = styled(TestComponent)`
     color: gray;
 `;
 
+const RegisterModalWrapper = styled(ModalWrapper)`
+    top: 0;
+    height: 500px;
+`;
+
+const TransferWrapper = styled(InputWrapper)`
+    /* background: gray; */
+`;
+
 export default class LessonPresenter extends PureComponent {
     render() {
         const {
-            open,
+            registerModalOpen,
+            transferModalOpen,
             openModal,
             closeModal,
+            openTransfer,
+            closeTransfer,
             lessons,
             deleteInfo,
             newLesson,
@@ -79,8 +92,8 @@ export default class LessonPresenter extends PureComponent {
                 <Titles>{"레슨 리스트"}</Titles>
 
                 <RegisterClass onClick={openModal}>{"레슨 등록"}</RegisterClass>
-                <NewModal open={open}>
-                    <Fade in={open}>
+                <NewModal open={registerModalOpen}>
+                    <Fade in={registerModalOpen}>
                         <ModalWrapper>
                             <ModalTitle id="Name">
                                 {"회원 등록"}
@@ -115,6 +128,47 @@ export default class LessonPresenter extends PureComponent {
                         </ModalWrapper>
                     </Fade>
                 </NewModal>
+                <NewModal open={transferModalOpen}>
+                    <Fade in={transferModalOpen}>
+                        <RegisterModalWrapper>
+                            <ModalTitle id="Name">
+                                {"인원 추가"}
+                                <CloseButton onClick={closeTransfer}>
+                                    X
+                                </CloseButton>
+                            </ModalTitle>
+
+                            <TransferWrapper>
+                                {/* <InputInfo
+                                    name={"name"}
+                                    onChange={getNewLesson}
+                                    // value={newLesson.name}
+                                />
+                                <InputInfo
+                                    name={"day"}
+                                    onChange={getNewLesson}
+                                    // value={newLesson.day}
+                                />
+                                <InputInfo
+                                    name={"time"}
+                                    onChange={getNewLesson}
+                                    // value={newLesson.time}
+                                /> */}
+                                {/* <AddLesson
+                                // getNewLesson={getNewLesson}
+                                ></AddLesson> */}
+                                {/* <AddButton>
+                                <NewIcon
+                                // onClick={addLesson}
+                                >
+                                    +
+                                </NewIcon>
+                            </AddButton> */}
+                                <LessonTransfer />
+                            </TransferWrapper>
+                        </RegisterModalWrapper>
+                    </Fade>
+                </NewModal>
                 <ClassWrapper>
                     <TitleLine name={"레슨명"} day={"요일"} time={"시간"} />
                     {lessons.map((item, index) => {
@@ -123,6 +177,7 @@ export default class LessonPresenter extends PureComponent {
                                 name={lessons[index].name}
                                 day={lessons[index].day}
                                 time={lessons[index].time}
+                                openTransfer={openTransfer}
                                 deleteInfo={deleteInfo}
                                 dataIndex={index}
                             />

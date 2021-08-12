@@ -65,7 +65,6 @@ export default class extends PureComponent {
             getNewClient,
             addList,
         } = this;
-        console.log("list :>> ", list);
         return (
             <MainPage>
                 <MemberPresenter

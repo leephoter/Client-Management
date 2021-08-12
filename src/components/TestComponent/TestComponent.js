@@ -15,16 +15,23 @@ const NewButton = styled(Button)`
 
 export default class TestComponent extends PureComponent {
     render() {
-        const { name, day, time, deleteInfo, dataIndex } = this.props;
+        const {
+            name,
+            day,
+            time,
+            deleteInfo,
+            dataIndex,
+            openTransfer,
+        } = this.props;
         return (
             <>
                 <NewButtonGroup
                     color="primary"
                     aria-label="outlined primary button group"
                 >
-                    <NewButton>{name}</NewButton>
-                    <NewButton>{day}</NewButton>
-                    <NewButton>{time}</NewButton>
+                    <NewButton onClick={openTransfer}>{name}</NewButton>
+                    <NewButton onClick={openTransfer}>{day}</NewButton>
+                    <NewButton onClick={openTransfer}>{time}</NewButton>
                     <NewButton data-index={dataIndex} onClick={deleteInfo}>
                         {"삭제"}
                     </NewButton>

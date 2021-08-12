@@ -6,7 +6,8 @@ import { lessons, NewLessons } from "../../common/LessonGroup/LessonGroup";
 export default class extends PureComponent {
     state = {
         lessons,
-        open: false,
+        registerModalOpen: false,
+        transferModalOpen: false,
         newLesson: {
             name: "",
             day: "",
@@ -25,12 +26,18 @@ export default class extends PureComponent {
             lessons: _lessons,
         });
     };
+    openTransfer = () => {
+        this.setState({ transferModalOpen: true });
+    };
+    closeTransfer = () => {
+        this.setState({ transferModalOpen: false });
+    };
     openModal = () => {
-        this.setState({ open: true });
+        this.setState({ registerModalOpen: true });
     };
 
     closeModal = () => {
-        this.setState({ open: false });
+        this.setState({ registerModalOpen: false });
     };
     getNewLesson = (e) => {
         const { newLesson } = this.state;
@@ -42,7 +49,7 @@ export default class extends PureComponent {
         });
     };
     addLesson = () => {
-        const { lessons, newLesson, open } = this.state;
+        const { lessons, newLesson, registerModalOpen } = this.state;
         const _lesson = lessons.concat(newLesson);
         NewLessons(_lesson);
         if (
@@ -59,15 +66,22 @@ export default class extends PureComponent {
                     day: "",
                     time: "",
                 },
-                open: false,
+                registerModalOpen: false,
             });
         }
     };
     render() {
-        const { lessons, newLesson, open } = this.state;
+        const {
+            lessons,
+            newLesson,
+            registerModalOpen,
+            transferModalOpen,
+        } = this.state;
         const {
             openModal,
             closeModal,
+            openTransfer,
+            closeTransfer,
             deleteInfo,
             getNewLesson,
             addLesson,
@@ -76,10 +90,13 @@ export default class extends PureComponent {
             <MainPage>
                 <LessonPresenter
                     lessons={lessons}
-                    open={open}
+                    registerModalOpen={registerModalOpen}
+                    transferModalOpen={transferModalOpen}
                     newLesson={newLesson}
                     openModal={openModal}
                     closeModal={closeModal}
+                    openTransfer={openTransfer}
+                    closeTransfer={closeTransfer}
                     deleteInfo={deleteInfo}
                     getNewLesson={getNewLesson}
                     addLesson={addLesson}
