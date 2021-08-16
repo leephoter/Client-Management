@@ -1,2 +1,2 @@
-import Lessons from "./LeftLessons";
-export default Lessons;
+import LeftLessons from "./LeftLessons";
+export default LeftLessons;

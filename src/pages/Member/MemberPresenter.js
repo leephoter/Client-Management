@@ -55,11 +55,13 @@ export const RegisterClient = styled.button`
 export const NewModal = styled(Modal)`
     display: flex;
     justify-content: center;
+    /* outline: none; */
     padding-top: 200px;
 `;
 
 export const ModalWrapper = styled.div`
     box-sizing: border-box;
+    /* outline: none; */
     top: 100px;
     left: 280px;
     width: 600px;
@@ -73,7 +75,7 @@ export const ModalWrapper = styled.div`
     border-radius: 10px;
 `;
 export const ModalTitle = styled.h1`
-    color: ${lighten(0.05, "#85a9ff")};
+    color: #88a9ff;
 `;
 export const InputWrapper = styled.div`
     box-sizing: border-box;
@@ -89,13 +91,15 @@ const InputInfo = styled.input.attrs((props) => ({
     height: 25px;
     font-size: 17px;
     outline: none;
-    color: #333;
+    border: solid 1px ${lighten(0.05, "#85a9ff")};
+    border-radius: 5px;
+    color: ${darken(0.05, "#85a9ff")};
     margin-right: 10px;
 `;
-const AddButton = styled.button`
+export const AddButton = styled.button`
     box-sizing: border-box;
     width: 20px;
-    height: 25px;
+    height: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -120,8 +124,8 @@ export const NewIcon = styled(Icon)`
         box-shadow: 0 1px 10px -5px #85a9ff;
     }
     &:active {
-        border: ${lighten(0.05, "#85a9ff")};
-        color: ${lighten(0.05, "#85a9ff")};
+        border: ${darken(0.15, "#85a9ff")};
+        color: ${darken(0.15, "#85a9ff")};
         box-shadow: 0 1px 15px -5px #85a9ff;
     }
 `;
@@ -132,15 +136,16 @@ export const CloseButton = styled.button`
     border-radius: 5px;
     float: right;
     cursor: pointer;
+    background-color: white;
     border: solid 1px #aaaaaa;
     color: #aaaaaa;
     &:hover {
-        border: solid 1px white;
+        border: solid 1px ${darken(0.1, "#aaaaaa")};
         color: ${darken(0.1, "#aaaaaa")};
     }
     &:active {
-        border: ${lighten(0.05, "#aaaaaa")};
-        color: ${lighten(0.05, "#aaaaaa")};
+        border-color: ${darken(0.15, "#aaaaaa")};
+        /* color: ${lighten(0.05, "#aaaaaa")}; */
         box-shadow: 0 1px 10px -5px gray;
     }
 `;
@@ -157,7 +162,8 @@ export const TitleLineWrapper = styled.div`
 export const SubTitle = styled.div`
     box-sizing: border-box;
     font-size: 20px;
-    color: ${darken(0.1, "#85a9ff")};
+    font-weight: normal;
+    color: ${lighten(0, "#85a9ff")};
     padding: 2px;
     margin-right: 171px;
 `;

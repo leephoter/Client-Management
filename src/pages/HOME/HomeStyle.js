@@ -17,7 +17,14 @@ export const Header_Content = styled.div`
     display: flex;
     float: inherit;
     flex-direction: column;
-    border-left: solid rgb(174, 174, 174) 1px;
+    /* border-left: solid rgb(174, 174, 174) 1px; */
+    /* color: #85a9ff;
+    border: solid 1px white; */
+    /* color: ${darken(0.1, "#85a9ff")}; */
+    /* box-shadow: 0 1px 10px -5px #85a9ff; */
+    /* border: ${darken(0.15, "#85a9ff")}; */
+    /* color: ${darken(0.15, "#85a9ff")}; */
+    /* box-shadow: 0 1px 15px -5px #85a9ff; */
 `;
 export const LeftWrapper = styled.div`
     box-sizing: border-box;
@@ -27,7 +34,7 @@ export const LeftWrapper = styled.div`
     width: 250px;
     height: 800px;
     padding: 0 20px;
-    border-right: solid rgb(174, 174, 174) 1px;
+    /* border-right: solid rgb(174, 174, 174) 1px; */
     margin-right: 10px;
 `;
 
@@ -55,14 +62,17 @@ export const CalendarWrapper = styled.div`
     width: 100%;
     height: 230px;
     margin-bottom: 30px;
-    border: solid rgb(174, 174, 174) 1px;
+    border: solid rgb(220, 220, 220) 1px;
     border-radius: 7px;
     /* background-color: #dddddd; */
 `;
 
 export const LessonsBox = styled.div`
     box-sizing: border-box;
+    display: flex;
     flex-direction: column;
+    align-items: center;
+
     width: 100%;
     max-height: 190px;
     overflow: scroll;
@@ -74,12 +84,16 @@ export const HeaderWrapper = styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
-    border-bottom: solid rgb(174, 174, 174) 1px;
+    /* border-bottom: solid rgb(174, 174, 174) 1px; */
     padding-top: 20px;
     padding-left: 20px;
     width: 100%;
     height: 90px;
     /* background: rgb(200, 200, 200); */
+    /* color: #85a9ff; */
+
+    border-radius: 10px;
+    box-shadow: 0 1px 10px -5px #85a9ff;
 `;
 
 export const TransButton = css`
@@ -119,18 +133,15 @@ export const HeaderMenu = styled(Link)`
     color: #85a9ff;
     text-decoration: none;
     /* background-color: gray; */
-    transition: all 150ms ease-out;
+    transition: all 300ms ease-out;
     &:hover {
-        /* background: ${lighten(0.1, "#85a9ff")}; */
-        box-shadow: 0 1px 15px -5px #85a9ff;
+        box-shadow: 0 5px 8px -5px #85a9ff;
         border-radius: 10px;
         color: #85a9ff;
     }
     &:active {
-        background: ${darken(0.01, "#85a9ff")};
-        border: none;
-        box-shadow: none;
-        color: white;
+        box-shadow: 0 5px 10px -5px ${darken(0.1, "#85a9ff")};
+        color: ${darken(0.1, "#85a9ff")};
         transition: none;
     }
 `;

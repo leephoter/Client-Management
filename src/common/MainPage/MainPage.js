@@ -3,7 +3,7 @@ import styled, { css, ThemeProvider } from "styled-components";
 import { darken, lighten } from "polished";
 import { AppBar, Tabs, Tab } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import Lessons from "../LeftLessons";
+import LeftLessons from "../LeftLessons";
 
 import {
     Whole,
@@ -42,20 +42,18 @@ const SubMenus = styled(Link)`
     text-decoration: none;
     width: 80px;
     font-size: 15px;
-    color: gray;
+    color: ${lighten(0.05, "#85a9ff")};
     margin: 0 10px;
     border: none;
     border-radius: 1px;
     background-color: #fff;
     &:hover {
-        border-bottom: solid ${lighten(0.1, "#85a9ff")} 1px;
-        box-shadow: 0 5px 5px -5px #85a9ff;
-        color: gray;
+        border-bottom: ${darken(0.01, "#85a9ff")};
+        box-shadow: 0 5px 8px -5px #85a9ff;
     }
     &:active {
-        border-bottom: ${darken(0.01, "#85a9ff")};
-        box-shadow: none;
-        transition: none;
+        border-bottom: solid ${lighten(0.1, "#85a9ff")} 1px;
+        box-shadow: 0 5px 5px -5px #85a9ff;
     }
 `;
 
@@ -99,7 +97,7 @@ export default class MainPage extends PureComponent {
                                 {/* <Calendar /> */}
                             </CalendarWrapper>
                             <LessonsBox>
-                                <Lessons />
+                                <LeftLessons />
                             </LessonsBox>
                         </LeftBar>
                     </LeftBarBox>

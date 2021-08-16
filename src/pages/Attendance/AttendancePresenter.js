@@ -77,8 +77,19 @@ const CheckAll = styled.button`
     border: solid white 1px;
     border-radius: 7px;
     font-size: 13px;
+    font-weight: bold;
     width: 35px;
     height: 25px;
+    background-color: white;
+    border: solid
+        ${(props) => {
+            if (props.title === "title") {
+                return "white";
+            } else {
+                return "#dddddd";
+            }
+        }}
+        1px;
     &:hover {
         cursor: pointer;
     }
@@ -103,7 +114,13 @@ export const Months = styled.div`
     text-align: center;
     width: 60px;
     font-size: 15px;
-    color: gray;
+    color: ${(props) => {
+        if (props.title === "title") {
+            return "#808080";
+        } else {
+            return "#cccccc";
+        }
+    }};
 `;
 
 export default class AttendancePresenter extends PureComponent {
@@ -124,7 +141,7 @@ export default class AttendancePresenter extends PureComponent {
 
                 <ListWrapper>
                     <ListLine>
-                        <CheckAll>All</CheckAll>
+                        <CheckAll title="title">All</CheckAll>
                         <ListNames>{"Name"}</ListNames>
                         {months(null)}
                     </ListLine>

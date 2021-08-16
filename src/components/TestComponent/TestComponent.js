@@ -11,6 +11,7 @@ const NewButtonGroup = styled(ButtonGroup)`
 
 const NewButton = styled(Button)`
     width: 25%;
+    height: 40px;
 `;
 
 export default class TestComponent extends PureComponent {
@@ -33,7 +34,7 @@ export default class TestComponent extends PureComponent {
                     <NewButton onClick={openTransfer}>{day}</NewButton>
                     <NewButton onClick={openTransfer}>{time}</NewButton>
                     <NewButton data-index={dataIndex} onClick={deleteInfo}>
-                        {"삭제"}
+                        {"X"}
                     </NewButton>
                 </NewButtonGroup>
             </>

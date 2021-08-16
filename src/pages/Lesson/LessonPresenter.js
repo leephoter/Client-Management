@@ -21,6 +21,7 @@ import Icon from "@material-ui/core/Icon";
 import TestComponent from "../../components/TestComponent/TestComponent";
 import AddLesson from "../../components/AddLesson";
 import LessonTransfer from "../../components/LessonTransfer/LessonTransfer";
+import { AddButton } from "../Member/MemberPresenter";
 
 const Lessons = styled(Members)``;
 const RegisterClass = styled(RegisterClient)`
@@ -37,17 +38,6 @@ const InputInfo = styled.input.attrs((props) => ({
     outline: none;
     color: #333;
     margin-right: 10px;
-`;
-const AddButton = styled.button`
-    box-sizing: border-box;
-    width: 25px;
-    height: 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    border-radius: 16px;
-    cursor: pointer;
 `;
 const ClassWrapper = styled.div`
     box-sizing: border-box;
@@ -70,6 +60,21 @@ const RegisterModalWrapper = styled(ModalWrapper)`
 
 const TransferWrapper = styled(InputWrapper)`
     /* background: gray; */
+    height: 300px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: ; */
+    align-items: center;
+`;
+
+const AddLine = styled.div`
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 `;
 
 export default class LessonPresenter extends PureComponent {
@@ -96,28 +101,13 @@ export default class LessonPresenter extends PureComponent {
                     <Fade in={registerModalOpen}>
                         <ModalWrapper>
                             <ModalTitle id="Name">
-                                {"회원 등록"}
+                                {"레슨 생성"}
                                 <CloseButton onClick={closeModal}>
                                     X
                                 </CloseButton>
                             </ModalTitle>
 
                             <InputWrapper>
-                                {/* <InputInfo
-                                    name={"name"}
-                                    onChange={getNewLesson}
-                                    // value={newLesson.name}
-                                />
-                                <InputInfo
-                                    name={"day"}
-                                    onChange={getNewLesson}
-                                    // value={newLesson.day}
-                                />
-                                <InputInfo
-                                    name={"time"}
-                                    onChange={getNewLesson}
-                                    // value={newLesson.time}
-                                /> */}
                                 <AddLesson
                                     getNewLesson={getNewLesson}
                                 ></AddLesson>
@@ -132,39 +122,19 @@ export default class LessonPresenter extends PureComponent {
                     <Fade in={transferModalOpen}>
                         <RegisterModalWrapper>
                             <ModalTitle id="Name">
-                                {"인원 추가"}
+                                {"레슨생 추가"}
                                 <CloseButton onClick={closeTransfer}>
                                     X
                                 </CloseButton>
                             </ModalTitle>
 
                             <TransferWrapper>
-                                {/* <InputInfo
-                                    name={"name"}
-                                    onChange={getNewLesson}
-                                    // value={newLesson.name}
-                                />
-                                <InputInfo
-                                    name={"day"}
-                                    onChange={getNewLesson}
-                                    // value={newLesson.day}
-                                />
-                                <InputInfo
-                                    name={"time"}
-                                    onChange={getNewLesson}
-                                    // value={newLesson.time}
-                                /> */}
-                                {/* <AddLesson
-                                // getNewLesson={getNewLesson}
-                                ></AddLesson> */}
-                                {/* <AddButton>
-                                <NewIcon
-                                // onClick={addLesson}
-                                >
-                                    +
-                                </NewIcon>
-                            </AddButton> */}
                                 <LessonTransfer />
+                                <AddLine>
+                                    <AddButton>
+                                        <NewIcon>+</NewIcon>
+                                    </AddButton>
+                                </AddLine>
                             </TransferWrapper>
                         </RegisterModalWrapper>
                     </Fade>

@@ -1,10 +1,10 @@
-import React, { useState, PureComponent } from "react";
+import React, { PureComponent } from "react";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Member from "./pages/Member";
 import Attendance from "./pages/Attendance";
 import Lesson from "./pages/Lesson";
-import { BrowserRouter, Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 class App extends PureComponent {
     constructor(props) {

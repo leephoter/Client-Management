@@ -13,6 +13,41 @@ const ListBox = styled(ListItemAvatar)`
     color: green;
 `;
 
+const RemoveList = styled.button`
+    width: 25px;
+    height: 22px;
+
+    background-color: white;
+    border-radius: 3px;
+    border: solid 1px ${lighten(0.2, "#85a9ff")};
+    color: #88a9ff;
+    cursor: pointer;
+    box-shadow: 0 3px 4px -1px ${lighten(0.1, "#85a9ff")};
+    &:hover {
+        border: solid 1px ${lighten(0.1, "#85a9ff")};
+        color: #85a9ff;
+        box-shadow: 0 3px 4px -1px #85a9ff;
+    }
+    &:active {
+        border: solid 1px ${darken(0.01, "#85a9ff")};
+        color: #85a9ff;
+    }
+`;
+
+const NewListItem = styled(ListItem)`
+    box-sizing: border-box;
+    box-shadow: 0 3px 4px -1px ${lighten(0.1, "#85a9ff")};
+    &:hover {
+        /* border: solid 1px ${lighten(0.1, "#85a9ff")}; */
+        /* color: #85a9ff; */
+        box-shadow: 0 3px 4px -1px #85a9ff;
+    }
+    &:active {
+        /* border: solid 1px ${darken(0.01, "#85a9ff")}; */
+        /* color: #85a9ff; */
+    }
+`;
+
 export default class extends PureComponent {
     shouldComponentUpdate(nextProps, nextState) {
         // console.log("nextProps :>> ", nextProps.list);
@@ -25,15 +60,15 @@ export default class extends PureComponent {
         return (
             <ListBox>
                 {list.map((item, index) => (
-                    <ListItem>
+                    <NewListItem>
                         <ListItemText
                             primary={item.name}
                             secondary={item.age + "살"}
                         ></ListItemText>
-                        <button data-index={index} onClick={deleteInfo}>
+                        <RemoveList data-index={index} onClick={deleteInfo}>
                             {"X"}
-                        </button>
-                    </ListItem>
+                        </RemoveList>
+                    </NewListItem>
                 ))}
             </ListBox>
         );

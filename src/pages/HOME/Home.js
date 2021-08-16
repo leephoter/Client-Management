@@ -45,19 +45,20 @@ export default class Home extends PureComponent {
                     <Months
                         value={index}
                         color="#cccccc"
-                        onClick={this.selectMonth}
+                        onClick={this.checkPayment}
+                        text={"123"}
                     >
                         {this.state.pay[newPayNum]}
                     </Months>
                 );
             }
         });
-    selectMonth = (e) => {
-        // console.log("e.target.value :>> ", e.target);
+    checkPayment = (e) => {
+        console.log("e.target :>> ", e.target);
     };
     render() {
         const { pages, list, pay, now, checkAll } = this.state;
-        const { months } = this;
+        const { months, checkPayment } = this;
         const { pathname } = this.props.history.location;
         // // console.log("this.state.payments :>> ", this.state.payments);
         return (

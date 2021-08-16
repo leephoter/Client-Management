@@ -24,7 +24,7 @@ export default class Attendance extends PureComponent {
     months = (e) =>
         [7, 14, 21, 28].map((item, index) => {
             if (e === null) {
-                return <Months>{item + "일"}</Months>;
+                return <Months title="title">{item + "일"}</Months>;
             } else {
                 return <Months>{this.state.attendance.absence}</Months>;
             }
