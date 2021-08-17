@@ -2,6 +2,7 @@ import React, { PureComponent } from "react";
 import MainPage from "../../common/MainPage/MainPage";
 import LessonPresenter from "./LessonPresenter";
 import { lessons, NewLessons } from "../../common/LessonGroup/LessonGroup";
+import { list } from "../../common/ClientList/ClientListDummy";
 
 export default class extends PureComponent {
     state = {
@@ -13,6 +14,8 @@ export default class extends PureComponent {
             day: "",
             time: "",
         },
+        list,
+        lessonName: "",
     };
     deleteInfo = (e) => {
         const { index } = e.target.dataset;
@@ -20,17 +23,19 @@ export default class extends PureComponent {
         const _lessons = lessons.filter(
             (item, index2) => index2 !== Number(index)
         );
-        console.log("_lessons :>> ", _lessons);
         NewLessons(_lessons);
         this.setState({
             lessons: _lessons,
         });
     };
-    openTransfer = () => {
+    openTransfer = (e) => {
         this.setState({ transferModalOpen: true });
+        this.setState({
+            lessonName: e.target.name,
+        });
     };
     closeTransfer = () => {
-        this.setState({ transferModalOpen: false });
+        return this.setState({ transferModalOpen: false });
     };
     openModal = () => {
         this.setState({ registerModalOpen: true });
@@ -48,6 +53,7 @@ export default class extends PureComponent {
             },
         });
     };
+
     addLesson = () => {
         const { lessons, newLesson, registerModalOpen } = this.state;
         const _lesson = lessons.concat(newLesson);
@@ -70,6 +76,40 @@ export default class extends PureComponent {
             });
         }
     };
+    transferList = (each) => {
+        // const { lessons, lessonName } = this.state;
+        // const _each = each;
+        // _each.map((item, index) => {
+        //     item.lessonName = item.lessonName.concat(lessonName);
+        // });
+        // console.log("_each :>> ", _each);
+        // // this.setState({
+        // //     list: {
+        // //         ...list,
+        // //         _each,
+        // //     },
+        // // });
+        // this.addList(_each);
+        // // return _each;
+    };
+    addList = (item) => {
+        const { lessons, lessonName } = this.state;
+        const _each = item;
+        const _test = _each[0].lessonName.find((e) => e === lessonName);
+        console.log("_test :>> ", _test);
+        _each.map((item, index) => {
+            if (_test !== lessonName) {
+                item.lessonName = item.lessonName.concat(lessonName);
+            }
+        });
+        this.setState({
+            list: {
+                ...list,
+                _each,
+            },
+        });
+    };
+
     render() {
         const {
             lessons,
@@ -85,7 +125,10 @@ export default class extends PureComponent {
             deleteInfo,
             getNewLesson,
             addLesson,
+            transferList,
+            addList,
         } = this;
+        console.log("list :>> ", list);
         return (
             <MainPage>
                 <LessonPresenter
@@ -100,6 +143,8 @@ export default class extends PureComponent {
                     deleteInfo={deleteInfo}
                     getNewLesson={getNewLesson}
                     addLesson={addLesson}
+                    transferList={transferList}
+                    addList={addList}
                 />
             </MainPage>
         );

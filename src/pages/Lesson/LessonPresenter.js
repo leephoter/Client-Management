@@ -76,6 +76,9 @@ const AddLine = styled.div`
     justify-content: flex-end;
     align-items: center;
 `;
+const NewAddButton = styled(AddButton)`
+    padding-right: 150px;
+`;
 
 export default class LessonPresenter extends PureComponent {
     render() {
@@ -91,6 +94,9 @@ export default class LessonPresenter extends PureComponent {
             newLesson,
             getNewLesson,
             addLesson,
+            sample,
+            transferList,
+            addList,
         } = this.props;
         return (
             <Lessons>
@@ -111,9 +117,9 @@ export default class LessonPresenter extends PureComponent {
                                 <AddLesson
                                     getNewLesson={getNewLesson}
                                 ></AddLesson>
-                                <AddButton>
+                                <NewAddButton>
                                     <NewIcon onClick={addLesson}>+</NewIcon>
-                                </AddButton>
+                                </NewAddButton>
                             </InputWrapper>
                         </ModalWrapper>
                     </Fade>
@@ -129,12 +135,17 @@ export default class LessonPresenter extends PureComponent {
                             </ModalTitle>
 
                             <TransferWrapper>
-                                <LessonTransfer />
-                                <AddLine>
-                                    <AddButton>
-                                        <NewIcon>+</NewIcon>
-                                    </AddButton>
-                                </AddLine>
+                                <LessonTransfer
+                                    addList={addList}
+                                    transferList={transferList}
+                                    closeTransfer={closeTransfer}
+                                />
+                                {/* <AddLine> */}
+                                <AddButton>
+                                    {/* 추가 */}
+                                    {/* <NewIcon onClick={addList}>{"+"}</NewIcon> */}
+                                </AddButton>
+                                {/* </AddLine> */}
                             </TransferWrapper>
                         </RegisterModalWrapper>
                     </Fade>
@@ -148,8 +159,10 @@ export default class LessonPresenter extends PureComponent {
                                 day={lessons[index].day}
                                 time={lessons[index].time}
                                 openTransfer={openTransfer}
+                                closeTransfer={closeTransfer}
                                 deleteInfo={deleteInfo}
                                 dataIndex={index}
+                                lessonName={item.name}
                             />
                         );
                     })}

@@ -29,6 +29,10 @@ class App extends PureComponent {
                     <Route exact path={pages.main} component={Login} />
                     <Route path={pages.join} component={Login} />
                     <Route path={pages.homePayment} component={Home} />
+                    {/* <Route
+                        path={pages.homePayment}
+                        component={Member}
+                    /> */}
                     <Route path={pages.homeAttendance} component={Attendance} />
                     <Route path={pages.member} component={Member} />
                     <Route path={pages.lesson} component={Lesson} />

@@ -11,6 +11,7 @@ export default class extends PureComponent {
         newClient: {
             name: "",
             age: "",
+            lessonName: [],
         },
     };
     deleteInfo = (e) => {
@@ -51,6 +52,7 @@ export default class extends PureComponent {
                 newClient: {
                     name: "",
                     age: "",
+                    lessonName: [],
                 },
                 open: false,
             });

@@ -2,6 +2,7 @@ import React, { PureComponent } from "react";
 import styled, { css, ThemeProvider } from "styled-components";
 import { darken, lighten } from "polished";
 import { lessons } from "../LessonGroup/LessonGroup";
+import { list } from "../ClientList/ClientListDummy";
 
 const Lesson = styled.button`
     box-sizing: border-box;
@@ -41,8 +42,10 @@ const Lesson = styled.button`
 
 export default class extends PureComponent {
     state = {
+        list,
         lessons,
     };
+    lessonClick = () => {};
 
     render() {
         const { lessons } = this.state;
@@ -51,6 +54,9 @@ export default class extends PureComponent {
                 {lessons.map((item, index) => (
                     <Lesson>{item.name}</Lesson>
                 ))}
+                {/* {list.map((item, index) => (
+                    <Lesson>{item.lessonName}</Lesson>
+                ))} */}
             </>
         );
     }

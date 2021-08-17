@@ -57,6 +57,7 @@ export default class extends PureComponent {
 
     render() {
         const { deleteInfo, list } = this.props;
+        const { checkIndex } = this;
         return (
             <ListBox>
                 {list.map((item, index) => (
@@ -64,7 +65,7 @@ export default class extends PureComponent {
                         <ListItemText
                             primary={item.name}
                             secondary={item.age + "살"}
-                        ></ListItemText>
+                        />
                         <RemoveList data-index={index} onClick={deleteInfo}>
                             {"X"}
                         </RemoveList>

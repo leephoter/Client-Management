@@ -15,6 +15,9 @@ const NewButton = styled(Button)`
 `;
 
 export default class TestComponent extends PureComponent {
+    checkIndex = (e) => {
+        console.log("e.target :>> ", e.target);
+    };
     render() {
         const {
             name,
@@ -23,6 +26,7 @@ export default class TestComponent extends PureComponent {
             deleteInfo,
             dataIndex,
             openTransfer,
+            lessonName,
         } = this.props;
         return (
             <>
@@ -30,9 +34,18 @@ export default class TestComponent extends PureComponent {
                     color="primary"
                     aria-label="outlined primary button group"
                 >
-                    <NewButton onClick={openTransfer}>{name}</NewButton>
-                    <NewButton onClick={openTransfer}>{day}</NewButton>
-                    <NewButton onClick={openTransfer}>{time}</NewButton>
+                    <NewButton name={lessonName} onClick={openTransfer}>
+                        {name}
+                    </NewButton>
+                    <NewButton
+                        name={lessonName}
+                        // onClick={openTransfer}
+                    >
+                        {day}
+                    </NewButton>
+                    <NewButton name={lessonName} onClick={openTransfer}>
+                        {time}
+                    </NewButton>
                     <NewButton data-index={dataIndex} onClick={deleteInfo}>
                         {"X"}
                     </NewButton>
