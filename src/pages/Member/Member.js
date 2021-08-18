@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
 import MemberPresenter from "./MemberPresenter";
 import MainPage from "../../common/MainPage/MainPage";
+import { paymentReset } from "../../common/ClientList/ClientListDummy";
 import { list, NewList } from "../../common/ClientList/ClientListDummy";
 
 export default class extends PureComponent {
@@ -12,6 +13,8 @@ export default class extends PureComponent {
             name: "",
             age: "",
             lessonName: [],
+            payment: paymentReset,
+            Attendance: [],
         },
     };
     deleteInfo = (e) => {
@@ -53,6 +56,8 @@ export default class extends PureComponent {
                     name: "",
                     age: "",
                     lessonName: [],
+                    payment: paymentReset,
+                    Attendance: [],
                 },
                 open: false,
             });

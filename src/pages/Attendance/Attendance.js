@@ -29,12 +29,27 @@ export default class Attendance extends PureComponent {
                 return <Months>{this.state.attendance.absence}</Months>;
             }
         });
+    clickLesson = (e) => {
+        const _list = [];
+        list.map((item, index) => {
+            if (
+                item.lessonName.find((each) => each === e.target.name) ===
+                e.target.name
+            ) {
+                _list.push(item);
+                console.log("_list :>> ", _list);
+            }
+        });
+        this.setState({
+            list: _list,
+        });
+    };
     render() {
         const { pages, list, attendance, now } = this.state;
-        const { months } = this;
+        const { months, clickLesson } = this;
         const { pathname } = this.props.history.location;
         return (
-            <MainPage pathname={pathname}>
+            <MainPage pathname={pathname} clickLesson={clickLesson}>
                 <AttendancePresenter
                     list={list}
                     months={months}

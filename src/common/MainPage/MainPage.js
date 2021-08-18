@@ -85,7 +85,7 @@ export default class MainPage extends PureComponent {
     };
 
     render() {
-        const { children } = this.props;
+        const { children, clickLesson } = this.props;
         const { pages } = this.state;
         const { subMenuBox } = this;
         return (
@@ -97,7 +97,7 @@ export default class MainPage extends PureComponent {
                                 {/* <Calendar /> */}
                             </CalendarWrapper>
                             <LessonsBox>
-                                <LeftLessons />
+                                <LeftLessons clickLesson={clickLesson} />
                             </LessonsBox>
                         </LeftBar>
                     </LeftBarBox>

@@ -128,7 +128,6 @@ export default class extends PureComponent {
             transferList,
             addList,
         } = this;
-        console.log("list :>> ", list);
         return (
             <MainPage>
                 <LessonPresenter

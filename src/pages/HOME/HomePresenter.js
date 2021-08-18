@@ -170,14 +170,16 @@ export default class HomePresenter extends PureComponent {
                     <ListLine>
                         <CheckAll title="title">All</CheckAll>
                         <ListNames>{"Name"}</ListNames>
-                        {months(null)}
+                        {months("title")}
                     </ListLine>
                     {list.map((item, index) => {
                         return (
                             <ListLine>
                                 <CheckAll />
-                                <ListNames>{item.name}</ListNames>
-                                {months(true)}
+                                <ListNames name={item.name}>
+                                    {item.name}
+                                </ListNames>
+                                {months(item, index)}
                             </ListLine>
                         );
                     })}

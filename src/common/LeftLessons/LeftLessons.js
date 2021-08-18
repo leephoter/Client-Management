@@ -3,8 +3,9 @@ import styled, { css, ThemeProvider } from "styled-components";
 import { darken, lighten } from "polished";
 import { lessons } from "../LessonGroup/LessonGroup";
 import { list } from "../ClientList/ClientListDummy";
+import { Link } from "react-router-dom";
 
-const Lesson = styled.button`
+const Lesson = styled(Link)`
     box-sizing: border-box;
     display: inline-flex;
     /* float: inherit; */
@@ -48,15 +49,19 @@ export default class extends PureComponent {
     lessonClick = () => {};
 
     render() {
+        const { clickLesson } = this.props;
         const { lessons } = this.state;
         return (
             <>
                 {lessons.map((item, index) => (
-                    <Lesson>{item.name}</Lesson>
+                    <Lesson
+                        name={item.name}
+                        onClick={clickLesson}
+                        // to="/homePayment"
+                    >
+                        {item.name}
+                    </Lesson>
                 ))}
-                {/* {list.map((item, index) => (
-                    <Lesson>{item.lessonName}</Lesson>
-                ))} */}
             </>
         );
     }
