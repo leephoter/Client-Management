@@ -17,14 +17,6 @@ export const Header_Content = styled.div`
     display: flex;
     float: inherit;
     flex-direction: column;
-    /* border-left: solid rgb(174, 174, 174) 1px; */
-    /* color: #85a9ff;
-    border: solid 1px white; */
-    /* color: ${darken(0.1, "#85a9ff")}; */
-    /* box-shadow: 0 1px 10px -5px #85a9ff; */
-    /* border: ${darken(0.15, "#85a9ff")}; */
-    /* color: ${darken(0.15, "#85a9ff")}; */
-    /* box-shadow: 0 1px 15px -5px #85a9ff; */
 `;
 export const LeftWrapper = styled.div`
     box-sizing: border-box;
@@ -34,7 +26,6 @@ export const LeftWrapper = styled.div`
     width: 250px;
     height: 800px;
     padding: 0 20px;
-    /* border-right: solid rgb(174, 174, 174) 1px; */
     margin-right: 10px;
 `;
 

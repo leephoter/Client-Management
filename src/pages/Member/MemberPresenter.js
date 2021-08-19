@@ -98,15 +98,13 @@ const InputInfo = styled.input.attrs((props) => ({
 `;
 export const AddButton = styled.button`
     box-sizing: border-box;
-    width: 20px;
-    height: 20px;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-end;
+    align-items: flex-end;
     border: none;
     border-radius: 16px;
+    background-color: rgba(250, 250, 250, 0);
     cursor: pointer;
-    background-color: white;
 `;
 
 export const NewIcon = styled(Icon)`
@@ -118,6 +116,7 @@ export const NewIcon = styled(Icon)`
     border-radius: 3px;
     background-color: white;
     color: #85a9ff;
+    cursor: pointer;
     &:hover {
         border: solid 1px white;
         color: ${darken(0.1, "#85a9ff")};
@@ -212,10 +211,10 @@ export default class MemberPresenter extends PureComponent {
                                     onChange={getNewClient}
                                     value={newClient.age}
                                 />
-                                <AddButton>
-                                    <NewIcon onClick={addList}>+</NewIcon>
-                                </AddButton>
                             </InputWrapper>
+                            <AddButton>
+                                <NewIcon onClick={addList}>+</NewIcon>
+                            </AddButton>
                         </ModalWrapper>
                     </Fade>
                 </NewModal>

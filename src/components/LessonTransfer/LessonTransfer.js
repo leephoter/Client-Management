@@ -97,8 +97,8 @@ export default function LessonTransfer(props) {
 
     const newFuction = () => {
         props.addList(right);
-        console.log("props :>> ", props);
         props.closeTransfer();
+        // console.log("props :>> ", props);
     };
 
     const customList = (items) => (

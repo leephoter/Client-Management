@@ -12,6 +12,7 @@ const Lesson = styled(Link)`
     outline: none;
     border-radius: 3px;
     margin-bottom: 7px;
+    text-decoration: none;
 
     font-weight: bold;
     cursor: pointer;
@@ -46,7 +47,6 @@ export default class extends PureComponent {
         list,
         lessons,
     };
-    lessonClick = () => {};
 
     render() {
         const { clickLesson } = this.props;

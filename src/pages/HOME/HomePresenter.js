@@ -179,7 +179,13 @@ export default class HomePresenter extends PureComponent {
                                 <ListNames name={item.name}>
                                     {item.name}
                                 </ListNames>
+                                {/* <ListNames>
+                                    {Object.keys(list.lessonsName)}
+                                </ListNames> */}
                                 {months(item, index)}
+                                {/* item -> list 중 누구의 정보인지 (객체)
+                                    index -> list 중 몇번째인가 (순서)
+                                */}
                             </ListLine>
                         );
                     })}

@@ -67,17 +67,15 @@ const TransferWrapper = styled(InputWrapper)`
     /* justify-content: ; */
     align-items: center;
 `;
-
-const AddLine = styled.div`
-    box-sizing: border-box;
-    width: 100%;
-    height: auto;
+const NewInputWrapper = styled(InputWrapper)`
+    display: flex;
+    flex-direction: column;
+`;
+const IconWrapper = styled.div`
+    height: 100%;
     display: flex;
     justify-content: flex-end;
-    align-items: center;
-`;
-const NewAddButton = styled(AddButton)`
-    padding-right: 150px;
+    align-items: flex-end;
 `;
 
 export default class LessonPresenter extends PureComponent {
@@ -90,6 +88,7 @@ export default class LessonPresenter extends PureComponent {
             openTransfer,
             closeTransfer,
             lessons,
+            list,
             deleteInfo,
             newLesson,
             getNewLesson,
@@ -113,14 +112,13 @@ export default class LessonPresenter extends PureComponent {
                                 </CloseButton>
                             </ModalTitle>
 
-                            <InputWrapper>
-                                <AddLesson
-                                    getNewLesson={getNewLesson}
-                                ></AddLesson>
-                                <NewAddButton>
+                            <NewInputWrapper>
+                                <AddLesson getNewLesson={getNewLesson} />
+
+                                <IconWrapper>
                                     <NewIcon onClick={addLesson}>+</NewIcon>
-                                </NewAddButton>
-                            </InputWrapper>
+                                </IconWrapper>
+                            </NewInputWrapper>
                         </ModalWrapper>
                     </Fade>
                 </NewModal>
@@ -136,6 +134,7 @@ export default class LessonPresenter extends PureComponent {
 
                             <TransferWrapper>
                                 <LessonTransfer
+                                    list={list}
                                     addList={addList}
                                     transferList={transferList}
                                     closeTransfer={closeTransfer}

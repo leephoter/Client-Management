@@ -94,19 +94,6 @@ export default function CustomizedSelects(props) {
                 <InputLabel htmlFor="demo-customized-select-native">
                     Time
                 </InputLabel>
-                {/* <NewNativeSelect
-                    id="demo-customized-select-native"
-                    name={"time"}
-                    onChange={handleChange}
-                    input={<BootstrapInput />}
-                >
-                    <option aria-label="None" value="none">
-                        none
-                    </option>
-                    <option value="8:00 - 10:00">8:00 - 10:00</option>
-                    <option value="11:00 - 13:00">11:00 - 13:00</option>
-                    <option value="14:00 - 16:00">14:00 - 16:00</option>
-                </NewNativeSelect> */}
                 <NewSelectTime
                     labelId="demo-customized-select-label"
                     id="demo-customized-select"

@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import MainPage from "../../common/MainPage/MainPage";
 import LessonPresenter from "./LessonPresenter";
 import { lessons, NewLessons } from "../../common/LessonGroup/LessonGroup";
-import { list } from "../../common/ClientList/ClientListDummy";
+import { list, paymentReset } from "../../common/ClientList/ClientListDummy";
 
 export default class extends PureComponent {
     state = {
@@ -95,11 +95,13 @@ export default class extends PureComponent {
     addList = (item) => {
         const { lessons, lessonName } = this.state;
         const _each = item;
-        const _test = _each[0].lessonName.find((e) => e === lessonName);
-        console.log("_test :>> ", _test);
+
+        const _test = _each.map((item, index) => {
+            Object.keys(item.lessonsName).find((e) => e === lessonName);
+        });
         _each.map((item, index) => {
             if (_test !== lessonName) {
-                item.lessonName = item.lessonName.concat(lessonName);
+                item.lessonsName[lessonName] = paymentReset;
             }
         });
         this.setState({
@@ -116,6 +118,7 @@ export default class extends PureComponent {
             newLesson,
             registerModalOpen,
             transferModalOpen,
+            list,
         } = this.state;
         const {
             openModal,
@@ -129,9 +132,10 @@ export default class extends PureComponent {
             addList,
         } = this;
         return (
-            <MainPage>
+            <MainPage lessons={lessons}>
                 <LessonPresenter
                     lessons={lessons}
+                    list={list}
                     registerModalOpen={registerModalOpen}
                     transferModalOpen={transferModalOpen}
                     newLesson={newLesson}
