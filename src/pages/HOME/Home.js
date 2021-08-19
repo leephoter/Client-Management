@@ -49,14 +49,17 @@ export default class Home extends PureComponent {
                 return (
                     <Months
                         name={number}
-                        //     //누구인가
+                        //누구인가
                         value={index}
-                        //     //몇월인가
+                        //몇월인가
                         color="#cccccc"
                         //     onClick={this.checkPayment}
                         //     text={"123"}
                     >
                         {/* {Object.keys(arrPayment.lessonsName)} */}
+                        {/* lessons 데이터를 member list에서 관리하지말고
+                            개별로 받아서 뿌리자
+                        */}
                     </Months>
                 );
             }
