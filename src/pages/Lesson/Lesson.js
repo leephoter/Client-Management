@@ -1,8 +1,12 @@
 import React, { PureComponent } from "react";
 import MainPage from "../../common/MainPage/MainPage";
 import LessonPresenter from "./LessonPresenter";
-import { lessons, NewLessons } from "../../common/LessonGroup/LessonGroup";
-import { list, paymentReset } from "../../common/ClientList/ClientListDummy";
+import {
+    lessons,
+    NewLessons,
+    paymentReset,
+} from "../../common/LessonGroup/LessonGroup";
+import { list } from "../../common/ClientList/ClientListDummy";
 
 export default class extends PureComponent {
     state = {
@@ -77,39 +81,57 @@ export default class extends PureComponent {
         }
     };
     transferList = (each) => {
-        // const { lessons, lessonName } = this.state;
-        // const _each = each;
+        const { lessons, lessonName } = this.state;
+        const _each = each;
         // _each.map((item, index) => {
         //     item.lessonName = item.lessonName.concat(lessonName);
         // });
-        // console.log("_each :>> ", _each);
-        // // this.setState({
-        // //     list: {
-        // //         ...list,
-        // //         _each,
-        // //     },
-        // // });
+        // console.log("_each.name :>> ", _each.name);
+        // this.setState({
+        //     list: {
+        //         ...list,
+        //         _each,
+        //     },
+        // });
         // this.addList(_each);
-        // // return _each;
+        // return _each;
     };
-    addList = (item) => {
+    addList = (e) => {
         const { lessons, lessonName } = this.state;
-        const _each = item;
-
-        const _test = _each.map((item, index) => {
-            Object.keys(item.lessonsName).find((e) => e === lessonName);
-        });
+        const _each = e;
+        // console.log("e :>> ", e);
+        let _students = {};
         _each.map((item, index) => {
-            if (_test !== lessonName) {
-                item.lessonsName[lessonName] = paymentReset;
+            let _name = item.name;
+            _students[_name] = paymentReset;
+        });
+        let _lessons = lessons.concat();
+
+        _lessons.map((item, index) => {
+            if (item.name === this.state.lessonName) {
+                item.students = _students;
             }
         });
+        // console.log(`_lessons`, _lessons);
+        NewLessons(_lessons);
         this.setState({
-            list: {
-                ...list,
-                _each,
-            },
+            lessons: _lessons,
         });
+
+        // const _test = _each.map((item, index) => {
+        //     Object.keys(item.lessonsName).find((e) => e === lessonName);
+        // });
+        // _each.map((item, index) => {
+        //     if (_test !== lessonName) {
+        //         item.lessonsName[lessonName] = paymentReset;
+        //     }
+        // });
+        // this.setState({
+        //     list: {
+        //         ...list,
+        //         _each,
+        //     },
+        // });
     };
 
     render() {
@@ -131,6 +153,7 @@ export default class extends PureComponent {
             transferList,
             addList,
         } = this;
+        console.log("lessons :>> ", lessons);
         return (
             <MainPage lessons={lessons}>
                 <LessonPresenter

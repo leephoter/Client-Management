@@ -26,7 +26,6 @@ export default class TestComponent extends PureComponent {
             deleteInfo,
             dataIndex,
             openTransfer,
-            lessonName,
         } = this.props;
         return (
             <>
@@ -34,16 +33,16 @@ export default class TestComponent extends PureComponent {
                     color="primary"
                     aria-label="outlined primary button group"
                 >
-                    <NewButton name={lessonName} onClick={openTransfer}>
+                    <NewButton name={name} onClick={openTransfer}>
                         {name}
                     </NewButton>
                     <NewButton
-                        name={lessonName}
+                        name={name}
                         // onClick={openTransfer}
                     >
                         {day}
                     </NewButton>
-                    <NewButton name={lessonName} onClick={openTransfer}>
+                    <NewButton name={name} onClick={openTransfer}>
                         {time}
                     </NewButton>
                     <NewButton data-index={dataIndex} onClick={deleteInfo}>

@@ -13,8 +13,6 @@ export default class extends PureComponent {
             name: "",
             age: "",
             lessonName: [],
-            payment: paymentReset,
-            Attendance: [],
         },
     };
     deleteInfo = (e) => {
@@ -56,8 +54,6 @@ export default class extends PureComponent {
                     name: "",
                     age: "",
                     lessonName: [],
-                    payment: paymentReset,
-                    Attendance: [],
                 },
                 open: false,
             });

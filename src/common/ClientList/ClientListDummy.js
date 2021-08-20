@@ -8,33 +8,22 @@ export let list = [
     {
         name: "Lee",
         age: "21",
-        lessonsName: {},
         //lessonsName: { "수영": paymentReset, "풋살": paymentReset}...
         //lessonsName에 {"레쓴명": [출석]} 을 저장
 
         // payment: paymentReset,
-        Attendance: [],
     },
     {
         name: "Han",
         age: "22",
-        lessonsName: {},
-        // payment: paymentReset,
-        Attendance: [],
     },
     {
         name: "Gyeol",
         age: "23",
-        lessonsName: {},
-        // payment: paymentReset,
-        Attendance: [],
     },
     {
         name: "new",
         age: "24",
-        lessonsName: {},
-        // payment: paymentReset,
-        Attendance: [],
     },
 ];
 
