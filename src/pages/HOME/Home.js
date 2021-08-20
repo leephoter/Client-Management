@@ -36,7 +36,7 @@ export default class Home extends PureComponent {
             if (_name === "title") {
                 return <Months color="gray">{item + "월"}</Months>;
             } else {
-                return <Months color="pink"></Months>;
+                return <Months color="black">{"문제"}</Months>;
             }
         });
     };
