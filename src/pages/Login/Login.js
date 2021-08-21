@@ -10,7 +10,7 @@ import {
     setNextId,
 } from "../../common/AdmissionList/AdmissionList";
 
-export default class extends PureComponent {
+export default class Login extends PureComponent {
     state = {
         AdmissionList,
         id: "",

@@ -154,9 +154,9 @@ export default class LessonPresenter extends PureComponent {
                     {lessons.map((item, index) => {
                         return (
                             <TestComponent
-                                name={lessons[index].name}
-                                day={lessons[index].day}
-                                time={lessons[index].time}
+                                name={item.name}
+                                day={item.day}
+                                time={item.time}
                                 openTransfer={openTransfer}
                                 closeTransfer={closeTransfer}
                                 deleteInfo={deleteInfo}

@@ -4,7 +4,7 @@ import MainPage from "../../common/MainPage/MainPage";
 import { paymentReset } from "../../common/ClientList/ClientListDummy";
 import { list, NewList } from "../../common/ClientList/ClientListDummy";
 
-export default class extends PureComponent {
+export default class Member extends PureComponent {
     state = {
         list,
         open: false,

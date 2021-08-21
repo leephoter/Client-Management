@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import HomePresenter, { Months } from "./HomePresenter";
 import MainPage from "../../common/MainPage/MainPage";
-import { list } from "../../common/ClientList/ClientListDummy";
+// import { list } from "../../common/ClientList/ClientListDummy";
 import { lessons, paymentReset } from "../../common/LessonGroup/LessonGroup";
 
 export default class Home extends PureComponent {
@@ -13,7 +13,7 @@ export default class Home extends PureComponent {
             member: "/member",
             lesson: "/lesson",
         },
-        list,
+        list: [],
         lessons,
         month: Array(12)
             .fill()
@@ -22,59 +22,78 @@ export default class Home extends PureComponent {
             }),
         pay: ["카드", "현금", "미납"],
         now: new Date().getFullYear(),
-        checkAll: {
-            nonCheck: "",
-            check: "V",
-        },
-        selectedLessonSt: [],
-        payNum: 0,
-        selectedLesson: list.map((item) => item.name),
+        lessonName: "",
     };
-    title = (_name) => {
-        // console.log("_name, number :>> ", _name, number);
-        return this.state.month.map((item, index) => {
-            if (_name === "title") {
-                return <Months color="gray">{item + "월"}</Months>;
-            } else {
-                return <Months color="black">{"문제"}</Months>;
+    title = () => {
+        return this.state.month.map((item, index) => (
+            <Months color="gray">{item + "월"}</Months>
+        ));
+    };
+    payments = (_student) => {
+        return _student["lessonsPayment"].map((item, index) => (
+            <Months
+                color="gray"
+                form={this.state.lessonName}
+                name={_student.students}
+                tabIndex={index}
+                onClick={this.changePayment}
+            >
+                {item}
+            </Months>
+        ));
+    };
+
+    changePayment = (e) => {
+        // console.log("e.target :>> ", e.target.name);
+        // e.target.form = lessonName
+        // e.target.name = students
+        // e.target.tabIndex = 월
+        const { list } = this.state;
+        const studentName = e.target.name;
+        const month = e.target.tabIndex;
+        const newList = [...list];
+        // console.log("newList :>> ", newList);
+        // console.log("studentName :>> ", studentName);
+        newList.map((item) => {
+            if (item["students"] === studentName) {
+                //이 조건이 적용이 안 되는것 같은...
+                //이름에 해당하는 lessonsPayment 선택이 안 됨
+                console.log("item :>> ", item);
+                if (item["lessonsPayment"][month] === "X") {
+                    item["lessonsPayment"][month] = "카드";
+                } else if (item["lessonsPayment"][month] === "카드") {
+                    item["lessonsPayment"][month] = "현금";
+                } else {
+                    item["lessonsPayment"][month] = "X";
+                }
             }
+        });
+        //깊은복사를 해도 원시배열에 영향
+        this.setState({
+            list: newList,
         });
     };
 
     clickLesson = (e) => {
-        let _name = [];
-        let _payment;
-        let _lessons = lessons.map((item, index) => {
+        // console.log("e :>> ", e.target.name);
+        //e.target.name 레슨명
+        let getList = [];
+        lessons.map((item, index) => {
             if (item.name === e.target.name) {
-                return item.students;
+                getList = item.students;
             }
         });
-        const new_lessons = _lessons.filter((e) => e !== undefined);
-        const _test = new_lessons[0];
-        const { selectedLessonSt } = this.state;
-        console.log("_test :>> ", _test);
-        const _selectedLessonSt = Object.keys(_test);
-        const _list = _selectedLessonSt.map((item, index) => {
-            return {
-                name: item,
-            };
-        });
-        console.log("_list, e.target.name :>> ", _list, e.target.name);
-        let _selectedLesson = lessons.map((item, index) => {
-            if (item.name === e.target.name) {
-                return item;
-            }
-        });
+        //중복을 제거하고 추가하려면...?
         this.setState({
-            list: _list,
-            selectedLesson: _selectedLesson,
+            lessonName: e.target.name,
+            list: getList,
         });
     };
+
     render() {
-        const { pages, list, pay, now, checkAll, lessons } = this.state;
-        const { title, checkPayment, clickLesson, payment } = this;
+        const { pages, list, pay, now, lessons } = this.state;
+        const { title, payments, clickLesson } = this;
         const { pathname } = this.props.history.location;
-        console.log(`selectedLesson`, this.state.selectedLesson);
         return (
             <MainPage pathname={pathname} clickLesson={clickLesson}>
                 <HomePresenter
@@ -83,9 +102,8 @@ export default class Home extends PureComponent {
                     title={title}
                     pay={pay}
                     now={now}
-                    checkAll={checkAll}
                     clickLesson={clickLesson}
-                    payment={payment}
+                    payments={payments}
                 />
             </MainPage>
         );

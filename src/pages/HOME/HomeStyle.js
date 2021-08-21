@@ -55,7 +55,6 @@ export const CalendarWrapper = styled.div`
     margin-bottom: 30px;
     border: solid rgb(220, 220, 220) 1px;
     border-radius: 7px;
-    /* background-color: #dddddd; */
 `;
 
 export const LessonsBox = styled.div`
@@ -75,14 +74,10 @@ export const HeaderWrapper = styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
-    /* border-bottom: solid rgb(174, 174, 174) 1px; */
     padding-top: 20px;
     padding-left: 20px;
     width: 100%;
     height: 90px;
-    /* background: rgb(200, 200, 200); */
-    /* color: #85a9ff; */
-
     border-radius: 10px;
     box-shadow: 0 1px 10px -5px #85a9ff;
 `;

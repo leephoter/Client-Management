@@ -8,7 +8,7 @@ import {
 } from "../../common/LessonGroup/LessonGroup";
 import { list } from "../../common/ClientList/ClientListDummy";
 
-export default class extends PureComponent {
+export default class Lesson extends PureComponent {
     state = {
         lessons,
         registerModalOpen: false,
@@ -17,6 +17,7 @@ export default class extends PureComponent {
             name: "",
             day: "",
             time: "",
+            students: [],
         },
         list,
         lessonName: "",
@@ -61,7 +62,6 @@ export default class extends PureComponent {
     addLesson = () => {
         const { lessons, newLesson, registerModalOpen } = this.state;
         const _lesson = lessons.concat(newLesson);
-        NewLessons(_lesson);
         if (
             newLesson.name === "" ||
             newLesson.day === "" ||
@@ -69,69 +69,43 @@ export default class extends PureComponent {
         ) {
             return;
         } else {
+            NewLessons(_lesson);
             return this.setState({
                 lessons: _lesson,
                 newLesson: {
                     name: "",
                     day: "",
                     time: "",
+                    students: [],
                 },
                 registerModalOpen: false,
             });
         }
     };
-    transferList = (each) => {
-        const { lessons, lessonName } = this.state;
-        const _each = each;
-        // _each.map((item, index) => {
-        //     item.lessonName = item.lessonName.concat(lessonName);
-        // });
-        // console.log("_each.name :>> ", _each.name);
-        // this.setState({
-        //     list: {
-        //         ...list,
-        //         _each,
-        //     },
-        // });
-        // this.addList(_each);
-        // return _each;
-    };
     addList = (e) => {
         const { lessons, lessonName } = this.state;
         const _each = e;
+        let newLessons = lessons.concat();
         // console.log("e :>> ", e);
-        let _students = {};
-        _each.map((item, index) => {
-            let _name = item.name;
-            _students[_name] = paymentReset;
-        });
-        let _lessons = lessons.concat();
-
-        _lessons.map((item, index) => {
-            if (item.name === this.state.lessonName) {
-                item.students = _students;
+        // e -> [ {name: "Han", age: "22"}, {name:"Gyeol", age: "23"} ]
+        newLessons.map((item) => {
+            if (item.name === lessonName) {
             }
         });
-        // console.log(`_lessons`, _lessons);
-        NewLessons(_lessons);
+
+        const getStudents = e.map((item, index) => {
+            return { students: item.name, lessonsPayment: paymentReset };
+        });
+        newLessons.map((item, index) => {
+            if (item.name === lessonName) {
+                item.students = getStudents;
+            }
+        });
         this.setState({
-            lessons: _lessons,
+            lessons: newLessons,
         });
 
-        // const _test = _each.map((item, index) => {
-        //     Object.keys(item.lessonsName).find((e) => e === lessonName);
-        // });
-        // _each.map((item, index) => {
-        //     if (_test !== lessonName) {
-        //         item.lessonsName[lessonName] = paymentReset;
-        //     }
-        // });
-        // this.setState({
-        //     list: {
-        //         ...list,
-        //         _each,
-        //     },
-        // });
+        NewLessons(newLessons);
     };
 
     render() {
@@ -150,10 +124,8 @@ export default class extends PureComponent {
             deleteInfo,
             getNewLesson,
             addLesson,
-            transferList,
             addList,
         } = this;
-        console.log("lessons :>> ", lessons);
         return (
             <MainPage lessons={lessons}>
                 <LessonPresenter
@@ -169,7 +141,6 @@ export default class extends PureComponent {
                     deleteInfo={deleteInfo}
                     getNewLesson={getNewLesson}
                     addLesson={addLesson}
-                    transferList={transferList}
                     addList={addList}
                 />
             </MainPage>

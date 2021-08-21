@@ -151,7 +151,7 @@ export const ThisYear = styled.span`
 
 export default class HomePresenter extends PureComponent {
     render() {
-        const { list, title, now, pay, payment } = this.props;
+        const { list, title, now, pay, payments } = this.props;
 
         return (
             <PaymentWrapper>
@@ -170,20 +170,16 @@ export default class HomePresenter extends PureComponent {
                     <ListLine>
                         <CheckAll title="title">All</CheckAll>
                         <ListNames>{"Name"}</ListNames>
-                        {title("title")}
+                        {title()}
                     </ListLine>
                     {list.map((item, index) => {
                         return (
                             <ListLine>
                                 <CheckAll />
-                                <ListNames name={item}>{item.name}</ListNames>
-                                {/* <ListNames>
-                                    {Object.keys(list.lessonsName)}
-                                </ListNames> */}
-                                {title(item)}
-                                {/* item -> list 중 누구의 정보인지 (객체)
-                                    index -> list 중 몇번째인가 (순서)
-                                */}
+                                <ListNames name={item.students}>
+                                    {item.students}
+                                </ListNames>
+                                {payments(item)}
                             </ListLine>
                         );
                     })}
