@@ -150,7 +150,12 @@ export default class LessonPresenter extends PureComponent {
                     </Fade>
                 </NewModal>
                 <ClassWrapper>
-                    <TitleLine name={"레슨명"} day={"요일"} time={"시간"} />
+                    <TitleLine
+                        name={"레슨명"}
+                        day={"요일"}
+                        time={"시간"}
+                        form={"삭제"}
+                    />
                     {lessons.map((item, index) => {
                         return (
                             <TestComponent
@@ -162,6 +167,7 @@ export default class LessonPresenter extends PureComponent {
                                 deleteInfo={deleteInfo}
                                 dataIndex={index}
                                 lessonName={item.name}
+                                form={"X"}
                             />
                         );
                     })}

@@ -151,7 +151,7 @@ export const ThisYear = styled.span`
 
 export default class HomePresenter extends PureComponent {
     render() {
-        const { list, title, now, pay, payments } = this.props;
+        const { list, title, now, pay, payments, checkAll } = this.props;
 
         return (
             <PaymentWrapper>
@@ -175,7 +175,10 @@ export default class HomePresenter extends PureComponent {
                     {list.map((item, index) => {
                         return (
                             <ListLine>
-                                <CheckAll />
+                                <CheckAll
+                                    name={item.students}
+                                    onClick={checkAll}
+                                />
                                 <ListNames name={item.students}>
                                     {item.students}
                                 </ListNames>

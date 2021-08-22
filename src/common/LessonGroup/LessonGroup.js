@@ -1,17 +1,26 @@
-export let paymentReset = Array(12)
-    .fill()
-    .map(function (each, index) {
-        return "X";
-    });
-
 export let lessons = [
     {
         name: "축구",
         day: "월",
         time: "11:00-13:00",
         students: [
-            { students: "Lee", lessonsPayment: paymentReset },
-            { students: "Han", lessonsPayment: paymentReset },
+            {
+                students: "Lee",
+                lessonsPayment: Array(12)
+                    .fill()
+                    .map(function (each, index) {
+                        return "X";
+                    }),
+            },
+            //paymentReset === ["X","X","X","X","X","X","X","X","X","X","X","X",]
+            {
+                students: "Han",
+                lessonsPayment: Array(12)
+                    .fill()
+                    .map(function (each, index) {
+                        return "X";
+                    }),
+            },
         ],
     },
     {

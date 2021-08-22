@@ -1,11 +1,7 @@
 import React, { PureComponent } from "react";
 import MainPage from "../../common/MainPage/MainPage";
 import LessonPresenter from "./LessonPresenter";
-import {
-    lessons,
-    NewLessons,
-    paymentReset,
-} from "../../common/LessonGroup/LessonGroup";
+import { lessons, NewLessons } from "../../common/LessonGroup/LessonGroup";
 import { list } from "../../common/ClientList/ClientListDummy";
 
 export default class Lesson extends PureComponent {
@@ -86,15 +82,16 @@ export default class Lesson extends PureComponent {
         const { lessons, lessonName } = this.state;
         const _each = e;
         let newLessons = lessons.concat();
-        // console.log("e :>> ", e);
-        // e -> [ {name: "Han", age: "22"}, {name:"Gyeol", age: "23"} ]
-        newLessons.map((item) => {
-            if (item.name === lessonName) {
-            }
-        });
 
         const getStudents = e.map((item, index) => {
-            return { students: item.name, lessonsPayment: paymentReset };
+            return {
+                students: item.name,
+                lessonsPayment: Array(12)
+                    .fill()
+                    .map(function (each, index) {
+                        return "X";
+                    }),
+            };
         });
         newLessons.map((item, index) => {
             if (item.name === lessonName) {

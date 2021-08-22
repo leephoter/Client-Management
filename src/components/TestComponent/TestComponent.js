@@ -26,6 +26,7 @@ export default class TestComponent extends PureComponent {
             deleteInfo,
             dataIndex,
             openTransfer,
+            form,
         } = this.props;
         return (
             <>
@@ -46,7 +47,7 @@ export default class TestComponent extends PureComponent {
                         {time}
                     </NewButton>
                     <NewButton data-index={dataIndex} onClick={deleteInfo}>
-                        {"X"}
+                        {form}
                     </NewButton>
                 </NewButtonGroup>
             </>

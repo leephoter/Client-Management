@@ -2,7 +2,11 @@ import React, { PureComponent } from "react";
 import HomePresenter, { Months } from "./HomePresenter";
 import MainPage from "../../common/MainPage/MainPage";
 // import { list } from "../../common/ClientList/ClientListDummy";
-import { lessons, paymentReset } from "../../common/LessonGroup/LessonGroup";
+import {
+    lessons,
+    NewLessons,
+    paymentReset,
+} from "../../common/LessonGroup/LessonGroup";
 
 export default class Home extends PureComponent {
     state = {
@@ -58,7 +62,7 @@ export default class Home extends PureComponent {
             if (item["students"] === studentName) {
                 //이 조건이 적용이 안 되는것 같은...
                 //이름에 해당하는 lessonsPayment 선택이 안 됨
-                console.log("item :>> ", item);
+                // console.log("item :>> ", item);
                 if (item["lessonsPayment"][month] === "X") {
                     item["lessonsPayment"][month] = "카드";
                 } else if (item["lessonsPayment"][month] === "카드") {
@@ -68,10 +72,12 @@ export default class Home extends PureComponent {
                 }
             }
         });
+
         //깊은복사를 해도 원시배열에 영향
         this.setState({
             list: newList,
         });
+        NewLessons(lessons);
     };
 
     clickLesson = (e) => {
@@ -83,16 +89,23 @@ export default class Home extends PureComponent {
                 getList = item.students;
             }
         });
-        //중복을 제거하고 추가하려면...?
         this.setState({
             lessonName: e.target.name,
             list: getList,
         });
     };
+    checkAll = (e) => {
+        console.log("e.target :>> ", e.target);
+        const { list } = this.state;
+        list.map((item) => {
+            if (item["students"] === e.target.name) {
+            }
+        });
+    };
 
     render() {
         const { pages, list, pay, now, lessons } = this.state;
-        const { title, payments, clickLesson } = this;
+        const { title, payments, clickLesson, checkAll } = this;
         const { pathname } = this.props.history.location;
         return (
             <MainPage pathname={pathname} clickLesson={clickLesson}>
@@ -104,6 +117,7 @@ export default class Home extends PureComponent {
                     now={now}
                     clickLesson={clickLesson}
                     payments={payments}
+                    checkAll={checkAll}
                 />
             </MainPage>
         );
