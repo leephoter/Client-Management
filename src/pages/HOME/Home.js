@@ -1,7 +1,6 @@
 import React, { PureComponent } from "react";
 import HomePresenter, { Months } from "./HomePresenter";
 import MainPage from "../../common/MainPage/MainPage";
-// import { list } from "../../common/ClientList/ClientListDummy";
 import {
     lessons,
     NewLessons,
@@ -10,12 +9,6 @@ import {
 
 export default class Home extends PureComponent {
     state = {
-        pages: {
-            homePayment: "/homePayment",
-            homeAttendance: "/homeAttendance",
-            member: "/member",
-            lesson: "/lesson",
-        },
         list: [],
         lessons,
         month: Array(12)
@@ -80,10 +73,8 @@ export default class Home extends PureComponent {
         });
     };
     checkAll = (e) => {
-        // console.log("e.target :>> ", e.target);
         const { list } = this.state;
         let checkedList = list.concat();
-        // console.log("list :>> ", list);
         checkedList.map((item, index) => {
             if (item["students"] === e.target.name) {
                 if (item["all"] === false) {

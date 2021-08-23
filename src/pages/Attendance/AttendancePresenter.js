@@ -2,73 +2,72 @@ import React, { PureComponent } from "react";
 import styled, { css, ThemeProvider } from "styled-components";
 import { darken, lighten } from "polished";
 import { Link } from "react-router-dom";
-import {
-    PaymentWrapper,
-    Titles,
-    ButtonsWrapper,
-    PayButtons,
-    ListWrapper,
-    ListLine,
-    ThisYear,
-    ListNames,
-    Months,
-} from "../Home/HomePresenter";
-const AttendanceWrapper = styled(PaymentWrapper)``;
+const AttendanceWrapperP = styled.div`
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 700px;
+    height: 100%;
+    padding: 0 30px;
+    overflow: scroll;
+`;
 
-// const Titles = styled.span`
-//     box-sizing: border-box;
-//     padding-left: 10px;
-//     margin-bottom: 20px;
-//     font-size: 25px;
-//     font-weight: bold;
-//     color: #80a9ff;
-// `;
+const TitlesP = styled.span`
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    padding-left: 10px;
+    font-size: 25px;
+    font-weight: bold;
+    color: #80a9ff;
+`;
 
-// const ButtonsWrapper = styled.div`
-//     box-sizing: border-box;
-//     width: 100%;
-//     background-color: none;
-//     display: flex;
-//     justify-content: flex-start;
-//     padding: 5px 0;
-// `;
+const ButtonsWrapperP = styled.div`
+    box-sizing: border-box;
+    width: 100%;
+    background-color: none;
+    display: flex;
+    justify-content: flex-start;
+    padding: 5px 0;
+`;
 
-// const PayButtons = styled.button`
-//     box-sizing: border-box;
-//     vertical-align: middle;
-//     text-align: center;
-//     color: ${darken(0.01, "#85a9ff")};
-//     margin-right: 10px;
-//     border: solid white 1px;
-//     border-radius: 7px;
-//     background-color: white;
-//     font-weight: bold;
-//     font-size: 15px;
-//     width: auto;
-//     height: 30px;
-//     cursor: pointer;
-//     &:hover {
-//     }
-// `;
+const AttendButtonsP = styled.button`
+    box-sizing: border-box;
+    vertical-align: middle;
+    text-align: center;
+    color: ${darken(0.01, "#85a9ff")};
+    margin-right: 10px;
+    border: solid white 1px;
+    border-radius: 7px;
+    background-color: white;
+    font-weight: bold;
+    font-size: 15px;
+    width: auto;
+    height: 30px;
+    cursor: pointer;
+    &:hover {
+    }
+`;
 
-// const ListWrapper = styled.div`
-//     box-sizing: border-box;
-//     width: 100%;
-//     height: 100%;
-//     overflow: scroll;
-// `;
+const ListWrapperP = styled.div`
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+`;
 
-// const ListLine = styled.div`
-//     box-sizing: border-box;
-//     display: flex;
-//     align-items: center;
-//     width: 840px;
-//     height: 30px;
-//     border: none;
-//     margin: 10px 0;
-// `;
+const ListLineP = styled.div`
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    width: 840px;
+    height: 30px;
+    border: none;
+    margin: 10px 0;
+`;
 
-const CheckAll = styled.button`
+const CheckAllP = styled.button`
     box-sizing: border-box;
     vertical-align: middle;
     text-align: center;
@@ -97,7 +96,52 @@ const CheckAll = styled.button`
         background: ${darken(0.01, "#dddddd")};
     }
 `;
-export const NewMonths = styled(Months)``;
+const ListNamesP = styled.div`
+    box-sizing: border-box;
+    vertical-align: middle;
+    text-align: center;
+    width: 60px;
+    font-size: 15px;
+    font-weight: bold;
+    /* border: solid #cccccc 1px;
+    border-radius: 5px; */
+    color: ${darken(0.1, "#04d900")};
+`;
+export const NewMonthsP = styled.button`
+    box-sizing: border-box;
+    vertical-align: middle;
+    text-align: center;
+    margin: 0 2px;
+    padding: 2px 5px;
+    width: 50px;
+    font-size: 15px;
+    color: ${(props) => {
+        if (props.color === "gray") {
+            return "#808080";
+        } else {
+            return "#cccccc";
+        }
+    }};
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    &:hover {
+        border-color: ${lighten(0.5, "#dddddd")};
+        /* border-color: black; */
+    }
+    &:active {
+        border-color: ${darken(0.5, "#dddddd")};
+    }
+    /* background-color: ${(props) => lighten(0.05, props.color)}; */
+`;
+
+const ThisYearP = styled.span`
+    box-sizing: border-box;
+    margin-left: 20px;
+    font-size: 20px;
+    font-weight: normal;
+    color: ${lighten(0.05, "#80a9ff")};
+`;
 
 export default class AttendancePresenter extends PureComponent {
     render() {
@@ -112,47 +156,46 @@ export default class AttendancePresenter extends PureComponent {
             checkAll,
         } = this.props;
         return (
-            <AttendanceWrapper>
-                <Titles>
+            <AttendanceWrapperP>
+                <TitlesP>
                     {"출석부"}
-                    <ThisYear>{now}</ThisYear>
-                </Titles>
-                <ButtonsWrapper>
-                    {["출석", "결석", "환불"].map((item) => {
+                    <ThisYearP>{now}</ThisYearP>
+                </TitlesP>
+                <ButtonsWrapperP>
+                    {attendance.map((item) => {
                         return (
-                            <PayButtons value={item} onClick={changeAll}>
+                            <AttendButtonsP value={item} onClick={changeAll}>
                                 {item}
-                            </PayButtons>
+                            </AttendButtonsP>
                         );
                     })}
-                </ButtonsWrapper>
-
-                <ListWrapper>
-                    <ListLine>
-                        <CheckAll title="title" onClick={selectAll}>
+                </ButtonsWrapperP>
+                <ListWrapperP>
+                    <ListLineP>
+                        <CheckAllP title="title" onClick={selectAll}>
                             {"All"}
-                        </CheckAll>
-                        <ListNames>{"Name"}</ListNames>
+                        </CheckAllP>
+                        <ListNamesP>{"Name"}</ListNamesP>
                         {days}
-                    </ListLine>
+                    </ListLineP>
                     {list.map((item, index) => {
                         return (
-                            <ListLine name={item.students}>
-                                <CheckAll
+                            <ListLineP name={item.students}>
+                                <CheckAllP
                                     name={item.students}
                                     onClick={checkAll}
                                 >
                                     {item.all === true ? "V" : ""}
-                                </CheckAll>
-                                <ListNames name={item.students}>
+                                </CheckAllP>
+                                <ListNamesP name={item.students}>
                                     {item.students}
-                                </ListNames>
+                                </ListNamesP>
                                 {attend(item)}
-                            </ListLine>
+                            </ListLineP>
                         );
                     })}
-                </ListWrapper>
-            </AttendanceWrapper>
+                </ListWrapperP>
+            </AttendanceWrapperP>
         );
     }
 }
