@@ -74,11 +74,14 @@ const CheckAll = styled.button`
         if (props.title === "title") {
             return "#808080";
         } else {
-            return "#85a9ff";
+            return "gray";
         }
     }};
     margin: 0 5px;
-    border: solid white 1px;
+    outline: none;
+    box-shadow: 0px 3px 3px -1px #eeeeee;
+    /* border: solid black 1px; */
+    /* background-color: red; */
     border-radius: 7px;
     font-size: 13px;
     font-weight: bold;
@@ -151,7 +154,16 @@ export const ThisYear = styled.span`
 
 export default class HomePresenter extends PureComponent {
     render() {
-        const { list, title, now, pay, payments, checkAll } = this.props;
+        const {
+            list,
+            title,
+            now,
+            pay,
+            payments,
+            checkAll,
+            changeAll,
+            selectAll,
+        } = this.props;
 
         return (
             <PaymentWrapper>
@@ -162,23 +174,31 @@ export default class HomePresenter extends PureComponent {
 
                 <ButtonsWrapper>
                     {pay.map((item, index) => {
-                        return <PayButtons>{pay[index]}</PayButtons>;
+                        return (
+                            <PayButtons value={item} onClick={changeAll}>
+                                {item}
+                            </PayButtons>
+                        );
                     })}
                 </ButtonsWrapper>
 
                 <ListWrapper>
                     <ListLine>
-                        <CheckAll title="title">All</CheckAll>
+                        <CheckAll title="title" onClick={selectAll}>
+                            {"All"}
+                        </CheckAll>
                         <ListNames>{"Name"}</ListNames>
                         {title()}
                     </ListLine>
                     {list.map((item, index) => {
                         return (
-                            <ListLine>
+                            <ListLine name={item.students}>
                                 <CheckAll
                                     name={item.students}
                                     onClick={checkAll}
-                                />
+                                >
+                                    {item.all === true ? "V" : ""}
+                                </CheckAll>
                                 <ListNames name={item.students}>
                                     {item.students}
                                 </ListNames>

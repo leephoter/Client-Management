@@ -86,6 +86,7 @@ export default class Lesson extends PureComponent {
         const getStudents = e.map((item, index) => {
             return {
                 students: item.name,
+                all: false,
                 lessonsPayment: Array(12)
                     .fill()
                     .map(function (each, index) {
@@ -101,7 +102,6 @@ export default class Lesson extends PureComponent {
         this.setState({
             lessons: newLessons,
         });
-
         NewLessons(newLessons);
     };
 

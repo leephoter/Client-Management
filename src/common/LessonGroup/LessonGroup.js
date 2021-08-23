@@ -6,16 +6,27 @@ export let lessons = [
         students: [
             {
                 students: "Lee",
+                all: false,
                 lessonsPayment: Array(12)
                     .fill()
                     .map(function (each, index) {
                         return "X";
                     }),
+                attendances: Array(4)
+                    .fill()
+                    .map(function (each, index) {
+                        return "X";
+                    }),
             },
-            //paymentReset === ["X","X","X","X","X","X","X","X","X","X","X","X",]
             {
                 students: "Han",
+                all: false,
                 lessonsPayment: Array(12)
+                    .fill()
+                    .map(function (each, index) {
+                        return "X";
+                    }),
+                attendances: Array(4)
                     .fill()
                     .map(function (each, index) {
                         return "X";

@@ -11,8 +11,8 @@ import {
     ListLine,
     ThisYear,
     ListNames,
+    Months,
 } from "../Home/HomePresenter";
-
 const AttendanceWrapper = styled(PaymentWrapper)``;
 
 // const Titles = styled.span`
@@ -97,60 +97,57 @@ const CheckAll = styled.button`
         background: ${darken(0.01, "#dddddd")};
     }
 `;
-// const ListNames = styled.div`
-//     box-sizing: border-box;
-//     vertical-align: middle;
-//     text-align: center;
-//     width: 60px;
-//     font-size: 15px;
-//     font-weight: bold;
-//     /* border: solid #cccccc 1px;
-//     border-radius: 5px; */
-//     color: ${darken(0.1, "#04d900")};
-// `;
-export const Months = styled.div`
-    box-sizing: border-box;
-    vertical-align: middle;
-    text-align: center;
-    width: 60px;
-    font-size: 15px;
-    color: ${(props) => {
-        if (props.title === "title") {
-            return "#808080";
-        } else {
-            return "#cccccc";
-        }
-    }};
-`;
+export const NewMonths = styled(Months)``;
 
 export default class AttendancePresenter extends PureComponent {
     render() {
-        const { list, months, now } = this.props;
+        const {
+            list,
+            days,
+            attendance,
+            now,
+            attend,
+            changeAll,
+            selectAll,
+            checkAll,
+        } = this.props;
         return (
             <AttendanceWrapper>
                 <Titles>
                     {"출석부"}
                     <ThisYear>{now}</ThisYear>
                 </Titles>
-
                 <ButtonsWrapper>
-                    <PayButtons>{"출석"}</PayButtons>
-                    <PayButtons>{"결석"}</PayButtons>
-                    <PayButtons>{"환불"}</PayButtons>
+                    {["출석", "결석", "환불"].map((item) => {
+                        return (
+                            <PayButtons value={item} onClick={changeAll}>
+                                {item}
+                            </PayButtons>
+                        );
+                    })}
                 </ButtonsWrapper>
 
                 <ListWrapper>
                     <ListLine>
-                        <CheckAll title="title">All</CheckAll>
+                        <CheckAll title="title" onClick={selectAll}>
+                            {"All"}
+                        </CheckAll>
                         <ListNames>{"Name"}</ListNames>
-                        {months(null)}
+                        {days}
                     </ListLine>
                     {list.map((item, index) => {
                         return (
-                            <ListLine>
-                                <CheckAll />
-                                <ListNames>{item.name}</ListNames>
-                                {months(true)}
+                            <ListLine name={item.students}>
+                                <CheckAll
+                                    name={item.students}
+                                    onClick={checkAll}
+                                >
+                                    {item.all === true ? "V" : ""}
+                                </CheckAll>
+                                <ListNames name={item.students}>
+                                    {item.students}
+                                </ListNames>
+                                {attend(item)}
                             </ListLine>
                         );
                     })}

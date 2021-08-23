@@ -10,7 +10,6 @@ import {
 
 export default class Home extends PureComponent {
     state = {
-        opensub: false,
         pages: {
             homePayment: "/homePayment",
             homeAttendance: "/homeAttendance",
@@ -48,21 +47,12 @@ export default class Home extends PureComponent {
     };
 
     changePayment = (e) => {
-        // console.log("e.target :>> ", e.target.name);
-        // e.target.form = lessonName
-        // e.target.name = students
-        // e.target.tabIndex = 월
         const { list } = this.state;
         const studentName = e.target.name;
         const month = e.target.tabIndex;
         const newList = [...list];
-        // console.log("newList :>> ", newList);
-        // console.log("studentName :>> ", studentName);
         newList.map((item) => {
             if (item["students"] === studentName) {
-                //이 조건이 적용이 안 되는것 같은...
-                //이름에 해당하는 lessonsPayment 선택이 안 됨
-                // console.log("item :>> ", item);
                 if (item["lessonsPayment"][month] === "X") {
                     item["lessonsPayment"][month] = "카드";
                 } else if (item["lessonsPayment"][month] === "카드") {
@@ -72,17 +62,12 @@ export default class Home extends PureComponent {
                 }
             }
         });
-
-        //깊은복사를 해도 원시배열에 영향
         this.setState({
             list: newList,
         });
-        NewLessons(lessons);
     };
 
     clickLesson = (e) => {
-        // console.log("e :>> ", e.target.name);
-        //e.target.name 레슨명
         let getList = [];
         lessons.map((item, index) => {
             if (item.name === e.target.name) {
@@ -95,17 +80,70 @@ export default class Home extends PureComponent {
         });
     };
     checkAll = (e) => {
-        console.log("e.target :>> ", e.target);
+        // console.log("e.target :>> ", e.target);
         const { list } = this.state;
-        list.map((item) => {
+        let checkedList = list.concat();
+        // console.log("list :>> ", list);
+        checkedList.map((item, index) => {
             if (item["students"] === e.target.name) {
+                if (item["all"] === false) {
+                    return (item["all"] = true);
+                } else {
+                    return (item["all"] = false);
+                }
             }
+        });
+        this.setState({
+            list: checkedList,
+        });
+    };
+
+    changeAll = (e) => {
+        const { list } = this.state;
+        const newList = list.concat();
+        const value = e.target.value;
+        newList.map((item1) => {
+            if (item1.all === true) {
+                // item1["lessonsPayment"].map((item2) => {
+                //     item2 = value;
+                // });
+                console.log(
+                    'item1["lessonsPayment"] :>> ',
+                    item1["lessonsPayment"]
+                );
+                item1["lessonsPayment"].fill(value);
+            }
+        });
+        this.setState({
+            list: newList,
+        });
+        // NewLessons(lessons);
+    };
+    selectAll = () => {
+        const { list } = this.state;
+        let newList = list.concat();
+        newList.map((item) => {
+            if (item.all === true) {
+                item.all = false;
+            } else {
+                item.all = true;
+            }
+        });
+        this.setState({
+            list: newList,
         });
     };
 
     render() {
-        const { pages, list, pay, now, lessons } = this.state;
-        const { title, payments, clickLesson, checkAll } = this;
+        const { list, pay, now } = this.state;
+        const {
+            title,
+            payments,
+            clickLesson,
+            checkAll,
+            changeAll,
+            selectAll,
+        } = this;
         const { pathname } = this.props.history.location;
         return (
             <MainPage pathname={pathname} clickLesson={clickLesson}>
@@ -115,9 +153,10 @@ export default class Home extends PureComponent {
                     title={title}
                     pay={pay}
                     now={now}
-                    clickLesson={clickLesson}
                     payments={payments}
                     checkAll={checkAll}
+                    changeAll={changeAll}
+                    selectAll={selectAll}
                 />
             </MainPage>
         );
