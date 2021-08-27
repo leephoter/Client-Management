@@ -1,11 +1,12 @@
 import React, { PureComponent } from "react";
-import AttendancePresenter, { NewMonthsP } from "./AttendancePresenter";
+import AttendancePresenter from "./AttendancePresenter";
 import MainPage from "../../common/MainPage/MainPage";
 import {
     lessons,
     NewLessons,
     paymentReset,
 } from "../../common/LessonGroup/LessonGroup";
+import { Months } from "../Home/HomePresenter";
 
 export default class Attendance extends PureComponent {
     state = {
@@ -23,12 +24,12 @@ export default class Attendance extends PureComponent {
     days = () => {
         const newList = [3, 10, 17, 24];
         return newList.map((item) => (
-            <NewMonthsP color="gray">{item + "일"}</NewMonthsP>
+            <Months color="gray">{item + "일"}</Months>
         ));
     };
     attend = (_student) => {
         return _student["attendances"].map((item, index) => (
-            <NewMonthsP
+            <Months
                 color="gray"
                 form={this.state.lessonName}
                 name={_student.students}
@@ -36,7 +37,7 @@ export default class Attendance extends PureComponent {
                 onClick={this.changeAttend}
             >
                 {item}
-            </NewMonthsP>
+            </Months>
         ));
     };
     changeAttend = (e) => {
@@ -96,14 +97,6 @@ export default class Attendance extends PureComponent {
         const value = e.target.value;
         newList.map((item1) => {
             if (item1.all === true) {
-                // item1["lessonsPayment"].map((item2) => {
-                //     item2 = value;
-                // });
-                //이 방법은 왜 안 되는지 질문
-                // console.log(
-                //     'item1["lessonsPayment"] :>> ',
-                //     item1["lessonsPayment"]
-                // );
                 item1["attendances"].fill(value);
             }
         });
@@ -139,7 +132,11 @@ export default class Attendance extends PureComponent {
         } = this;
         const { pathname } = this.props.history.location;
         return (
-            <MainPage pathname={pathname} clickLesson={clickLesson}>
+            <MainPage
+                pathname={pathname}
+                lessons={lessons}
+                clickLesson={clickLesson}
+            >
                 <AttendancePresenter
                     list={list}
                     days={days}

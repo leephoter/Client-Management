@@ -3,6 +3,7 @@ import MemberPresenter from "./MemberPresenter";
 import MainPage from "../../common/MainPage/MainPage";
 import { paymentReset } from "../../common/ClientList/ClientListDummy";
 import { list, NewList } from "../../common/ClientList/ClientListDummy";
+import { lessons } from "../../common/LessonGroup/LessonGroup";
 
 export default class Member extends PureComponent {
     state = {
@@ -69,7 +70,7 @@ export default class Member extends PureComponent {
             addList,
         } = this;
         return (
-            <MainPage>
+            <MainPage lessons={lessons}>
                 <MemberPresenter
                     deleteInfo={deleteInfo}
                     openModal={openModal}

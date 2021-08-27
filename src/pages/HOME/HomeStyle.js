@@ -53,7 +53,9 @@ export const CalendarWrapper = styled.div`
     width: 100%;
     height: 230px;
     margin-bottom: 30px;
-    border: solid rgb(220, 220, 220) 1px;
+    /* border: solid rgb(220, 220, 220) 1px; */
+    /* box-shadow: 0px 3px 5px -1px gray; */
+    box-shadow: 0 3px 4px -1px ${lighten(0.1, "#85a9ff")};
     border-radius: 7px;
 `;
 

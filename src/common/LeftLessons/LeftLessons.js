@@ -1,8 +1,6 @@
 import React, { PureComponent } from "react";
 import styled, { css, ThemeProvider } from "styled-components";
 import { darken, lighten } from "polished";
-import { lessons } from "../LessonGroup/LessonGroup";
-import { list } from "../ClientList/ClientListDummy";
 import { Link } from "react-router-dom";
 
 const Lesson = styled(Link)`
@@ -43,14 +41,8 @@ const Lesson = styled(Link)`
 `;
 
 export default class extends PureComponent {
-    state = {
-        list,
-        lessons,
-    };
-
     render() {
-        const { clickLesson } = this.props;
-        const { lessons } = this.state;
+        const { clickLesson, lessons } = this.props;
         return (
             <>
                 {lessons.map((item, index) => (

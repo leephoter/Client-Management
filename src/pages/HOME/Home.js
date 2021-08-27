@@ -93,22 +93,23 @@ export default class Home extends PureComponent {
         const { list } = this.state;
         const newList = list.concat();
         const value = e.target.value;
-        newList.map((item1) => {
+        newList = newList.map((item1) => {
             if (item1.all === true) {
-                // item1["lessonsPayment"].map((item2) => {
-                //     item2 = value;
+                // console.log("item1 :>> ", item1);
+                // item1["lessonsPayment"].map((item2, index2) => {
+                //     item1["lessonsPayment"][index2] = value;
+                //item1 -> newList[0][1]...[n-1]의 주소
                 // });
-                console.log(
-                    'item1["lessonsPayment"] :>> ',
-                    item1["lessonsPayment"]
-                );
+                //Js...--------------------
+                // call by reference -> Object, array, date => item1새 주소에 newList[0], ... ,newList[n] 의 주소
+                // call by value - boolean, string, number, undefined, null => item2 라는 새 주소에 X라는 값만 가져온거
+                //Js...--------------------
                 item1["lessonsPayment"].fill(value);
             }
         });
         this.setState({
             list: newList,
         });
-        // NewLessons(lessons);
     };
     selectAll = () => {
         const { list } = this.state;
@@ -124,9 +125,11 @@ export default class Home extends PureComponent {
             list: newList,
         });
     };
-
+    selectDay = (selectedLessons) => {
+        this.setState({ lessons: selectedLessons });
+    };
     render() {
-        const { list, pay, now } = this.state;
+        const { list, pay, now, lessons } = this.state;
         const {
             title,
             payments,
@@ -134,10 +137,16 @@ export default class Home extends PureComponent {
             checkAll,
             changeAll,
             selectAll,
+            selectDay,
         } = this;
         const { pathname } = this.props.history.location;
         return (
-            <MainPage pathname={pathname} clickLesson={clickLesson}>
+            <MainPage
+                pathname={pathname}
+                lessons={lessons}
+                clickLesson={clickLesson}
+                selectDay={selectDay}
+            >
                 <HomePresenter
                     list={list}
                     lessons={lessons}

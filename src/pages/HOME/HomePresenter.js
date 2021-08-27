@@ -66,7 +66,7 @@ export const ListLine = styled.div`
     border: none;
     margin: 10px 0;
 `;
-const CheckAll = styled.button`
+export const CheckAll = styled.button`
     box-sizing: border-box;
     vertical-align: middle;
     text-align: center;
@@ -136,12 +136,10 @@ export const Months = styled.button`
     cursor: pointer;
     &:hover {
         border-color: ${lighten(0.5, "#dddddd")};
-        /* border-color: black; */
     }
     &:active {
         border-color: ${darken(0.5, "#dddddd")};
     }
-    /* background-color: ${(props) => lighten(0.05, props.color)}; */
 `;
 
 export const ThisYear = styled.span`

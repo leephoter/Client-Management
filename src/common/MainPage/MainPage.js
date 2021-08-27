@@ -4,6 +4,8 @@ import { darken, lighten } from "polished";
 import { AppBar, Tabs, Tab } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import LeftLessons from "../LeftLessons";
+import DatePickers from "../DatePickers/DatePickers";
+import { lessons, NewLessons } from "../LessonGroup/LessonGroup";
 
 import {
     Whole,
@@ -15,10 +17,7 @@ import {
     LessonsBox,
     HeaderWrapper,
     ContentWrapper,
-    // TransButton,
     HeaderMenu,
-    // newAppBar,
-    // newTabs,
     MainContentWrapper,
 } from "../../pages/Home/HomeStyle";
 
@@ -34,7 +33,6 @@ const SubMenuWrapper = styled.div`
     margin: 0 6px 5px;
     border: none;
     padding: 0 0 0 10px;
-    /* background: yellow; */
 `;
 
 const SubMenus = styled(Link)`
@@ -57,6 +55,40 @@ const SubMenus = styled(Link)`
     }
 `;
 
+const ExButton = styled.button`
+    box-sizing: border-box;
+    display: inline-flex;
+    outline: none;
+    border-radius: 3px;
+    margin-bottom: 7px;
+    text-decoration: none;
+
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0;
+    width: 90px;
+    min-height: 40px;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    font-weight: bold;
+    color: gray;
+    background: #fff;
+    border: solid 1px ${lighten(0.2, "#85a9ff")};
+    color: #85a9ff;
+    box-shadow: 0 3px 4px -1px ${lighten(0.1, "#85a9ff")};
+    transition: all 300ms ease-out;
+    &:hover {
+        border: solid 1px ${lighten(0.1, "#85a9ff")};
+        color: #85a9ff;
+        box-shadow: 0 3px 4px -1px #85a9ff;
+    }
+    &:active {
+        border: solid 1px ${darken(0.01, "#85a9ff")};
+        color: #85a9ff;
+    }
+`;
+
 export default class MainPage extends PureComponent {
     state = {
         pages: {
@@ -65,6 +97,7 @@ export default class MainPage extends PureComponent {
             member: "/member",
             lesson: "/lesson",
         },
+        lessons,
     };
 
     subMenuBox = () => {
@@ -83,19 +116,46 @@ export default class MainPage extends PureComponent {
             return;
         }
     };
+    selectDate = (e) => {
+        const { lessons } = this.state;
+        const days = ["일", "월", "화", "수", "목", "금", "토"];
+        let day = days[new Date(e.target.innerText).getDay()];
+        // OR let day = days[new Date(e.target.value)];
+        // console.log("day :>> ", day);
+        let newLessons = lessons.concat();
+        newLessons = newLessons.map((item) => {
+            if (item["day"] === day) {
+                return item;
+            }
+        });
+        // console.log("newLessons :>> ", newLessons);
+        newLessons = newLessons.filter((e) => e !== undefined);
+        console.log("newLessons :>> ", newLessons);
+        this.props.selectDay(newLessons);
+    };
 
     render() {
         const { children, clickLesson, lessons } = this.props;
         const { pages } = this.state;
-        const { subMenuBox } = this;
+        const { subMenuBox, selectDate } = this;
         return (
             <Whole>
                 <LeftWrapper>
                     <LeftBarBox>
                         <LeftBar>
                             <CalendarWrapper>
-                                {/* <Calendar /> */}
+                                <DatePickers />
+                                <ExButton onClick={selectDate}>
+                                    {"2021-8-30"}
+                                </ExButton>
+                                <ExButton onClick={selectDate}>
+                                    {"2021-08-31"}
+                                </ExButton>
+                                <ExButton onClick={selectDate}>
+                                    {"2021-9-1"}
+                                </ExButton>
                             </CalendarWrapper>
+
                             <LessonsBox>
                                 <LeftLessons
                                     lessons={lessons}

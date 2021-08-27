@@ -67,9 +67,7 @@ export default function LessonTransfer(props) {
     const handleAllRight = () => {
         setRight(right.concat(left));
         setLeft([]);
-        // const _index = left.map((item, index) => list.indexOf(item));
         const item = right;
-        // props.transferList(item);
     };
 
     const handleCheckedRight = () => {
@@ -77,7 +75,6 @@ export default function LessonTransfer(props) {
         setLeft(not(left, leftChecked));
         setChecked(not(checked, leftChecked));
         const item = right;
-        // props.transferList(item);
     };
 
     const handleCheckedLeft = () => {
@@ -85,14 +82,12 @@ export default function LessonTransfer(props) {
         setRight(not(right, rightChecked));
         setChecked(not(checked, rightChecked));
         const item = right;
-        // props.transferList(item);
     };
 
     const handleAllLeft = () => {
         setLeft(left.concat(right));
         setRight([]);
         const item = right;
-        // props.transferList(item);
     };
 
     const newFuction = () => {
