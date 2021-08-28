@@ -121,6 +121,7 @@ export default class MainPage extends PureComponent {
         const days = ["일", "월", "화", "수", "목", "금", "토"];
         let day = days[new Date(e.target.innerText).getDay()];
         // OR let day = days[new Date(e.target.value)];
+        // 켈린더 날짜 태그의 value값으로 "년-월-일"을 저장했을 시
         // console.log("day :>> ", day);
         let newLessons = lessons.concat();
         newLessons = newLessons.map((item) => {
