@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/styles";
 import TextField from "@material-ui/core/TextField";
+
 import styled, { css, ThemeProvider } from "styled-components";
 
 const useStyles = makeStyles((theme) => ({
@@ -20,7 +21,18 @@ const NewTextField = styled(TextField)`
     border-color: white; */
 `;
 
-export default function DatePickers(props) {
+export default function DatePickers({ onClick }) {
+    // const [list, setList] = useState([]);
+    // const [selectDate, setSelectDate] = useState(null);
+
+    const handleClickDate = (e) => {
+        console.log("handleClickDate 222", e.target.value);
+        onClick(e);
+        // this.setState({
+        //     selectDate: e.target.value
+        // })
+    };
+
     const classes = useStyles();
     const nowY = new Date().getFullYear();
     const nowM = new Date().getMonth();
@@ -30,6 +42,7 @@ export default function DatePickers(props) {
     //     props.selectDate(e);
     // };
     // console.log("props :>> ", props);
+
     return (
         <form className={classes.container} noValidate>
             <NewTextField
@@ -43,6 +56,7 @@ export default function DatePickers(props) {
                 InputLabelProps={{
                     shrink: true,
                 }}
+                onChange={handleClickDate}
             />
         </form>
     );

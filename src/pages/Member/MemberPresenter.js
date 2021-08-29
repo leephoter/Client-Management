@@ -179,6 +179,7 @@ export default class MemberPresenter extends PureComponent {
             getNewClient,
             addList,
         } = this.props;
+
         return (
             <Members>
                 <Titles>{"회원 리스트"}</Titles>

@@ -23,6 +23,18 @@ export let list = [
     },
 ];
 
+export let serverMemberList = {
+    result: {
+        members: [
+            {
+                id: 1,
+                name: "이한결",
+                age: 25,
+            },
+        ],
+    },
+};
+
 export let ListNames = list.map((item, index) => {
     return item.name;
 });

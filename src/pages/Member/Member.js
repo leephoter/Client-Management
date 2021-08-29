@@ -4,6 +4,9 @@ import MainPage from "../../common/MainPage/MainPage";
 import { paymentReset } from "../../common/ClientList/ClientListDummy";
 import { list, NewList } from "../../common/ClientList/ClientListDummy";
 import { lessons } from "../../common/LessonGroup/LessonGroup";
+import axios from "axios";
+
+const ENDPOINT = "http://127.0.0.1:8080";
 
 export default class Member extends PureComponent {
     state = {
@@ -16,6 +19,37 @@ export default class Member extends PureComponent {
             lessonName: [],
         },
     };
+
+    componentDidMount() {
+        //  TODO. Request to Server
+        //  TODO. GET - /members
+        //  state.list
+        console.log("ComponentDidMount");
+
+        axios
+            .get(`${ENDPOINT}/members`)
+            .then((res) => {
+                console.log("RES : ", res);
+                // res.data = {
+                //     result: {
+                //         members: [
+                //             {
+                //                 id: 1,
+                //                 name: "이한결",
+                //                 age: 25,
+                //             },
+                //         ],
+                //     },
+                // }
+                // this.setState({
+                //     list: res.data.result.members
+                // })
+            })
+            .catch((err) => {
+                console.log("ERR : ", err);
+            });
+    }
+
     deleteInfo = (e) => {
         const { index } = e.target.dataset;
         const { list } = this.state;
@@ -58,6 +92,7 @@ export default class Member extends PureComponent {
                 },
                 open: false,
             });
+            //  TODO. Request to server with POST method
         }
     };
     render() {

@@ -91,22 +91,29 @@ export default class Home extends PureComponent {
 
     changeAll = (e) => {
         const { list } = this.state;
-        const newList = list.concat();
+        let newList = list.concat();
         const value = e.target.value;
-        newList = newList.map((item1) => {
-            if (item1.all === true) {
-                // console.log("item1 :>> ", item1);
-                // item1["lessonsPayment"].map((item2, index2) => {
-                //     item1["lessonsPayment"][index2] = value;
-                //item1 -> newList[0][1]...[n-1]의 주소
-                // });
-                //Js...--------------------
-                // call by reference -> Object, array, date => item1새 주소에 newList[0], ... ,newList[n] 의 주소
-                // call by value - boolean, string, number, undefined, null => item2 라는 새 주소에 X라는 값만 가져온거
-                //Js...--------------------
-                item1["lessonsPayment"].fill(value);
+        // const newLists = newList.map((item1) => {
+        // newList.map((item1) => {
+        // if (item1.all === true) {
+        // console.log("item1 :>> ", item1);
+        // item1["lessonsPayment"].map((item2, index2) => {
+        //     item1["lessonsPayment"][index2] = value;
+        //item1 -> newList[0][1]...[n-1]의 주소
+        // });
+        //Js...--------------------
+        // call by reference -> Object, array, date => item1새 주소에 newList[0], ... ,newList[n] 의 주소
+        // call by value - boolean, string, number, undefined, null => item2 라는 새 주소에 X라는 값만 가져온거
+        //Js...--------------------
+        //         return item1["lessonsPayment"].fill(value);
+        //     }
+        // });
+        newList.filter((e) => {
+            if (e.all === true) {
+                e["lessonsPayment"].fill(value);
             }
         });
+        console.log("newList :>> ", newList);
         this.setState({
             list: newList,
         });
@@ -140,6 +147,7 @@ export default class Home extends PureComponent {
             selectDay,
         } = this;
         const { pathname } = this.props.history.location;
+        console.log("list :>> ", list);
         return (
             <MainPage
                 pathname={pathname}
