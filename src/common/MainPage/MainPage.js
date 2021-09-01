@@ -4,7 +4,7 @@ import { darken, lighten } from "polished";
 import { AppBar, Tabs, Tab } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import LeftLessons from "../LeftLessons";
-// import DatePickers from "../DatePickers/DatePickers";
+import DatePickers from "../DatePickers/DatePickers";
 import { lessons, NewLessons } from "../LessonGroup/LessonGroup";
 
 import {
@@ -122,16 +122,14 @@ export default class MainPage extends PureComponent {
         let day = days[new Date(date).getDay()];
         // OR let day = days[new Date(e.target.value)];
         // 켈린더 날짜 태그의 value값으로 "년-월-일"을 저장했을 시
-        console.log("e.target :>> ", date);
+        // console.log("e.target :>> ", date);
         let newLessons = lessons.concat();
         newLessons = newLessons.map((item) => {
             if (item["day"] === day) {
                 return item;
             }
         });
-        // console.log("newLessons :>> ", newLessons);
         newLessons = newLessons.filter((e) => e !== undefined);
-        console.log("newLessons :>> ", newLessons);
         this.props.selectDay(newLessons);
     };
 
@@ -139,24 +137,15 @@ export default class MainPage extends PureComponent {
         const { children, clickLesson, lessons } = this.props;
         const { pages } = this.state;
         const { subMenuBox, selectDate } = this;
+        // console.log("lessons :>> ", lessons);
         return (
             <Whole>
                 <LeftWrapper>
                     <LeftBarBox>
                         <LeftBar>
                             <CalendarWrapper>
-                                {/* <DatePickers onClick={selectDate} /> */}
-                                {/* <ExButton onClick={selectDate}>
-                                    {"2021-8-30"}
-                                </ExButton>
-                                <ExButton onClick={selectDate}>
-                                    {"2021-08-31"}
-                                </ExButton>
-                                <ExButton onClick={selectDate}>
-                                    {"2021-9-1"}
-                                </ExButton> */}
+                                <DatePickers onClick={selectDate} />
                             </CalendarWrapper>
-
                             <LessonsBox>
                                 <LeftLessons
                                     lessons={lessons}

@@ -3,6 +3,9 @@ import MainPage from "../../common/MainPage/MainPage";
 import LessonPresenter from "./LessonPresenter";
 import { lessons, NewLessons } from "../../common/LessonGroup/LessonGroup";
 import { list } from "../../common/ClientList/ClientListDummy";
+import axios from "axios";
+
+const ENDPOINT = "http://127.0.0.1:8080";
 
 export default class Lesson extends PureComponent {
     state = {
@@ -18,6 +21,26 @@ export default class Lesson extends PureComponent {
         list,
         lessonName: "",
     };
+
+    componentDidMount() {
+        //  TODO. Request to Server
+        //  TODO. GET - /members
+        // state.list
+        // console.log("ComponentDidMount");
+
+        axios
+            .get(`${ENDPOINT}/lessons`)
+            .then((res) => {
+                console.log("RES : ", res.data);
+                this.setState({
+                    lessons: res.data.result.lessons,
+                });
+            })
+            .catch((err) => {
+                console.log("ERR : ", err);
+            });
+    }
+
     deleteInfo = (e) => {
         const { index } = e.target.dataset;
         const { lessons } = this.state;

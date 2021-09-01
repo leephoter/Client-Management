@@ -147,7 +147,6 @@ export default class Home extends PureComponent {
             selectDay,
         } = this;
         const { pathname } = this.props.history.location;
-        console.log("list :>> ", list);
         return (
             <MainPage
                 pathname={pathname}

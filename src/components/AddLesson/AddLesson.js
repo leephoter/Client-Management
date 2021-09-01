@@ -81,13 +81,13 @@ export default function CustomizedSelects(props) {
                     input={<BootstrapInput />}
                 >
                     <MenuItem value="none">{"none"}</MenuItem>
-                    <MenuItem value="월요일">{"월요일"}</MenuItem>
-                    <MenuItem value="화요일">{"화요일"}</MenuItem>
-                    <MenuItem value="수요일">{"수요일"}</MenuItem>
-                    <MenuItem value="목요일">{"목요일"}</MenuItem>
-                    <MenuItem value="금요일">{"금요일"}</MenuItem>
-                    <MenuItem value="토요일">{"토요일"}</MenuItem>
-                    <MenuItem value="일요일">{"일요일"}</MenuItem>
+                    <MenuItem value="월">{"월"}</MenuItem>
+                    <MenuItem value="화">{"화"}</MenuItem>
+                    <MenuItem value="수">{"수"}</MenuItem>
+                    <MenuItem value="목">{"목"}</MenuItem>
+                    <MenuItem value="금">{"금"}</MenuItem>
+                    <MenuItem value="토">{"토"}</MenuItem>
+                    <MenuItem value="일">{"일"}</MenuItem>
                 </NewSelectDay>
             </FormControl>
             <FormControl>

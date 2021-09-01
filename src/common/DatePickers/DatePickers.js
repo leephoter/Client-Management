@@ -26,11 +26,11 @@ export default function DatePickers({ onClick }) {
     // const [selectDate, setSelectDate] = useState(null);
 
     const handleClickDate = (e) => {
-        console.log("handleClickDate 222", e.target.value);
-        onClick(e);
+        // console.log("handleClickDate 222", e.target.value);
+        onClick(e.target.value);
         // this.setState({
-        //     selectDate: e.target.value
-        // })
+        //     selectDate: e.target.value,
+        // });
     };
 
     const classes = useStyles();
@@ -38,10 +38,6 @@ export default function DatePickers({ onClick }) {
     const nowM = new Date().getMonth();
     const nowD = new Date().getDay();
     const now = `${nowY}-${nowM}-${nowD}`;
-    // const select = (e) => {
-    //     props.selectDate(e);
-    // };
-    // console.log("props :>> ", props);
 
     return (
         <form className={classes.container} noValidate>

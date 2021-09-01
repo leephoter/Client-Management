@@ -16,21 +16,20 @@ export default class Member extends PureComponent {
         newClient: {
             name: "",
             age: "",
-            lessonName: [],
         },
     };
 
     componentDidMount() {
         //  TODO. Request to Server
         //  TODO. GET - /members
-        //  state.list
-        console.log("ComponentDidMount");
+        // state.list
+        // console.log("ComponentDidMount");
 
         axios
             .get(`${ENDPOINT}/members`)
             .then((res) => {
-                console.log("RES : ", res);
-                // res.data = {
+                console.log("RES : ", res.data);
+                // result.data = {
                 //     result: {
                 //         members: [
                 //             {
@@ -40,10 +39,10 @@ export default class Member extends PureComponent {
                 //             },
                 //         ],
                 //     },
-                // }
-                // this.setState({
-                //     list: res.data.result.members
-                // })
+                // };
+                this.setState({
+                    list: res.data.result.members,
+                });
             })
             .catch((err) => {
                 console.log("ERR : ", err);
@@ -80,18 +79,37 @@ export default class Member extends PureComponent {
         const { list, newClient, open } = this.state;
         const _list = list.concat(newClient);
         NewList(_list);
+        // console.log("newClient :>> ", newClient);
         if (newClient.name === "" || newClient.age === "") {
             return;
         } else {
-            this.setState({
-                list: _list,
-                newClient: {
-                    name: "",
-                    age: "",
-                    lessonName: [],
-                },
-                open: false,
-            });
+            axios
+                .post(`${ENDPOINT}/members`, {
+                    name: newClient.name,
+                    age: newClient.age,
+                })
+                .then((res) => {
+                    console.log("RES : ", res);
+                    if (res.status >= 200 && res.status <= 204) {
+                        console.log("11 :>> ");
+                        // setState
+                        this.setState({
+                            list: [...this.state.list, res.data.result.members],
+                            newClient: {
+                                name: "",
+                                age: "",
+                            },
+                            open: false,
+                        });
+                    } else {
+                        console.log("err :>> ");
+                    }
+                })
+                .catch((err) => {
+                    console.log("ERR : ", err);
+                });
+            //axios
+
             //  TODO. Request to server with POST method
         }
     };
@@ -104,6 +122,7 @@ export default class Member extends PureComponent {
             getNewClient,
             addList,
         } = this;
+        console.log("list :>> ", list);
         return (
             <MainPage lessons={lessons}>
                 <MemberPresenter
