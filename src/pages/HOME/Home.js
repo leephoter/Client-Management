@@ -56,9 +56,6 @@ export default class Home extends PureComponent {
                 {item.name}
             </Months>
         ));
-        // <Months>
-
-        // </Months>
     };
 
     changePayment = (e) => {
