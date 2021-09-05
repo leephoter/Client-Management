@@ -45,13 +45,14 @@ export default class extends PureComponent {
         const { clickLesson, lessons } = this.props;
         return (
             <>
-                {lessons.map((item, index) => (
+                {lessons.map((item) => (
                     <Lesson
                         name={item.name}
+                        id={item.id}
                         onClick={clickLesson}
                         // to="/homePayment"
                     >
-                        {item.name}
+                        {`${item.name}`}
                     </Lesson>
                 ))}
             </>

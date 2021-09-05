@@ -66,7 +66,7 @@ export default class extends PureComponent {
                             primary={item.name}
                             secondary={item.age + "살"}
                         />
-                        <RemoveList data-index={index} onClick={deleteInfo}>
+                        <RemoveList value={item.id} onClick={deleteInfo}>
                             {"X"}
                         </RemoveList>
                     </NewListItem>

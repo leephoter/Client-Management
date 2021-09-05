@@ -139,12 +139,7 @@ export default class LessonPresenter extends PureComponent {
                                     transferList={transferList}
                                     closeTransfer={closeTransfer}
                                 />
-                                {/* <AddLine> */}
-                                <AddButton>
-                                    {/* 추가 */}
-                                    {/* <NewIcon onClick={addList}>{"+"}</NewIcon> */}
-                                </AddButton>
-                                {/* </AddLine> */}
+                                <AddButton></AddButton>
                             </TransferWrapper>
                         </RegisterModalWrapper>
                     </Fade>
@@ -159,9 +154,11 @@ export default class LessonPresenter extends PureComponent {
                     {lessons.map((item, index) => {
                         return (
                             <TestComponent
+                                id={item.id}
                                 name={item.name}
                                 day={item.day}
-                                time={item.time}
+                                startTime={`${item.startTime} - ${item.endTime}`}
+                                // endTime={item.endTime}
                                 openTransfer={openTransfer}
                                 closeTransfer={closeTransfer}
                                 deleteInfo={deleteInfo}

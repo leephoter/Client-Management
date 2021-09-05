@@ -1,16 +1,19 @@
 import React, { PureComponent } from "react";
 import HomePresenter, { Months } from "./HomePresenter";
 import MainPage from "../../common/MainPage/MainPage";
-import {
-    lessons,
-    NewLessons,
-    paymentReset,
-} from "../../common/LessonGroup/LessonGroup";
+// import {
+//     lessons,
+//     NewLessons,
+//     paymentReset,
+// } from "../../common/LessonGroup/LessonGroup";
+import axios from "axios";
+
+const ENDPOINT = "http://127.0.0.1:8080";
 
 export default class Home extends PureComponent {
     state = {
         list: [],
-        lessons,
+        lessons: [],
         month: Array(12)
             .fill()
             .map(function (each, index) {
@@ -20,23 +23,42 @@ export default class Home extends PureComponent {
         now: new Date().getFullYear(),
         lessonName: "",
     };
+
+    componentDidMount() {
+        // axios
+        //     .get(`${ENDPOINT}/lessons`)
+        //     .then((res) => {
+        //         // console.log("RES : ", res.data.result.lessons);
+        //         this.setState({
+        //             lessons: res.data.result.lessons,
+        //         });
+        //     })
+        //     .catch((err) => {
+        //         console.log("ERR : ", err);
+        //     });
+    }
+
     title = () => {
         return this.state.month.map((item, index) => (
             <Months color="gray">{item + "월"}</Months>
         ));
     };
     payments = (_student) => {
-        return _student["lessonsPayment"].map((item, index) => (
+        console.log("_student :>> ", _student);
+        return _student["payments"].map((item, index) => (
             <Months
                 color="gray"
-                form={this.state.lessonName}
-                name={_student.students}
+                // form={this.state.lessonName}
+                name={_student.name}
                 tabIndex={index}
                 onClick={this.changePayment}
             >
-                {item}
+                {item.name}
             </Months>
         ));
+        // <Months>
+
+        // </Months>
     };
 
     changePayment = (e) => {
@@ -61,16 +83,22 @@ export default class Home extends PureComponent {
     };
 
     clickLesson = (e) => {
-        let getList = [];
-        lessons.map((item, index) => {
-            if (item.name === e.target.name) {
-                getList = item.students;
-            }
-        });
-        this.setState({
-            lessonName: e.target.name,
-            list: getList,
-        });
+        const { lessons } = this.state;
+        const lessonId = Number(e.target.id);
+        const selectedLesson = lessons.filter((e) => e["id"] === lessonId);
+        console.log(`lessons`, lessons);
+
+        axios
+            .get(`${ENDPOINT}/lessons/${lessonId}/payments?date=2021-09-30`)
+            .then((res) => {
+                console.log("RES : ", res.data.result.members);
+                this.setState({
+                    list: res.data.result.members,
+                });
+            })
+            .catch((err) => {
+                console.log("ERR : ", err);
+            });
     };
     checkAll = (e) => {
         const { list } = this.state;
@@ -147,10 +175,11 @@ export default class Home extends PureComponent {
             selectDay,
         } = this;
         const { pathname } = this.props.history.location;
+        console.log("list :>> ", list);
         return (
             <MainPage
                 pathname={pathname}
-                lessons={lessons}
+                // lessons={lessons}
                 clickLesson={clickLesson}
                 selectDay={selectDay}
             >

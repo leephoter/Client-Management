@@ -10,7 +10,6 @@ import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 
 import styled, { css, ThemeProvider } from "styled-components";
-import { list } from "../../common/ClientList/ClientListDummy";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -45,7 +44,7 @@ const NewGrid = styled(Grid)`
 export default function LessonTransfer(props) {
     const classes = useStyles();
     const [checked, setChecked] = React.useState([]);
-    const [left, setLeft] = React.useState(list);
+    const [left, setLeft] = React.useState(props.list);
     const [right, setRight] = React.useState([]);
 
     const leftChecked = intersection(checked, left);
@@ -67,27 +66,23 @@ export default function LessonTransfer(props) {
     const handleAllRight = () => {
         setRight(right.concat(left));
         setLeft([]);
-        const item = right;
     };
 
     const handleCheckedRight = () => {
         setRight(right.concat(leftChecked));
         setLeft(not(left, leftChecked));
         setChecked(not(checked, leftChecked));
-        const item = right;
     };
 
     const handleCheckedLeft = () => {
         setLeft(left.concat(rightChecked));
         setRight(not(right, rightChecked));
         setChecked(not(checked, rightChecked));
-        const item = right;
     };
 
     const handleAllLeft = () => {
         setLeft(left.concat(right));
         setRight([]);
-        const item = right;
     };
 
     const newFuction = () => {

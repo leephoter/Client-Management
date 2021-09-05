@@ -2,16 +2,19 @@ import React, { PureComponent } from "react";
 import AttendancePresenter from "./AttendancePresenter";
 import MainPage from "../../common/MainPage/MainPage";
 import {
-    lessons,
+    // lessons,
     NewLessons,
     paymentReset,
 } from "../../common/LessonGroup/LessonGroup";
 import { Months } from "../Home/HomePresenter";
+import axios from "axios";
+
+const ENDPOINT = "http://127.0.0.1:8080";
 
 export default class Attendance extends PureComponent {
     state = {
         list: [],
-        lessons,
+        lessons: [],
         month: Array(12)
             .fill()
             .map(function (each, index) {
@@ -21,6 +24,21 @@ export default class Attendance extends PureComponent {
         now: new Date().getFullYear(),
         lessonName: "",
     };
+
+    componentDidMount() {
+        axios
+            .get(`${ENDPOINT}/lessons`)
+            .then((res) => {
+                console.log("RES : ", res.data.result.lessons);
+                this.setState({
+                    lessons: res.data.result.lessons,
+                });
+            })
+            .catch((err) => {
+                console.log("ERR : ", err);
+            });
+    }
+
     days = () => {
         const newList = [3, 10, 17, 24];
         return newList.map((item) => (
@@ -63,7 +81,7 @@ export default class Attendance extends PureComponent {
 
     clickLesson = (e) => {
         let getList = [];
-        lessons.map((item, index) => {
+        this.state.lessons.map((item, index) => {
             if (item.name === e.target.name) {
                 getList = item.students;
             }
@@ -121,7 +139,7 @@ export default class Attendance extends PureComponent {
     };
 
     render() {
-        const { list, attendance, now } = this.state;
+        const { list, lessons, attendance, now } = this.state;
         const {
             days,
             attend,
@@ -134,7 +152,7 @@ export default class Attendance extends PureComponent {
         return (
             <MainPage
                 pathname={pathname}
-                lessons={lessons}
+                // lessons={lessons}
                 clickLesson={clickLesson}
             >
                 <AttendancePresenter

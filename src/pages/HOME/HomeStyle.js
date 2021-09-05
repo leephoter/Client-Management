@@ -1,6 +1,6 @@
-import styled, { css, ThemeProvider } from "styled-components";
+import styled, { css } from "styled-components";
 import { darken, lighten } from "polished";
-import { AppBar, Tabs, Tab } from "@material-ui/core";
+import { AppBar, Tabs } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
 export const Whole = styled.div`
@@ -42,6 +42,7 @@ export const LeftBar = styled.div`
     box-sizing: border-box;
     float: inherit;
     width: 200px;
+    height: 730px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -53,8 +54,6 @@ export const CalendarWrapper = styled.div`
     width: 100%;
     height: 230px;
     margin-bottom: 30px;
-    /* border: solid rgb(220, 220, 220) 1px; */
-    /* box-shadow: 0px 3px 5px -1px gray; */
     box-shadow: 0 3px 4px -1px ${lighten(0.1, "#85a9ff")};
     border-radius: 7px;
 `;
@@ -64,9 +63,8 @@ export const LessonsBox = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-
     width: 100%;
-    max-height: 190px;
+    max-height: 100%;
     overflow: scroll;
 `;
 
@@ -98,7 +96,6 @@ export const TransButton = css`
                 transition: all 150ms ease-out;
             }
             &:hover::after {
-                /* 요소:hover::after ->> 마우스를 요소에 올렷을 때 */
                 width: 100%;
                 background-color: yellowgreen;
             }
@@ -107,8 +104,6 @@ export const TransButton = css`
 
 export const HeaderMenu = styled(Link)`
     box-sizing: border-box;
-    /* width: 200px;
-    height: 90px; */
     font-size: 25px;
     cursor: pointer;
     float: inherit;
@@ -120,7 +115,6 @@ export const HeaderMenu = styled(Link)`
     background-color: white;
     color: #85a9ff;
     text-decoration: none;
-    /* background-color: gray; */
     transition: all 300ms ease-out;
     &:hover {
         box-shadow: 0 5px 8px -5px #85a9ff;
@@ -152,7 +146,6 @@ export const newTabs = styled(Tabs)`
 export const ContentWrapper = styled.div`
     box-sizing: border-box;
     display: inline-flex;
-    /* background-color: greenyellow; */
     width: 100%;
     height: 700px;
     padding: 20px 30px 30px 30px;

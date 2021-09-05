@@ -1,11 +1,11 @@
 import React, { PureComponent } from "react";
 import styled, { css, ThemeProvider } from "styled-components";
 import { darken, lighten } from "polished";
-import { AppBar, Tabs, Tab } from "@material-ui/core";
+// import { AppBar, Tabs, Tab } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import LeftLessons from "../LeftLessons";
 import DatePickers from "../DatePickers/DatePickers";
-import { lessons, NewLessons } from "../LessonGroup/LessonGroup";
+import axios from "axios";
 
 import {
     Whole,
@@ -20,6 +20,7 @@ import {
     HeaderMenu,
     MainContentWrapper,
 } from "../../pages/Home/HomeStyle";
+const ENDPOINT = "http://127.0.0.1:8080";
 
 const MenuWrapper = styled.div`
     box-sizing: border-box;
@@ -97,8 +98,22 @@ export default class MainPage extends PureComponent {
             member: "/member",
             lesson: "/lesson",
         },
-        lessons,
+        lessons: [],
     };
+
+    componentDidMount() {
+        axios
+            .get(`${ENDPOINT}/lessons`)
+            .then((res) => {
+                // console.log("RES : ", res.data.result.lessons);
+                this.setState({
+                    lessons: res.data.result.lessons,
+                });
+            })
+            .catch((err) => {
+                console.log("ERR : ", err);
+            });
+    }
 
     subMenuBox = () => {
         const { pathname } = this.props;
@@ -118,26 +133,28 @@ export default class MainPage extends PureComponent {
     };
     selectDate = (date) => {
         const { lessons } = this.state;
-        const days = ["일", "월", "화", "수", "목", "금", "토"];
-        let day = days[new Date(date).getDay()];
-        // OR let day = days[new Date(e.target.value)];
         // 켈린더 날짜 태그의 value값으로 "년-월-일"을 저장했을 시
-        // console.log("e.target :>> ", date);
-        let newLessons = lessons.concat();
-        newLessons = newLessons.map((item) => {
-            if (item["day"] === day) {
-                return item;
-            }
-        });
-        newLessons = newLessons.filter((e) => e !== undefined);
-        this.props.selectDay(newLessons);
+        // console.log("date", date);
+        const selectedDate = String(date);
+        axios
+            .get(`${ENDPOINT}/lessons?date=${selectedDate}`)
+            .then((res) => {
+                console.log("RES : ", res.data.result.lessons);
+                if (res.status >= 200 && res.status <= 204) {
+                    this.setState({
+                        lessons: res.data.result.lessons,
+                    });
+                }
+            })
+            .catch((err) => {
+                console.log("ERR : ", err);
+            });
     };
 
     render() {
-        const { children, clickLesson, lessons } = this.props;
-        const { pages } = this.state;
+        const { children, clickLesson } = this.props;
+        const { pages, lessons } = this.state;
         const { subMenuBox, selectDate } = this;
-        // console.log("lessons :>> ", lessons);
         return (
             <Whole>
                 <LeftWrapper>

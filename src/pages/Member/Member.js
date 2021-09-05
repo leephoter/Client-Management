@@ -17,6 +17,7 @@ export default class Member extends PureComponent {
             name: "",
             age: "",
         },
+        lessons: [],
     };
 
     componentDidMount() {
@@ -29,19 +30,19 @@ export default class Member extends PureComponent {
             .get(`${ENDPOINT}/members`)
             .then((res) => {
                 console.log("RES : ", res.data);
-                // result.data = {
-                //     result: {
-                //         members: [
-                //             {
-                //                 id: 1,
-                //                 name: "이한결",
-                //                 age: 25,
-                //             },
-                //         ],
-                //     },
-                // };
                 this.setState({
                     list: res.data.result.members,
+                });
+            })
+            .catch((err) => {
+                console.log("ERR : ", err);
+            });
+        axios
+            .get(`${ENDPOINT}/lessons`)
+            .then((res) => {
+                console.log("RES : ", res.data.result.lessons);
+                this.setState({
+                    lessons: res.data.result.lessons,
                 });
             })
             .catch((err) => {
@@ -50,13 +51,29 @@ export default class Member extends PureComponent {
     }
 
     deleteInfo = (e) => {
-        const { index } = e.target.dataset;
+        const memberId = e.target.value;
         const { list } = this.state;
-        const _list = list.filter((item, index2) => index2 !== Number(index));
-        NewList(_list);
-        this.setState({
-            list: _list,
-        });
+        // NewList(_list);
+
+        // this.setState({
+        //     list: _list,
+        // });
+        axios
+            .delete(`${ENDPOINT}/members/${memberId}`)
+            .then((res) => {
+                console.log("RES : ", res);
+                if (res.status >= 200 && res.status <= 204) {
+                    const _list = list.filter((item) => {
+                        return item.id !== Number(memberId);
+                    });
+                    this.setState({
+                        list: _list,
+                    });
+                }
+            })
+            .catch((err) => {
+                console.log("ERR : ", err);
+            });
     };
 
     openModal = () => {
@@ -90,19 +107,18 @@ export default class Member extends PureComponent {
                 })
                 .then((res) => {
                     console.log("RES : ", res);
+                    console.log("_list :>> ", _list);
                     if (res.status >= 200 && res.status <= 204) {
                         console.log("11 :>> ");
                         // setState
                         this.setState({
-                            list: [...this.state.list, res.data.result.members],
+                            list: _list,
                             newClient: {
                                 name: "",
                                 age: "",
                             },
                             open: false,
                         });
-                    } else {
-                        console.log("err :>> ");
                     }
                 })
                 .catch((err) => {
@@ -114,7 +130,7 @@ export default class Member extends PureComponent {
         }
     };
     render() {
-        const { open, now, newClient } = this.state;
+        const { open, now, newClient, lessons } = this.state;
         const {
             deleteInfo,
             openModal,
@@ -122,9 +138,11 @@ export default class Member extends PureComponent {
             getNewClient,
             addList,
         } = this;
-        console.log("list :>> ", list);
+
         return (
-            <MainPage lessons={lessons}>
+            <MainPage
+            // lessons={lessons}
+            >
                 <MemberPresenter
                     deleteInfo={deleteInfo}
                     openModal={openModal}

@@ -15,38 +15,41 @@ const NewButton = styled(Button)`
 `;
 
 export default class TestComponent extends PureComponent {
-    checkIndex = (e) => {
-        console.log("e.target :>> ", e.target);
+    title = (startTime) => {
+        if (startTime !== undefined) {
+            return startTime;
+        } else {
+            return "시간";
+        }
     };
+
     render() {
         const {
+            id,
             name,
             day,
-            time,
+            startTime,
+            // endTime,
             deleteInfo,
             dataIndex,
             openTransfer,
             form,
         } = this.props;
+        const { title } = this;
         return (
             <>
                 <NewButtonGroup
                     color="primary"
                     aria-label="outlined primary button group"
                 >
+                    <NewButton id={id} name={name} onClick={openTransfer}>
+                        {`${name}`}
+                    </NewButton>
+                    <NewButton name={name}>{day}</NewButton>
                     <NewButton name={name} onClick={openTransfer}>
-                        {name}
+                        {title(startTime)}
                     </NewButton>
-                    <NewButton
-                        name={name}
-                        // onClick={openTransfer}
-                    >
-                        {day}
-                    </NewButton>
-                    <NewButton name={name} onClick={openTransfer}>
-                        {time}
-                    </NewButton>
-                    <NewButton data-index={dataIndex} onClick={deleteInfo}>
+                    <NewButton id={id} onClick={deleteInfo}>
                         {form}
                     </NewButton>
                 </NewButtonGroup>

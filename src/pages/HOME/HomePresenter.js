@@ -1,7 +1,6 @@
 import React, { PureComponent } from "react";
 import styled, { css, ThemeProvider } from "styled-components";
 import { darken, lighten } from "polished";
-import { Link } from "react-router-dom";
 
 export const PaymentWrapper = styled.div`
     box-sizing: border-box;
@@ -190,15 +189,12 @@ export default class HomePresenter extends PureComponent {
                     </ListLine>
                     {list.map((item, index) => {
                         return (
-                            <ListLine name={item.students}>
-                                <CheckAll
-                                    name={item.students}
-                                    onClick={checkAll}
-                                >
-                                    {item.all === true ? "V" : ""}
+                            <ListLine name={item.name}>
+                                <CheckAll name={item.name} onClick={checkAll}>
+                                    {/* {item.all === true ? "V" : ""} */}
                                 </CheckAll>
-                                <ListNames name={item.students}>
-                                    {item.students}
+                                <ListNames name={item.name}>
+                                    {item.name}
                                 </ListNames>
                                 {payments(item)}
                             </ListLine>

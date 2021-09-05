@@ -1,25 +1,26 @@
 import React, { PureComponent } from "react";
 import MainPage from "../../common/MainPage/MainPage";
 import LessonPresenter from "./LessonPresenter";
-import { lessons, NewLessons } from "../../common/LessonGroup/LessonGroup";
-import { list } from "../../common/ClientList/ClientListDummy";
+import { NewLessons } from "../../common/LessonGroup/LessonGroup";
+// import { list } from "../../common/ClientList/ClientListDummy";
 import axios from "axios";
 
 const ENDPOINT = "http://127.0.0.1:8080";
 
 export default class Lesson extends PureComponent {
     state = {
-        lessons,
+        lessons: [],
         registerModalOpen: false,
         transferModalOpen: false,
         newLesson: {
             name: "",
             day: "",
-            time: "",
+            startTime: "",
+            endTime: "",
             students: [],
         },
-        list,
-        lessonName: "",
+        list: [],
+        selectedLessonId: "",
     };
 
     componentDidMount() {
@@ -31,9 +32,20 @@ export default class Lesson extends PureComponent {
         axios
             .get(`${ENDPOINT}/lessons`)
             .then((res) => {
-                console.log("RES : ", res.data);
+                // console.log("RES : ", res.data.result);
                 this.setState({
                     lessons: res.data.result.lessons,
+                });
+            })
+            .catch((err) => {
+                console.log("ERR : ", err);
+            });
+        axios
+            .get(`${ENDPOINT}/members`)
+            .then((res) => {
+                // console.log("RES : ", res.data.result);
+                this.setState({
+                    list: res.data.result.members,
                 });
             })
             .catch((err) => {
@@ -42,20 +54,27 @@ export default class Lesson extends PureComponent {
     }
 
     deleteInfo = (e) => {
-        const { index } = e.target.dataset;
+        const { id } = e.target;
         const { lessons } = this.state;
-        const _lessons = lessons.filter(
-            (item, index2) => index2 !== Number(index)
-        );
-        NewLessons(_lessons);
-        this.setState({
-            lessons: _lessons,
-        });
+        const _lessons = lessons.filter((item) => item.id !== Number(id));
+        // console.log("id :>> ", id);
+        axios
+            .delete(`${ENDPOINT}/lessons/${id}`)
+            .then((res) => {
+                if (res.status >= 200 && res.status <= 204) {
+                    this.setState({
+                        lessons: _lessons,
+                    });
+                }
+            })
+            .catch((err) => {
+                console.log("ERR : ", err);
+            });
     };
     openTransfer = (e) => {
         this.setState({ transferModalOpen: true });
         this.setState({
-            lessonName: e.target.name,
+            selectedLessonId: e.target.id,
         });
     };
     closeTransfer = () => {
@@ -70,6 +89,15 @@ export default class Lesson extends PureComponent {
     };
     getNewLesson = (e) => {
         const { newLesson } = this.state;
+
+        if (e.target.name === "startTime") {
+            this.setState({
+                newLesson: {
+                    ...newLesson,
+                    endTime: Number(e.target.value) + 1,
+                },
+            });
+        }
         this.setState({
             newLesson: {
                 ...newLesson,
@@ -81,51 +109,92 @@ export default class Lesson extends PureComponent {
     addLesson = () => {
         const { lessons, newLesson, registerModalOpen } = this.state;
         const _lesson = lessons.concat(newLesson);
+
+        // console.log("_lesson.length :>> ", _lesson[_lesson.length - 1]);
         if (
             newLesson.name === "" ||
             newLesson.day === "" ||
             newLesson.time === ""
         ) {
-            return;
+            return alert("모두 입력해주세요");
         } else {
-            NewLessons(_lesson);
-            return this.setState({
-                lessons: _lesson,
-                newLesson: {
-                    name: "",
-                    day: "",
-                    time: "",
-                    students: [],
-                },
-                registerModalOpen: false,
-            });
+            axios
+                .post(`${ENDPOINT}/lessons`, {
+                    name: _lesson[_lesson.length - 1].name,
+                    day: _lesson[_lesson.length - 1].day,
+                    startTime: _lesson[_lesson.length - 1].startTime,
+                    endTime: Number(_lesson[_lesson.length - 1].startTime) + 1,
+                })
+                .then((res) => {
+                    console.log("RES : ", res);
+                    if (res.status >= 200 && res.status <= 204) {
+                        this.setState({
+                            lessons: _lesson,
+                            newLesson: {
+                                name: "",
+                                day: "",
+                                startTime: "",
+                                endTime: "",
+                                students: [],
+                            },
+                            registerModalOpen: false,
+                        });
+                    }
+                })
+                .catch((err) => {
+                    console.log("ERR : ", err);
+                });
         }
     };
     addList = (e) => {
-        const { lessons, lessonName } = this.state;
-        const _each = e;
-        let newLessons = lessons.concat();
+        console.log("e :>> ", e);
+        const selectedMembers = e.map((item) => item.id);
+        const { lessons, selectedLessonId } = this.state;
+        console.log(
+            "selectedLessonId, selectedMembers :>> ",
+            selectedLessonId,
+            selectedMembers
+        );
+        // console.log("selectedMembers :>> ", selectedMembers);
+        console.log("e :>> ", e);
+        axios
+            .put(`${ENDPOINT}/lessons/${selectedLessonId}/members`, {
+                memberIds: selectedMembers,
+            })
+            .then((res) => {
+                console.log("RES : ", res);
+                // this.setState({
+                //     lessons: res.data.result.members,
+                // });
+            })
+            .catch((err) => {
+                console.log("ERR : ", err);
+            });
 
-        const getStudents = e.map((item, index) => {
-            return {
-                students: item.name,
-                all: false,
-                lessonsPayment: Array(12)
-                    .fill()
-                    .map(function (each, index) {
-                        return "X";
-                    }),
-            };
-        });
-        newLessons.map((item, index) => {
-            if (item.name === lessonName) {
-                item.students = getStudents;
-            }
-        });
-        this.setState({
-            lessons: newLessons,
-        });
-        NewLessons(newLessons);
+        //-----------------------------
+        // const _each = e;
+        // let newLessons = lessons.concat();
+        // const getStudents = e.map((item, index) => {
+        //     return {
+        //         students: item.name,
+        //         all: false,
+        //         lessonsPayment: Array(12)
+        //             .fill()
+        //             .map(function (each, index) {
+        //                 return "X";
+        //             }),
+        //     };
+        // });
+        // newLessons.map((item, index) => {
+        //     if (item.name === selectedLessonId) {
+        //         item.students = getStudents;
+        //     }
+        // });
+        // this.setState({
+        //     lessons: newLessons,
+        // });
+        // NewLessons(newLessons);
+        //-----------------------------
     };
 
     render() {
@@ -146,8 +215,11 @@ export default class Lesson extends PureComponent {
             addLesson,
             addList,
         } = this;
+        // console.log("list :>> ", list);
         return (
-            <MainPage lessons={lessons}>
+            <MainPage
+            // lessons={lessons}
+            >
                 <LessonPresenter
                     lessons={lessons}
                     list={list}

@@ -54,9 +54,6 @@ export default function CustomizedSelects(props) {
     const [age, setAge] = React.useState("");
     const handleChange = (event) => {
         setAge(event.target.value);
-        // console.log("event.target.name :>> ", event.target.name);
-        // console.log("event.target.value :>> ", event.target.value);
-        // console.log("props :>> ", props);
         props.getNewLesson(event);
     };
     return (
@@ -81,13 +78,13 @@ export default function CustomizedSelects(props) {
                     input={<BootstrapInput />}
                 >
                     <MenuItem value="none">{"none"}</MenuItem>
-                    <MenuItem value="월">{"월"}</MenuItem>
-                    <MenuItem value="화">{"화"}</MenuItem>
-                    <MenuItem value="수">{"수"}</MenuItem>
-                    <MenuItem value="목">{"목"}</MenuItem>
-                    <MenuItem value="금">{"금"}</MenuItem>
-                    <MenuItem value="토">{"토"}</MenuItem>
-                    <MenuItem value="일">{"일"}</MenuItem>
+                    <MenuItem value="MONDAY">{"월요일"}</MenuItem>
+                    <MenuItem value="TUESDAY">{"화요일"}</MenuItem>
+                    <MenuItem value="WEDNESDAY">{"수"}</MenuItem>
+                    <MenuItem value="THURSDAY">{"목"}</MenuItem>
+                    <MenuItem value="FRIDAY">{"금"}</MenuItem>
+                    <MenuItem value="SATURDAY">{"토"}</MenuItem>
+                    <MenuItem value="SUNDAY">{"일"}</MenuItem>
                 </NewSelectDay>
             </FormControl>
             <FormControl>
@@ -97,19 +94,20 @@ export default function CustomizedSelects(props) {
                 <NewSelectTime
                     labelId="demo-customized-select-label"
                     id="demo-customized-select"
-                    name={"time"}
+                    name={"startTime"}
                     onChange={handleChange}
                     input={<BootstrapInput />}
                 >
-                    <MenuItem value="9:00 - 10:00">{"9:00 - 10:00"}</MenuItem>
-                    <MenuItem value="10:00 - 11:00">{"10:00 - 11:00"}</MenuItem>
-                    <MenuItem value="11:00 - 12:00">{"11:00 - 12:00"}</MenuItem>
-                    <MenuItem value="13:00 - 14:00">{"13:00 - 14:00"}</MenuItem>
-                    <MenuItem value="14:00 - 15:00">{"14:00 - 15:00"}</MenuItem>
-                    <MenuItem value="15:00 - 16:00">{"15:00 - 16:00"}</MenuItem>
-                    <MenuItem value="16:00 - 17:00">{"16:00 - 17:00"}</MenuItem>
-                    <MenuItem value="17:00 - 18:00">{"17:00 - 18:00"}</MenuItem>
-                </NewSelectTime>
+                    <MenuItem value="9">{"9:00 - 10:00"}</MenuItem>
+                    <MenuItem value="10">{"10:00 - 11:00"}</MenuItem>
+                    <MenuItem value="11">{"11:00 - 12:00"}</MenuItem>
+                    <MenuItem value="12">{"12:00 - 13:00"}</MenuItem>
+                    <MenuItem value="13">{"13:00 - 14:00"}</MenuItem>
+                    <MenuItem value="14">{"14:00 - 15:00"}</MenuItem>
+                    <MenuItem value="15">{"15:00 - 16:00"}</MenuItem>
+                    <MenuItem value="16">{"16:00 - 17:00"}</MenuItem>
+                    <MenuItem value="17">{"17:00 - 18:00"}</MenuItem>
+                </NewSelectTime>{" "}
             </FormControl>
         </div>
     );
